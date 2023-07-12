@@ -1,8 +1,12 @@
 <script setup lang="ts">
+
+import LayoutDefault from "@/layouts/LayoutDefault.vue";
 </script>
 
 <template>
-  <h1>clueless</h1>
+  <LayoutDefault>
+  <RouterView/>
+  </LayoutDefault>
 </template>
 
 <style scoped>
