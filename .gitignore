@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+src/interfaces/ISupabase.ts
 
 # Editor directories and files
 .vscode/*

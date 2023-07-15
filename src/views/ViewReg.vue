@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import FormLogin from "components/forms/FormLogin/FormLogin.vue";
-
+import FormReg from "components/forms/FormReg/FormReg.vue";
 </script>
 
 <template>
-<section class="login">
-  <div class="login__content">
-  <h1 class="login__title">Войдите в свой аккаунт</h1>
-    <FormLogin class="login__form"/>
+<section class="reg">
+  <div class="reg__content">
+  <h1 class="reg__title">Зарагестрируй</h1>
+    <FormReg class="reg__form"/>
   </div>
 </section>
 </template>
 
 <style scoped lang="scss">
-.login {
+.куп {
   min-height: 100dvh;
   min-width: 100dvw;
   display: flex;
@@ -40,3 +39,4 @@ import FormLogin from "components/forms/FormLogin/FormLogin.vue";
 
 }
 </style>
+
