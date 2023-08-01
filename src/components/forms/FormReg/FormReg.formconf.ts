@@ -1,11 +1,15 @@
 import {onMounted, reactive, ref} from "vue";
 import {useDepartmentsService} from "@/services/departments.service.ts";
-import {IRegUser} from "@/interfaces/reg/IRegUser.ts";
-import {IRegFormOptions} from "@/interfaces/reg/IRegFormOptions.ts";
+import {IRegOptions} from "@/interfaces/form/reg/IRegOptions.ts";
+import {FormRules} from "naive-ui";
+import {IRegValues} from "@/interfaces/form/reg/IRegValues.ts";
+import {IRegConf} from "@/interfaces/form/reg/IRegConf.ts";
 
-export function useRegFormConf() {
+
+
+export function useRegFormConf(): IRegConf {
     const {getDepartments} = useDepartmentsService()
-    const rules = {
+    const rules: FormRules = {
         userNumber: {
             required: true,
             message: "Введите номер пользователя"
@@ -30,7 +34,7 @@ export function useRegFormConf() {
             required: true,
             message: "Выберите хотя бы 1 депортамент"
         },
-        login: {
+        email: {
             required: true,
             message: "Введите email пользователя"
         },
@@ -39,15 +43,15 @@ export function useRegFormConf() {
             message: "Введите пароль пользователя"
         },
     }
-    const options = ref<IRegFormOptions[]>([])
-    const formValues = reactive<IRegUser>({
+    const options = ref<IRegOptions[]>([])
+    const formValues = reactive<IRegValues>({
         userNumber: '',
         lastName: '',
         firstName: '',
         fatherName: null,
         timestamp: null,
         departments: null,
-        login: '',
+        email: '',
         password: ''
     })
 

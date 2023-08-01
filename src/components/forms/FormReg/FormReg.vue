@@ -5,7 +5,6 @@ import {useRegFormConf} from "components/forms/FormReg/FormReg.formconf.ts";
 import {useAuthService} from "@/services/auth.service.ts";
 import {useMessageService} from "@/services/message.service.ts";
 
-
 const regFormRef = ref<FormInst | null>()
 
 const {adminReg} = useAuthService();
@@ -21,7 +20,6 @@ function goReg() {
     const {success} = await adminReg(formValues);
 
     success ? message.success().reg() : message.errors().reg()
-
   })
 }
 </script>
@@ -74,9 +72,9 @@ function goReg() {
           :options="options"
       />
     </NFormItem>
-    <NFormItem label="Почта" path="login">
+    <NFormItem label="Почта" path="email">
       <NInput
-          v-model:value="formValues.login"
+          v-model:value="formValues.email"
           placeholder=""
       />
     </NFormItem>

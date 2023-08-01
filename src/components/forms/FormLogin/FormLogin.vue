@@ -1,23 +1,33 @@
 <script setup lang="ts">
 import {FormInst, NButton, NForm, NFormItem, NInput} from "naive-ui";
 import {useAuthService} from "@/services/auth.service.ts";
-import { ref} from "vue";
+import {ref} from "vue";
 import {useRouter} from "vue-router";
 import {useFormLogin} from "components/forms/FormLogin/FormLogin.formconf.ts";
+import {useMessageService} from "@/services/message.service.ts";
 
 const loginFormRef = ref<FormInst | null>()
 const router = useRouter();
-//TODO: перенести конф
 
 const {login} = useAuthService();
-
+const message = useMessageService();
 const {formValues, rules} = useFormLogin();
 
 async function goLogin() {
   loginFormRef.value?.validate(async (errors) => {
-    if (!errors && await login(formValues)) {
-      await router.push('/')
+    if (errors) {
+      message.errors().formValidation()
+      return
     }
+    const {success} = await login(formValues)
+
+    if (success) {
+      message.success().login()
+      await router.push('/')
+      return
+    }
+
+    message.errors().login()
   })
 }
 </script>
@@ -29,9 +39,9 @@ async function goLogin() {
       :rules="rules"
       class="login-form"
   >
-    <NFormItem label="Email" path="login">
+    <NFormItem label="Email" path="email">
       <NInput
-          v-model:value="formValues.login"
+          v-model:value="formValues.email"
           placeholder=""
       />
     </NFormItem>

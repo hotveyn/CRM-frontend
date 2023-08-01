@@ -1,9 +1,11 @@
 import {reactive} from "vue";
-import {ILoginUser} from "@/interfaces/auth/ILoginUser.ts";
+import {ILoginValues} from "@/interfaces/form/login/ILoginValues.ts";
+import {FormRules} from "naive-ui";
+import {IFormConf} from "@/interfaces/form/IFormConf.ts";
 
-export function useFormLogin(){
-    const rules = {
-        login: {
+export function useFormLogin(): IFormConf<ILoginValues>{
+    const rules: FormRules = {
+        email: {
             required: true,
             message: "Введите свой email"
         },
@@ -13,12 +15,12 @@ export function useFormLogin(){
         },
     }
 
-    const formValues = reactive<ILoginUser>({
+    const formValues = reactive<ILoginValues>({
         email: '',
         password: ''
     })
 
-    return{
+    return {
         rules,
         formValues
     }

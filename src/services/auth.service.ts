@@ -1,13 +1,13 @@
 import {supabase} from "@/lib/supabase.client.ts";
-import {IRegUser} from "@/interfaces/reg/IRegUser.ts";
-import {ILoginUser} from "@/interfaces/auth/ILoginUser.ts";
+import {IRegValues} from "@/interfaces/form/reg/IRegValues.ts";
+import {ILoginValues} from "@/interfaces/form/login/ILoginValues.ts";
 
 
 export function useAuthService() {
 
-    async function adminReg(formValues: IRegUser) {
+    async function adminReg(formValues: IRegValues) {
         const {data, error} = await supabase.auth.admin.createUser({
-            email: formValues.login,
+            email: formValues.email,
             password: formValues.password,
             email_confirm: true,
             user_metadata: {
@@ -33,7 +33,7 @@ export function useAuthService() {
         };
     }
 
-    async function login(formValues: ILoginUser) {
+    async function login(formValues: ILoginValues) {
         const {data, error} = await supabase.auth.signInWithPassword({
             email: formValues.email,
             password: formValues.password,
