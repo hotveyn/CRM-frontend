@@ -6,10 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint": "yarn lint:js && yarn lint:prettier",
+    "lintf": "prettier --write --list-different . && yarn lint:js --fix"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.26.0",
+    "axios": "^1.4.0",
+    "jwt-decode": "^3.1.2",
     "naive-ui": "^2.34.4",
     "pinia": "^2.1.4",
     "vfonts": "^0.0.3",
@@ -18,10 +23,19 @@
   },
   "devDependencies": {
     "@types/node": "^20.4.1",
+    "@typescript-eslint/eslint-plugin": "^6.3.0",
+    "@typescript-eslint/parser": "^6.3.0",
     "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/eslint-config-typescript": "^11.0.3",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "prettier": "^3.0.1",
     "sass": "^1.63.6",
     "typescript": "^5.0.2",
     "vite": "^4.4.0",
+    "vue-eslint-parser": "^9.3.1",
     "vue-tsc": "^1.8.3"
   }
 }
