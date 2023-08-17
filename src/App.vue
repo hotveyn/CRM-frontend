@@ -1,15 +1,15 @@
 <script setup lang="ts">
-
-
-import LayoutDefault from "@/layouts/LayoutDefault.vue";
+import LayoutDefault from '@/layouts/LayoutDefault.vue';
 </script>
 
 <template>
-  <LayoutDefault>
-  <RouterView/>
-  </LayoutDefault>
+  <NDialogProvider>
+    <NMessageProvider>
+      <LayoutDefault>
+        <RouterView />
+      </LayoutDefault>
+    </NMessageProvider>
+  </NDialogProvider>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
