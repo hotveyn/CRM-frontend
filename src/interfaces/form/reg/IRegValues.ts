@@ -1,12 +1,12 @@
-import {IDepartment} from "@/interfaces/IDepartment.ts";
+import { IDepartment } from '@/interfaces/IDepartment.ts';
 
 export interface IRegValues {
-    userNumber: string
-    lastName: string
-    firstName: string
-    fatherName: string | null
-    timestamp: number | null
-    departments: IDepartment[] | null
-    email: string
-    password: string
+  login: string;
+  password: string;
+  code: string;
+  lastName: string;
+  firstName: string;
+  patronymicName: string;
+  startWorkDate: number | null;
+  departments: IDepartment[] | null;
 }
