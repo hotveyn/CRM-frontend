@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { useAuthService } from '@/services/auth.service.ts';
+import { NButton } from 'naive-ui';
 
 const router = useRouter();
 

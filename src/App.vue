@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import LayoutDefault from '@/layouts/LayoutDefault.vue';
+import { NDialogProvider, NMessageProvider } from 'naive-ui';
 </script>
 
 <template>
