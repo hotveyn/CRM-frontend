@@ -1,53 +1,35 @@
-import {supabase} from "@/lib/supabase.client.ts";
-import {IRegValues} from "@/interfaces/form/reg/IRegValues.ts";
-import {ILoginValues} from "@/interfaces/form/login/ILoginValues.ts";
-
+import { IRegValues } from '@/interfaces/form/reg/IRegValues.ts';
+import { ILoginValues } from '@/interfaces/form/login/ILoginValues.ts';
+import { api } from '@/axios';
+import { useAuthStore } from '@/store/auth.store.ts';
 
 export function useAuthService() {
+  async function employeeReg(formValues: IRegValues) {
+    const payload = {
+      login: formValues.login,
+      password: formValues.password,
+      first_name: formValues.firstName,
+      last_name: formValues.lastName,
+      patronymic_name: formValues.patronymicName,
+      start_work_date: formValues.startWorkDate,
+      code: formValues.code,
+      departments: formValues.departments,
+    };
 
-    async function adminReg(formValues: IRegValues) {
-        const {data, error} = await supabase.auth.admin.createUser({
-            email: formValues.email,
-            password: formValues.password,
-            email_confirm: true,
-            user_metadata: {
-                first_name: formValues.firstName,
-                last_name: formValues.lastName,
-                father_name: formValues.fatherName,
-                timestamp: formValues.timestamp,
-                departments: formValues.departments
-            }
-        })
+    return await api.post('auth/reg-employee', payload);
+  }
 
-        return {
-            success: !error,
-            data: data
-        };
-    }
+  function logout() {
+    const userStore = useAuthStore();
+    userStore.removeToken();
+  }
 
-    async function logout() {
-        const {error} = await supabase.auth.signOut();
-
-        return {
-            success: !error
-        };
-    }
-
-    async function login(formValues: ILoginValues) {
-        const {data, error} = await supabase.auth.signInWithPassword({
-            email: formValues.email,
-            password: formValues.password,
-        })
-
-        return {
-            success: !error,
-            data: data
-        };
-    }
-
-    return {
-        logout,
-        login,
-        adminReg
-    }
+  async function login(formValues: ILoginValues) {
+    return await api.post('auth/login', formValues);
+  }
+  return {
+    employeeReg,
+    logout,
+    login,
+  };
 }

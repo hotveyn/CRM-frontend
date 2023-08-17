@@ -1,23 +1,13 @@
-import {supabase} from "@/lib/supabase.client.ts";
-import {useMessageService} from "@/services/message.service.ts";
-import {IDepartment} from "@/interfaces/IDepartment.ts";
+import { IDepartment } from '@/interfaces/IDepartment.ts';
+import { api } from '@/axios';
 export function useDepartmentsService() {
-    const message = useMessageService();
+  async function getDepartments() {
+    const res = await api.get('department');
 
-    async function getDepartments() {
-        let {data: departments, error} = await supabase
-            .from('departments')
-            .select('*')
+    return res.data as IDepartment[];
+  }
 
-        if (error) {
-            message.errors().error()
-            return undefined
-        }
-
-        return departments as IDepartment[]
-    }
-
-    return {
-        getDepartments
-    }
+  return {
+    getDepartments,
+  };
 }
