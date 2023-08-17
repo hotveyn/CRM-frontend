@@ -1,16 +1,15 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <header class="header">
-  <nav>
-    <RouterLink to="/login">login</RouterLink>
-    <RouterLink to="/reg">reg</RouterLink>
-  </nav>
+    <h1>NeonBro</h1>
   </header>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.header {
+  padding: 30px;
+  height: 100%;
+  border-bottom: 2px solid $primary;
+}
 </style>
