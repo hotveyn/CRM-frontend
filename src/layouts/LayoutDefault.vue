@@ -1,17 +1,20 @@
 <script setup lang="ts">
-
-import TheHeader from "components/header/TheHeader.vue";
+import TheHeader from 'components/header/TheHeader.vue';
 </script>
 
 <template>
-  <TheHeader/>
-<main class="main">
-  <NMessageProvider>
-  <slot/>
-  </NMessageProvider>
-</main>
+  <div class="layout-default">
+    <TheHeader />
+    <main class="main">
+      <slot />
+    </main>
+  </div>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.layout-default {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 0.1fr 1.9fr;
+}
 </style>
