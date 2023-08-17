@@ -1,4 +1,4 @@
-import { IDepartment } from '@/interfaces/IDepartment.ts';
+import { IDepartment } from '@/interfaces/department/IDepartment.ts';
 import { api } from '@/axios';
 export function useDepartmentsService() {
   async function getDepartments() {

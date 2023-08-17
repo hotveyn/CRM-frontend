@@ -9,7 +9,7 @@ export const api = axios.create({
   },
   transformRequest: [
     function (data) {
-      return JSON.stringify(data, (key, value) => {
+      return JSON.stringify(data, (_, value) => {
         if (value === '') {
           return undefined;
         }

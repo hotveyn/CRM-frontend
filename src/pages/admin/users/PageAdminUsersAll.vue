@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
 import { IUser } from '@/interfaces/user/IUser.ts';
-import { useUserService } from '@/services/user.service.ts';
 import TableUser from 'components/tables/TableUser.vue';
 import { ITableUser } from '@/interfaces/table/ITableUser.ts';
 import { useDialogService } from '@/services/dialog.service.ts';

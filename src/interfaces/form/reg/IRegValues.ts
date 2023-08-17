@@ -1,4 +1,4 @@
-import { IDepartment } from '@/interfaces/IDepartment.ts';
+import { IDepartment } from '@/interfaces/department/IDepartment.ts';
 
 export interface IRegValues {
   login: string;

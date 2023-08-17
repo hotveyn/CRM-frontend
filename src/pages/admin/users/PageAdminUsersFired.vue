@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
 import { IUser } from '@/interfaces/user/IUser.ts';
-import { useUserService } from '@/services/user.service.ts';
 import TableFired from 'components/tables/TableFired.vue';
 import { useMessageService } from '@/services/message.service.ts';
 import { useDialogService } from '@/services/dialog.service.ts';
 import { ITableUser } from '@/interfaces/table/ITableUser.ts';
 import { useFiredUsersStore } from '@/store/firedUsers.store.ts';
 
-const userService = useUserService();
 const messageService = useMessageService();
 const { confirm } = useDialogService();
 const firedUsersStore = useFiredUsersStore();
