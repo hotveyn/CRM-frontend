@@ -7,6 +7,11 @@ const routes: RouteRecordRaw[] = [
     name: 'home',
     path: '/',
     component: () => import('@/pages/PageHome.vue'),
+    beforeEnter: () => {
+      const userStore = useAuthStore();
+      if (userStore.userRole) return { name: userStore.userRole };
+      else return { name: 'login' };
+    },
   },
   {
     name: 'admin',
@@ -104,7 +109,7 @@ const routes: RouteRecordRaw[] = [
       name: 'manager-orders',
     },
     meta: {
-      roleToAccess: UserRoleEnum.ADMIN,
+      roleToAccess: UserRoleEnum.MANAGER,
     },
     children: [
       {
@@ -152,7 +157,7 @@ const routes: RouteRecordRaw[] = [
       name: 'employee-new',
     },
     meta: {
-      roleToAccess: UserRoleEnum.ADMIN,
+      roleToAccess: UserRoleEnum.EMPLOYEE,
     },
     children: [
       {
