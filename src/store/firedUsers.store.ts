@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
 import { IUser } from '@/interfaces/user/IUser.ts';
 import { useUserService } from '@/services/user.service.ts';
-import { useUsersStore } from '@/store/users.store.ts';
+import { useMessageService } from '@/services/message.service.ts';
 
 const userService = useUserService();
+const message = useMessageService();
 interface State {
   users: IUser[];
   touched: boolean;
@@ -25,17 +26,22 @@ export const useFiredUsersStore = defineStore('fired-users', {
       }
       return this.users;
     },
-
+    async request() {
+      this.users = await userService.getAllFired();
+      this.touched = true;
+    },
     async unfire(userId: number) {
-      const usersStore = useUsersStore();
+      userService
+        .unfire(userId)
+        .then(() => {
+          message.user.unfire();
+        })
+        .catch((e) => {
+          message.error.custom(e.response.data.message);
+        });
 
       this.users = this.users.filter((user: IUser) => {
-        if (user.id === userId) {
-          usersStore.users.push(user);
-          userService.unfire(userId);
-          return false;
-        }
-        return true;
+        return user.id !== userId;
       });
     },
   },
