@@ -1,36 +1,24 @@
 <script setup lang="ts">
 import { FormInst, NButton, NForm, NFormItem, NInput } from 'naive-ui';
-import { useAuthService } from '@/services/auth.service.ts';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useFormLogin } from 'components/forms/FormLogin/FormLogin.formconf.ts';
-import { useMessageService } from '@/services/message.service.ts';
+import { useFormLogin } from 'components/forms/login/FormLogin.formconf.ts';
 import { useAuthStore } from '@/store/auth.store.ts';
+import { useRouter } from 'vue-router';
 
 const loginFormRef = ref<FormInst | null>();
 const router = useRouter();
-
-const { login } = useAuthService();
-const message = useMessageService();
-const userStore = useAuthStore();
+const authStore = useAuthStore();
 const { formValues, rules } = useFormLogin();
 
 async function goLogin() {
   loginFormRef.value?.validate(async (errors) => {
     if (errors) {
-      message.errors().formValidation();
       return;
     }
 
-    login(formValues)
-      .then((res) => {
-        userStore.setToken(res.data.token);
-        message.success().login();
-        router.push('/');
-      })
-      .catch((e) => {
-        message.errors().custom(e.response.data.message);
-      });
+    if (await authStore.login(formValues)) {
+      await router.push({ name: 'home' });
+    }
   });
 }
 </script>

@@ -1,7 +1,6 @@
 import { onMounted, reactive, ref } from 'vue';
 import { useDepartmentsService } from '@/services/departments.service.ts';
-import { IRegOptions } from '@/interfaces/form/reg/IRegOptions.ts';
-import { FormRules } from 'naive-ui';
+import { FormRules, SelectOption } from 'naive-ui';
 import { IRegValues } from '@/interfaces/form/reg/IRegValues.ts';
 import { IRegConf } from '@/interfaces/form/reg/IRegConf.ts';
 
@@ -41,7 +40,8 @@ export function useRegFormConf(): IRegConf {
       message: 'Введите пароль пользователя',
     },
   };
-  const options = ref<IRegOptions[]>([]);
+  const options = ref<SelectOption[]>([]);
+
   const formValues = reactive<IRegValues>({
     code: '',
     lastName: '',
@@ -53,6 +53,7 @@ export function useRegFormConf(): IRegConf {
     password: '',
   });
 
+  //TODO: from department store
   onMounted(async () => {
     const res = await getDepartments();
     if (res) {

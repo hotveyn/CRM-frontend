@@ -1,35 +1,33 @@
 <script setup lang="ts">
+import { useUserUpdateFormConf } from './userUpdate.formconf.ts';
+import { FormInst, NButton, NDatePicker, NForm, NFormItem, NInput, NSelect } from 'naive-ui';
+import { useUsersStore } from '@/store/users.store.ts';
 import { ref } from 'vue';
-import { NButton, NForm, NFormItem, NInput, NDatePicker, FormInst } from 'naive-ui';
-import { useRegFormConf } from 'components/forms/FormReg/FormReg.formconf.ts';
-import { useAuthService } from '@/services/auth.service.ts';
-import { useMessageService } from '@/services/message.service.ts';
 
-const regFormRef = ref<FormInst | null>();
+const props = defineProps<{
+  userId: number;
+}>();
+const emit = defineEmits<{
+  changed: [];
+}>();
+const userUpdateRef = ref<FormInst | null>();
+const userStore = useUsersStore();
+const { rules, formValues, options } = useUserUpdateFormConf(props.userId);
 
-const { employeeReg } = useAuthService();
-const message = useMessageService();
-const { rules, formValues, options } = useRegFormConf();
-
-function goReg() {
-  regFormRef.value?.validate(async (errors) => {
+async function goChange() {
+  userUpdateRef.value?.validate(async (errors) => {
     if (errors) {
-      message.errors().formValidation();
       return;
     }
-    employeeReg(formValues)
-      .then(() => {
-        message.success().reg();
-      })
-      .catch((e) => {
-        message.errors().custom(e.response.data.message);
-      });
+
+    await userStore.update(props.userId, formValues);
+    emit('changed');
   });
 }
 </script>
 
 <template>
-  <NForm ref="regFormRef" :model="formValues" :rules="rules" class="reg-form">
+  <NForm ref="userUpdateRef" :model="formValues" :rules="rules" class="reg-form">
     <NFormItem label="Номер сотрудника" path="code">
       <NInput v-model:value="formValues.code" placeholder="Сгенерируется сам, если оставите незаполненным" />
     </NFormItem>
@@ -43,7 +41,7 @@ function goReg() {
       <NInput v-model:value="formValues.patronymicName" placeholder="Иванович" />
     </NFormItem>
     <NFormItem label="Дата устройства на работу" path="startWorkDate">
-      <NDatePicker style="width: 100%" v-model:value="formValues.startWorkDate" placeholder="" type="date" />
+      <NDatePicker value-format="yyyy-MM-dd" v-model:formatted-value="formValues.startWorkDate" style="width: 100%" placeholder="" type="date" />
     </NFormItem>
     <NFormItem label="Департаменты" path="departments">
       <NSelect v-model:value="formValues.departments" placeholder="Минимум 1" multiple remote :options="options" />
@@ -52,16 +50,10 @@ function goReg() {
       <NInput v-model:value="formValues.login" placeholder="" />
     </NFormItem>
     <NFormItem label="Пароль" path="password">
-      <NInput v-model:value="formValues.password" type="password" placeholder="" show-password-on="click" />
+      <NInput v-model:value="formValues.password" type="password" placeholder="Текущий пароль захеширован и не покажется" show-password-on="click" />
     </NFormItem>
-    <NButton class="login-form__button" type="primary" @click.prevent="goReg()"> Создать </NButton>
+    <NButton class="login-form__button" type="primary" @click.prevent="goChange()"> Сохранить </NButton>
   </NForm>
 </template>
 
-<style scoped>
-.reg-form {
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-}
-</style>
+<style scoped lang="scss"></style>
