@@ -5,28 +5,43 @@ import BaseNavigation from 'components/navigation/BaseNavigation.vue';
 const routes: INavigationRoute[] = [
   {
     id: 1,
-    name: 'admin-breaks-all',
-    text: 'Виды браков',
+    name: 'manager-orders-new',
+    text: 'Новые заказы',
   },
   {
     id: 2,
-    name: 'admin-breaks-create',
+    name: 'manager-orders-create',
     text: 'Добавить',
+  },
+  {
+    id: 3,
+    name: 'manager-orders-breaks',
+    text: 'Бракованные',
+  },
+  {
+    id: 4,
+    name: 'manager-orders-stopped',
+    text: 'Остановленные',
+  },
+  {
+    id: 4,
+    name: 'manager-orders-work',
+    text: 'В работе',
   },
 ];
 </script>
 
 <template>
-  <div class="admin-breaks">
+  <div class="manager-orders">
     <BaseNavigation :routes="routes" />
-    <div class="admin-breaks__workspace">
+    <div class="manager-orders__workspace">
       <RouterView />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.admin-breaks {
+.manager-orders {
   &__workspace {
     padding: 10px 0;
   }

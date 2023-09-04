@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import AsideAdmin from 'components/aside/AsideAdmin.vue';
+import TheAside from 'components/aside/TheAside.vue';
 import { INavigationRoute } from '@/interfaces/INavigationRoute.ts';
 
-const adminRoutes: INavigationRoute[] = [
+const routes: INavigationRoute[] = [
   {
     id: 1,
     name: 'admin-users',
@@ -33,7 +33,7 @@ const adminRoutes: INavigationRoute[] = [
 
 <template>
   <div class="page-admin">
-    <AsideAdmin :routes="adminRoutes" />
+    <TheAside :routes="routes"><template #header>Админ</template></TheAside>
     <div class="page-admin__workspace">
       <RouterView />
     </div>

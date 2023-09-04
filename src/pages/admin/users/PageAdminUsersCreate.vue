@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FormReg from 'components/forms/FormReg/FormReg.vue';
+import FormReg from 'components/forms/reg/FormReg.vue';
 </script>
 
 <template>

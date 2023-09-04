@@ -1,7 +1,34 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { INavigationRoute } from '@/interfaces/INavigationRoute.ts';
+import BaseNavigation from 'components/navigation/BaseNavigation.vue';
+
+const routes: INavigationRoute[] = [
+  {
+    id: 1,
+    name: 'admin-departments-all',
+    text: 'Отделы',
+  },
+  {
+    id: 2,
+    name: 'admin-departments-create',
+    text: 'Добавить',
+  },
+];
+</script>
 
 <template>
-  <h1>admin departments</h1>
+  <div class="admin-departments">
+    <BaseNavigation :routes="routes" />
+    <div class="admin-departments__workspace">
+      <RouterView />
+    </div>
+  </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.admin-departments {
+  &__workspace {
+    padding: 10px 0;
+  }
+}
+</style>

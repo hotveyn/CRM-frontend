@@ -1,58 +1,61 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
-import { IUser } from '@/interfaces/user/IUser.ts';
-import TableFired from 'components/tables/TableFired.vue';
-import { useMessageService } from '@/services/message.service.ts';
+import TableFired from 'components/tables/fired/TableFired.vue';
 import { useDialogService } from '@/services/dialog.service.ts';
-import { ITableUser } from '@/interfaces/table/ITableUser.ts';
 import { useFiredUsersStore } from '@/store/firedUsers.store.ts';
+import { useDepartmentsStore } from '@/store/departments.store.ts';
+import { FilterOption, NSkeleton } from 'naive-ui';
+import { IDepartment } from '@/interfaces/department/IDepartment.ts';
 
-const messageService = useMessageService();
 const { confirm } = useDialogService();
+const departmentsStore = useDepartmentsStore();
 const firedUsersStore = useFiredUsersStore();
 
-const firedUsers = ref<IUser[]>([]);
-const loading = ref(true);
+const isLoading = ref(true);
 
-const firedTable = computed(() => {
-  const data: ITableUser[] = [];
-
-  firedUsers.value.forEach((user) => {
+const firedTableData = computed(() => {
+  return firedUsersStore.users.map((user) => {
     const departments: string[] = [];
     if (user.departments) {
       user.departments.forEach((i) => {
         departments.push(i.name);
       });
     }
-    data.push({
+    return {
       id: user.id,
       name: [user.last_name, user.first_name, user.patronymic_name].join(' '),
       code: user.code,
       departments: departments,
-    });
+    };
   });
-
-  return data;
 });
-
-onMounted(async () => {
-  firedUsers.value = await firedUsersStore.getOrRequest();
-  loading.value = false;
+const departmentsFilterOptions = computed<FilterOption[]>(() => {
+  return departmentsStore.departments.map((department: IDepartment) => {
+    return {
+      label: department.name,
+      value: department.name,
+    };
+  });
 });
 
 function unfire(userId: number) {
   confirm(async () => {
     await firedUsersStore.unfire(userId);
-    firedUsers.value = await firedUsersStore.getOrRequest();
-    messageService.success().unfire();
   });
 }
+
+onMounted(async () => {
+  await firedUsersStore.request();
+  await departmentsStore.request();
+  isLoading.value = false;
+});
 </script>
 
 <template>
   <div class="admin-users-fired">
     <h1>Уволенные сотрудники</h1>
-    <TableFired :fired-table="firedTable" :loading="loading" @unfire="unfire" />
+    <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
+    <TableFired v-else :table-data="firedTableData" @unfire="unfire" :filters="departmentsFilterOptions" />
   </div>
 </template>
 

@@ -1,62 +1,79 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
-import { IUser } from '@/interfaces/user/IUser.ts';
-import TableUser from 'components/tables/TableUser.vue';
-import { ITableUser } from '@/interfaces/table/ITableUser.ts';
+import { computed, onMounted, reactive, ref } from 'vue';
+import { NModal, NCard, FilterOption, NSkeleton } from 'naive-ui';
+import TableUser from 'components/tables/user/TableUser.vue';
 import { useDialogService } from '@/services/dialog.service.ts';
-import { useMessageService } from '@/services/message.service.ts';
 import { useUsersStore } from '@/store/users.store.ts';
+import FormUserUpdate from 'components/forms/userUpdate/FormUserUpdate.vue';
+import { useDepartmentsStore } from '@/store/departments.store.ts';
+import { IDepartment } from '@/interfaces/department/IDepartment.ts';
 
-const messageService = useMessageService();
 const { confirm } = useDialogService();
-const userStore = useUsersStore();
+const departmentsStore = useDepartmentsStore();
+const usersStore = useUsersStore();
 
-const users = ref<IUser[]>([]);
-const loading = ref(true);
+const userChangeModal = reactive({
+  isShow: false,
+  id: NaN,
+});
+const isLoading = ref(true);
 
-const usersTable = computed(() => {
-  const data: ITableUser[] = [];
-
-  users.value.forEach((user) => {
+const usersTableData = computed(() => {
+  return usersStore.users.map((user) => {
     const departments: string[] = [];
     if (user.departments) {
       user.departments.forEach((i) => {
         departments.push(i.name);
       });
     }
-    data.push({
+    return {
       id: user.id,
       name: [user.last_name, user.first_name, user.patronymic_name].join(' '),
       code: user.code,
       departments: departments,
-    });
+    };
   });
-
-  return data;
 });
-
-onMounted(async () => {
-  users.value = await userStore.getOrRequest();
-  loading.value = false;
+const departmentsFilterOptions = computed<FilterOption[]>(() => {
+  return departmentsStore.departments.map((department: IDepartment) => {
+    return {
+      label: department.name,
+      value: department.name,
+    };
+  });
 });
 
 function fire(userId: number) {
   confirm(async () => {
-    await userStore.fire(userId).then(() => {});
-    users.value = await userStore.getOrRequest();
-    messageService.success().fire();
+    await usersStore.fire(userId);
   });
 }
 
 function change(userId: number) {
-  console.log(userId);
+  userChangeModal.id = userId;
+  userChangeModal.isShow = true;
 }
+function changed() {
+  userChangeModal.isShow = false;
+}
+
+onMounted(async () => {
+  await usersStore.request();
+  await departmentsStore.request();
+  isLoading.value = false;
+});
 </script>
 
 <template>
   <div class="admin-users-all">
     <h1>Действующие сотрудники</h1>
-    <TableUser pagination-behavior-on-filter="first" @fire="fire" @change="change" :loading="loading" :users-table="usersTable" />
+    <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
+    <TableUser v-else pagination-behavior-on-filter="first" @fire="fire" @change="change" :table-data="usersTableData" :filters="departmentsFilterOptions" />
+    <NModal v-model:show="userChangeModal.isShow">
+      <NCard style="width: 600px">
+        <FormUserUpdate :user-id="userChangeModal.id" @changed="changed()" />
+      </NCard>
+    </NModal>
   </div>
 </template>
 

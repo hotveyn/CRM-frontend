@@ -11,7 +11,7 @@ const routes: INavigationRoute[] = [
   {
     id: 2,
     name: 'admin-users-create',
-    text: 'Добавить нового',
+    text: 'Добавить',
   },
   {
     id: 3,
