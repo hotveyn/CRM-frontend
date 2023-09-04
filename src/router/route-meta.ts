@@ -1,5 +1,5 @@
 import 'vue-router';
-import { UserRoleEnum } from '@/enums/user-role.enum.ts';
+import { UserRoleEnum } from '@/enums/user/UserRole.enum.ts';
 
 export {};
 
