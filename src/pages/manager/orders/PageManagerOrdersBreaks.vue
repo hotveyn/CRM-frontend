@@ -3,7 +3,6 @@ import { useOrdersBreakStore } from '@/store/orders/ordersBreak.store.ts';
 import { onMounted, reactive, ref } from 'vue';
 import TableOrdersBreak from 'components/tables/orders/break/TableOrdersBreak.vue';
 import { NCard, NModal, NSkeleton } from 'naive-ui';
-import FormOrderUpdate from 'components/forms/order/new-update/FormOrderNewUpdate.vue';
 import FormOrderBreakUpdate from 'components/forms/order/break-update/FormOrderBreakUpdate.vue';
 import { useDialogService } from '@/services/dialog.service.ts';
 

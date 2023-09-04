@@ -2,7 +2,7 @@ import { FormRules, SelectOption } from 'naive-ui';
 import { onMounted, reactive, ref } from 'vue';
 import { IOrderNewUpdateConf } from '@/interfaces/form/order/update/IOrderNewUpdateConf.ts';
 import { OrderTypeEnum } from '@/enums/order/OrderType.enum.ts';
-import { IOrderWorkUpdateValues } from '@/interfaces/form/order/update/IOrderNewUpdateValues.ts';
+import { IOrderNewUpdateValues } from '@/interfaces/form/order/update/IOrderNewUpdateValues.ts';
 import { useOrdersBreakStore } from '@/store/orders/ordersBreak.store.ts';
 
 const ordersBreakStore = useOrdersBreakStore();
@@ -41,7 +41,7 @@ export function useOrderBreakUpdateFormConf(id: number): IOrderNewUpdateConf {
     },
   ]);
 
-  const formValues = reactive<IOrderWorkUpdateValues>({
+  const formValues = reactive<IOrderNewUpdateValues>({
     name: '',
     type: OrderTypeEnum.NEON1,
     neon_length: 0,

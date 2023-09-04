@@ -12,6 +12,6 @@ module.exports = {
   extends: ['eslint:recommended', '@vue/typescript/recommended', 'plugin:vue/essential', 'prettier'],
   plugins: [],
   rules: {
-    'vue/no-v-model-argument': 0
+    'vue/no-v-model-argument': 0,
   },
 };

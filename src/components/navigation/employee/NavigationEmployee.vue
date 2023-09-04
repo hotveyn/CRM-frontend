@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { INavigationRoute } from '@/interfaces/INavigationRoute.ts';
-import { NButton, NButtonGroup } from 'naive-ui';
+import { NButton } from 'naive-ui';
 import { onMounted, ref } from 'vue';
 
 defineProps<{

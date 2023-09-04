@@ -5,5 +5,5 @@ export interface IOrderWorkUpdateValues {
   type: OrderTypeEnum;
   neon_length: number;
   comment?: string;
-  departments: number[] | null;
+  departments?: number[] | null;
 }

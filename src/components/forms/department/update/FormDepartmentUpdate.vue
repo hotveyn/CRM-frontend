@@ -8,7 +8,7 @@ const props = defineProps<{
   id: number;
 }>();
 
-const emit = defineEmits<{
+defineEmits<{
   changed: [];
 }>();
 

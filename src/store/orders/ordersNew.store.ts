@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { useOrderService } from '@/services/order.service.ts';
 import { IOrder } from '@/interfaces/order/IOrder.ts';
 import { useMessageService } from '@/services/message.service.ts';
-import { IOrderWorkUpdateValues } from '@/interfaces/form/order/update/IOrderNewUpdateValues.ts';
+import { IOrderNewUpdateValues } from '@/interfaces/form/order/update/IOrderNewUpdateValues.ts';
 import { IOrderCreateValues } from '@/interfaces/form/order/create/IOrderCreateValues.ts';
 
 const orderService = useOrderService();
@@ -46,7 +46,7 @@ export const useOrdersNewStore = defineStore('orders-new', {
     findById(id: number) {
       return this.orders.find((order) => order.id === id);
     },
-    async update(id: number, formValues: IOrderWorkUpdateValues) {
+    async update(id: number, formValues: IOrderNewUpdateValues) {
       orderService
         .update(id, formValues)
         .then(() => {

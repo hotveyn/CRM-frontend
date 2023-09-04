@@ -35,7 +35,7 @@ function createColumns(actions: { change: (id: number) => void; remove: (id: num
     },
     {
       title: 'Отвечающий отдел',
-      key: 'department',
+      key: 'department.name',
       sorter: 'default' as const,
     },
     {

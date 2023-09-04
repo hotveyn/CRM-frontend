@@ -4,7 +4,7 @@ import TableFired from 'components/tables/fired/TableFired.vue';
 import { useDialogService } from '@/services/dialog.service.ts';
 import { useFiredUsersStore } from '@/store/firedUsers.store.ts';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
-import { FilterOption, NSkeleton } from 'naive-ui';
+import { NSkeleton } from 'naive-ui';
 import { IDepartment } from '@/interfaces/department/IDepartment.ts';
 
 const { confirm } = useDialogService();
@@ -29,7 +29,7 @@ const firedTableData = computed(() => {
     };
   });
 });
-const departmentsFilterOptions = computed<FilterOption[]>(() => {
+const departmentsFilterOptions = computed(() => {
   return departmentsStore.departments.map((department: IDepartment) => {
     return {
       label: department.name,

@@ -19,7 +19,7 @@ const stageBreakModal = reactive({
 });
 
 const isWithBreak = computed(() => {
-  return props.stage.break_id;
+  return props.stage.break;
 });
 
 function setBreak(id: number) {
@@ -50,12 +50,12 @@ function ready(id: number) {
     <div class="card-content">
       <p v-if="stage.department">Отдел - {{ stage.department.name }}</p>
       <p v-if="stage.order.comment">Заметка - {{ stage.order.comment }}</p>
-      <p v-if="stage.break.name">Брак - {{ stage.break.name }}</p>
+      <p v-if="isWithBreak">Брак - {{ stage.break.name }}</p>
     </div>
     <template #action>
       <NSpace vertical>
         <NButton @click="ready(stage.id)" style="width: 100%" type="success">Готово</NButton>
-        <NButton v-if="stage.break" @click="setStop(stage.id)" style="width: 100%" type="error">Снять с производства</NButton>
+        <NButton v-if="isWithBreak" @click="setStop(stage.id)" style="width: 100%" type="error">Снять с производства</NButton>
         <NButton v-else @click="setBreak(stage.id)" style="width: 100%" type="error" ghost>Отметить брак</NButton>
       </NSpace>
     </template>

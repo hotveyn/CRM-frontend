@@ -13,5 +13,5 @@ export interface IStage {
   user?: IUser;
   order: IOrder;
   break: IBreak;
-  department?: IDepartment;
+  department: IDepartment;
 }

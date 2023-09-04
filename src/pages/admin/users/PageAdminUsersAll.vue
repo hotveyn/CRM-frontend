@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref } from 'vue';
-import { NModal, NCard, FilterOption, NSkeleton } from 'naive-ui';
+import { NModal, NCard, NSkeleton } from 'naive-ui';
 import TableUser from 'components/tables/user/TableUser.vue';
 import { useDialogService } from '@/services/dialog.service.ts';
 import { useUsersStore } from '@/store/users.store.ts';
@@ -34,7 +34,7 @@ const usersTableData = computed(() => {
     };
   });
 });
-const departmentsFilterOptions = computed<FilterOption[]>(() => {
+const departmentsFilterOptions = computed(() => {
   return departmentsStore.departments.map((department: IDepartment) => {
     return {
       label: department.name,
