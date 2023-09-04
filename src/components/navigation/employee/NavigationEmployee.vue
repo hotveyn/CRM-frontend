@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { INavigationRoute } from '@/interfaces/INavigationRoute.ts';
-import { NButton } from 'naive-ui';
+import { NButton, NButtonGroup } from 'naive-ui';
 import { onMounted, ref } from 'vue';
 
 defineProps<{
@@ -20,7 +20,7 @@ onMounted(() => {
     <ul :class="{ nav__list_vertical: vertical }" class="nav__list">
       <li v-for="route in routes" :key="route.id" class="nav__item">
         <RouterLink :to="{ name: route.name }">
-          <NButton type="default" :size="buttonSize">
+          <NButton type="info" :size="buttonSize">
             {{ route.text }}
           </NButton>
         </RouterLink>
@@ -31,9 +31,17 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .nav {
+  margin: 0 auto;
+  z-index: 5;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  width: 90dvw;
   &__list {
     display: flex;
     gap: 20px;
+    justify-content: space-between;
     &_vertical {
       flex-direction: column;
     }
@@ -50,11 +58,10 @@ onMounted(() => {
 
 @media (width < 700px) {
   .nav {
+    width: 90%;
     &__list {
-      width: 90dvw;
+      width: 100%;
       gap: 0;
-      left: calc(50% - 45dvw);
-      justify-content: space-between;
     }
   }
 }
