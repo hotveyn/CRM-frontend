@@ -1,5 +1,3 @@
-import { IDepartment } from '@/interfaces/department/IDepartment.ts';
-
 export interface IRegValues {
   login: string;
   password: string;
@@ -7,6 +5,6 @@ export interface IRegValues {
   lastName: string;
   firstName: string;
   patronymicName: string;
-  startWorkDate: number | null;
-  departments: IDepartment[] | null;
+  startWorkDate: string | null;
+  departments: number[] | null;
 }

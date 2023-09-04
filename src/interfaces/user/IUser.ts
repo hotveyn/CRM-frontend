@@ -3,6 +3,7 @@ import { IDepartment } from '@/interfaces/department/IDepartment.ts';
 export interface IUser {
   id: number;
   code: string;
+  password: string;
   login: string;
   last_name: string;
   first_name: string;

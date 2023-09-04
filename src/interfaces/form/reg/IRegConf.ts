@@ -1,8 +1,8 @@
 import { Ref } from 'vue';
 import { IFormConf } from '@/interfaces/form/IFormConf.ts';
 import { IRegValues } from '@/interfaces/form/reg/IRegValues.ts';
-import { IRegOptions } from '@/interfaces/form/reg/IRegOptions.ts';
+import { SelectOption } from 'naive-ui';
 
 export interface IRegConf extends IFormConf<IRegValues> {
-  options: Ref<IRegOptions[]>;
+  options: Ref<SelectOption[]>;
 }
