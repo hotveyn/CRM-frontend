@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import { DataTableColumns, NButton, NTag } from 'naive-ui';
-import { h, onMounted, ref } from 'vue';
+import { NDataTable, DataTableColumns, NButton, NTag } from 'naive-ui';
+import { h } from 'vue';
 import { ITableUser } from '@/interfaces/table/ITableUser.ts';
-import { useDepartmentsStore } from '@/store/departments.store.ts';
 import { FilterOption } from 'naive-ui/lib/data-table/src/interface';
-import { IDepartment } from '@/interfaces/department/IDepartment.ts';
 
-defineProps<{
-  usersTable: ITableUser[];
-  loading: boolean;
+const props = defineProps<{
+  tableData: ITableUser[];
+  filters: FilterOption[];
 }>();
 
 const emit = defineEmits<{
@@ -16,44 +14,30 @@ const emit = defineEmits<{
   change: [id: number];
 }>();
 
-const departmentsFilterOptions = ref<FilterOption[] | undefined>([]);
-const columns = ref<DataTableColumns<ITableUser>>();
-
-onMounted(async () => {
-  const departmentsStore = useDepartmentsStore();
-  const departments = await departmentsStore.getOrRequest();
-  departmentsFilterOptions.value = departments.map((department: IDepartment) => {
-    return {
-      label: department.name,
-      value: department.name,
-    };
-  });
-  columns.value = createColumns({
-    fire: (id: number) => {
-      emit('fire', id);
-    },
-    change: (id: number) => {
-      emit('change', id);
-    },
-  });
+const columns = createColumns({
+  fire: (id: number) => {
+    emit('fire', id);
+  },
+  change: (id: number) => {
+    emit('change', id);
+  },
 });
-
 function createColumns(actions: { fire: (id: number) => void; change: (id: number) => void }): DataTableColumns<ITableUser> {
   return [
     {
       title: 'ID',
       key: 'id',
-      sorter: 'default',
+      sorter: 'default' as const,
     },
     {
       title: 'Номер',
       key: 'code',
-      sorter: 'default',
+      sorter: 'default' as const,
     },
     {
       title: 'ФИО',
       key: 'name',
-      sorter: 'default',
+      sorter: 'default' as const,
     },
     {
       title: 'Отделы',
@@ -75,14 +59,14 @@ function createColumns(actions: { fire: (id: number) => void; change: (id: numbe
           );
         });
       },
-      filterOptions: departmentsFilterOptions.value,
+      filterOptions: props.filters,
       filter(value, row) {
         return row.departments.indexOf(value as string) !== -1;
       },
     },
     {
       title: 'Действия',
-      key: 'actios',
+      key: 'actions',
       render(row) {
         return [
           h(
@@ -122,7 +106,15 @@ function createColumns(actions: { fire: (id: number) => void; change: (id: numbe
 
 <template>
   <div class="table-user">
-    <NDataTable :single-line="false" :loading="loading" :data="usersTable" :columns="columns" :pagination="true" :bordered="true" />
+    <NDataTable
+      :data="tableData"
+      :single-line="false"
+      :columns="columns"
+      :pagination="{
+        pageSize: 10,
+      }"
+      :bordered="true"
+    />
   </div>
 </template>
 
