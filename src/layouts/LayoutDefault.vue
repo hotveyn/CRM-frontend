@@ -17,4 +17,9 @@ import TheHeader from 'components/header/TheHeader.vue';
   display: grid;
   grid-template-rows: 0.1fr 1.9fr;
 }
+@media (width < 700px) {
+  .main {
+    padding: 15px;
+  }
+}
 </style>
