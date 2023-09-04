@@ -7,19 +7,19 @@ defineProps<{
 </script>
 
 <template>
-  <aside class="aside-admin">
-    <div class="aside-admin__header">
-      <p class="aside-admin__title">Админ</p>
+  <aside class="aside">
+    <div class="aside__header">
+      <p class="aside__title"><slot name="header"></slot></p>
     </div>
-    <div class="aside-admin__body">
-      <p class="aside-admin__title">Разделы:</p>
+    <div class="aside__body">
+      <p class="aside__title">Разделы:</p>
       <BaseNavigation vertical :routes="routes" />
     </div>
   </aside>
 </template>
 
 <style scoped lang="scss">
-.aside-admin {
+.aside {
   width: 100%;
   height: 100%;
   display: grid;
