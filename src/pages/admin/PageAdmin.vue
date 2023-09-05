@@ -23,11 +23,6 @@ const routes: INavigationRoute[] = [
     name: 'admin-stat',
     text: 'Статистика',
   },
-  {
-    id: 5,
-    name: 'admin-reclamations',
-    text: 'Рекламации',
-  },
 ];
 </script>
 

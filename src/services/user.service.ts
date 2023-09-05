@@ -30,6 +30,7 @@ export function useUserService() {
       patronymic_name: formValues.patronymicName,
       start_work_date: formValues.startWorkDate,
       code: formValues.code,
+      role: formValues.role,
       departments: formValues.departments,
     };
 

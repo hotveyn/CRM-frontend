@@ -3,6 +3,7 @@ import { useDepartmentsService } from '@/services/departments.service.ts';
 import { FormRules, SelectOption } from 'naive-ui';
 import { IRegValues } from '@/interfaces/form/reg/IRegValues.ts';
 import { IRegConf } from '@/interfaces/form/reg/IRegConf.ts';
+import { UserRoleEnum } from '@/enums/user/UserRole.enum.ts';
 
 export function useRegFormConf(): IRegConf {
   const { getDepartments } = useDepartmentsService();
@@ -31,6 +32,10 @@ export function useRegFormConf(): IRegConf {
       required: true,
       message: 'Выберите хотя бы 1 депортамент',
     },
+    role: {
+      required: true,
+      message: 'Выберите роль',
+    },
     login: {
       required: true,
       message: 'Введите email пользователя',
@@ -41,6 +46,16 @@ export function useRegFormConf(): IRegConf {
     },
   };
   const options = ref<SelectOption[]>([]);
+  const optionsRoles = ref<SelectOption[]>([
+    {
+      label: 'Работник',
+      value: UserRoleEnum.EMPLOYEE,
+    },
+    {
+      label: 'Менеджер',
+      value: UserRoleEnum.MANAGER,
+    },
+  ]);
 
   const formValues = reactive<IRegValues>({
     code: '',
@@ -49,6 +64,7 @@ export function useRegFormConf(): IRegConf {
     patronymicName: '',
     startWorkDate: null,
     departments: null,
+    role: UserRoleEnum.EMPLOYEE,
     login: '',
     password: '',
   });
@@ -70,5 +86,6 @@ export function useRegFormConf(): IRegConf {
     rules,
     formValues,
     options,
+    optionsRoles,
   };
 }

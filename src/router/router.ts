@@ -94,11 +94,6 @@ const routes: RouteRecordRaw[] = [
         path: 'stat',
         component: () => import('@/pages/admin/stat/PageAdminStat.vue'),
       },
-      {
-        name: 'admin-reclamations',
-        path: 'reclamations',
-        component: () => import('@/pages/admin/reclamations/PageAdminReclamations.vue'),
-      },
     ],
   },
   {

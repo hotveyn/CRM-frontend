@@ -44,7 +44,7 @@ export function useOrderNewUpdateFormConf(id: number): IOrderNewUpdateConf {
   const formValues = reactive<IOrderNewUpdateValues>({
     name: '',
     type: OrderTypeEnum.NEON1,
-    neon_length: 0,
+    neon_length: 1,
     comment: '',
   });
 

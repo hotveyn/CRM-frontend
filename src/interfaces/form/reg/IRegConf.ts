@@ -5,4 +5,5 @@ import { SelectOption } from 'naive-ui';
 
 export interface IRegConf extends IFormConf<IRegValues> {
   options: Ref<SelectOption[]>;
+  optionsRoles: Ref<SelectOption[]>;
 }

@@ -6,15 +6,15 @@ import { useUsersStore } from '@/store/users.store.ts';
 
 const regFormRef = ref<FormInst | null>();
 
-const { employeeReg } = useUsersStore();
-const { rules, formValues, options } = useRegFormConf();
+const usersStore = useUsersStore();
+const { rules, formValues, options, optionsRoles } = useRegFormConf();
 
 function goReg() {
   regFormRef.value?.validate(async (errors) => {
     if (errors) {
       return;
     }
-    await employeeReg(formValues);
+    await usersStore.employeeReg(formValues);
   });
 }
 </script>
@@ -38,6 +38,9 @@ function goReg() {
     </NFormItem>
     <NFormItem label="Департаменты" path="departments">
       <NSelect v-model:value="formValues.departments" placeholder="Минимум 1" multiple remote :options="options" />
+    </NFormItem>
+    <NFormItem label="Роль сотрудника" path="role">
+      <NSelect v-model:value="formValues.role" placeholder="" :options="optionsRoles" />
     </NFormItem>
     <NFormItem label="Логин" path="login">
       <NInput v-model:value="formValues.login" placeholder="" />
