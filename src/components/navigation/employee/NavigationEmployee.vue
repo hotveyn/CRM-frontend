@@ -1,18 +1,11 @@
 <script setup lang="ts">
 import { INavigationRoute } from '@/interfaces/INavigationRoute.ts';
 import { NButton } from 'naive-ui';
-import { onMounted, ref } from 'vue';
 
 defineProps<{
   routes: INavigationRoute[];
   vertical?: boolean;
 }>();
-
-const buttonSize = ref<'medium' | 'small'>('medium');
-
-onMounted(() => {
-  if (window.screen.availWidth < 700) buttonSize.value = 'small';
-});
 </script>
 
 <template>
@@ -20,7 +13,7 @@ onMounted(() => {
     <ul :class="{ nav__list_vertical: vertical }" class="nav__list">
       <li v-for="route in routes" :key="route.id" class="nav__item">
         <RouterLink :to="{ name: route.name }">
-          <NButton type="info" :size="buttonSize">
+          <NButton type="info" size="small">
             {{ route.text }}
           </NButton>
         </RouterLink>
