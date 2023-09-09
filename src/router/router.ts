@@ -26,7 +26,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         name: 'admin-employees',
-        path: 'users',
+        path: 'employees',
         component: () => import('@/pages/admin/employees/PageAdminEmployees.vue'),
         redirect: {
           name: 'admin-employees-all',
