@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useStageNewStore } from '@/store/stages/stagesNew.ts';
+import { useStageNewStore } from '@/store/stages/stages-new.store.ts';
 import { onMounted } from 'vue';
 import { NEmpty } from 'naive-ui';
 import CardStageNew from 'components/card/order/new/CardStageNew.vue';

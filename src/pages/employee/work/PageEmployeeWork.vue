@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useStageWorkStore } from '@/store/stages/stagesWork.ts';
+import { useStageWorkStore } from '@/store/stages/stages-work.store.ts';
 import { onMounted } from 'vue';
 import CardStageWork from 'components/card/order/work/CardStageWork.vue';
 import { NEmpty } from 'naive-ui';
