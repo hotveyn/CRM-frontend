@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useStageNewStore } from '@/store/stages/stages-new.store.ts';
 import { onMounted } from 'vue';
-import { NEmpty } from 'naive-ui';
+import { NEmpty, NDivider } from 'naive-ui';
 import CardStageNew from 'components/card/order/new/CardStageNew.vue';
 
 const stageNewStore = useStageNewStore();
@@ -13,25 +13,29 @@ onMounted(async () => {
 
 <template>
   <div class="employee-new">
-    <h1>Новые задачи</h1>
+    <NDivider>Новые задачи</NDivider>
     <div v-if="!stageNewStore.stages.length" class="employee-new__empty">
       <NEmpty size="huge" description="Новых задач пока что нет">
         <template #extra>Пусто</template>
       </NEmpty>
     </div>
-    <CardStageNew v-for="stage in stageNewStore.stages" :key="stage.id" :stage="stage" />
+    <div class="employee-new__cards">
+      <CardStageNew v-for="stage in stageNewStore.stages" :key="stage.id" :stage="stage" />
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .employee-new {
-  margin-bottom: 50px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-
   &__empty {
+    text-align: center;
     margin-top: 100px;
+  }
+  &__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 50px;
   }
 }
 </style>

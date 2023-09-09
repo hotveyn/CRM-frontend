@@ -52,10 +52,4 @@ function goReg() {
   </NForm>
 </template>
 
-<style scoped>
-.reg-form {
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-}
-</style>
+<style scoped></style>

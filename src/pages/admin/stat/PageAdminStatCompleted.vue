@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NCard, NModal, NSkeleton } from 'naive-ui';
+import { NCard, NModal, NSkeleton, NDivider } from 'naive-ui';
 import { useStatOrdersStore } from '@/store/stat/stat-orders.store.ts';
 import { computed, onMounted, reactive, ref } from 'vue';
 import TableOrdersCompleted from 'components/tables/orders/completed/TableOrdersCompleted.vue';
@@ -56,7 +56,7 @@ onMounted(async () => {
 
 <template>
   <div class="admin-stat-ready">
-    <h1>Выполненные заказы</h1>
+    <NDivider title-placement="left">Выполненные заказы</NDivider>
     <div class="admin-stat-ready__table">
       <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
       <TableOrdersCompleted v-else :table-data="orderCompletedStore.orders" @detail="detail" @rate="rate" />
@@ -80,7 +80,6 @@ onMounted(async () => {
 .admin-stat-ready {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 30px;
 
   &__stats {
     display: flex;

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import FormDepartmentCreate from 'components/forms/department/create/FormDepartmentCreate.vue';
+import { NDivider } from 'naive-ui';
 </script>
 
 <template>
   <div class="admin-department-create">
-    <h1>Добавить новый отдел</h1>
+    <NDivider>Добавить новый отдел</NDivider>
     <FormDepartmentCreate />
   </div>
 </template>
@@ -12,7 +13,6 @@ import FormDepartmentCreate from 'components/forms/department/create/FormDepartm
 <style scoped lang="scss">
 .admin-department-create {
   display: grid;
-  gap: 50px;
   width: 600px;
   margin: 0 auto;
 }

@@ -10,7 +10,7 @@ interface State {
   touched: boolean;
 }
 
-export const useFiredUsersStore = defineStore('fired-users', {
+export const useFiredUsersStore = defineStore('fired-employees', {
   state: (): State => {
     return {
       users: [],

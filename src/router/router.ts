@@ -18,34 +18,34 @@ const routes: RouteRecordRaw[] = [
     path: '/admin',
     component: () => import('@/pages/admin/PageAdmin.vue'),
     redirect: {
-      name: 'admin-users',
+      name: 'admin-employees',
     },
     meta: {
       roleToAccess: UserRoleEnum.ADMIN,
     },
     children: [
       {
-        name: 'admin-users',
+        name: 'admin-employees',
         path: 'users',
-        component: () => import('@/pages/admin/users/PageAdminUsers.vue'),
+        component: () => import('@/pages/admin/employees/PageAdminEmployees.vue'),
         redirect: {
-          name: 'admin-users-all',
+          name: 'admin-employees-all',
         },
         children: [
           {
-            name: 'admin-users-create',
+            name: 'admin-employees-create',
             path: 'create',
-            component: () => import('@/pages/admin/users/PageAdminUsersCreate.vue'),
+            component: () => import('@/pages/admin/employees/PageAdminEmployeesCreate.vue'),
           },
           {
-            name: 'admin-users-all',
+            name: 'admin-employees-all',
             path: 'all',
-            component: () => import('@/pages/admin/users/PageAdminUsersAll.vue'),
+            component: () => import('@/pages/admin/employees/PageAdminEmployeesAll.vue'),
           },
           {
-            name: 'admin-users-fired',
+            name: 'admin-employees-fired',
             path: 'fired',
-            component: () => import('@/pages/admin/users/PageAdminUsersFired.vue'),
+            component: () => import('@/pages/admin/employees/PageAdminEmployeesFired.vue'),
           },
         ],
       },

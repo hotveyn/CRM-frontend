@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NCard, NModal, NSkeleton } from 'naive-ui';
+import { NCard, NModal, NSkeleton, NDivider } from 'naive-ui';
 import { useDialogService } from '@/services/dialog.service.ts';
 import { onMounted, reactive, ref } from 'vue';
 import TableBreak from 'components/tables/breaks/TableBreak.vue';
@@ -37,7 +37,7 @@ onMounted(async () => {
 
 <template>
   <div class="admin-departments-all">
-    <h2>Все виды браков</h2>
+    <NDivider title-placement="left">Все виды браков</NDivider>
     <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
     <TableBreak v-else :table-data="breakStore.breaks" @change="change" @remove="remove" />
     <NModal v-model:show="breakChangeModal.isShow">

@@ -5,7 +5,7 @@ import { INavigationRoute } from '@/interfaces/INavigationRoute.ts';
 const routes: INavigationRoute[] = [
   {
     id: 1,
-    name: 'admin-users',
+    name: 'admin-employees',
     text: 'Сотрудники',
   },
   {

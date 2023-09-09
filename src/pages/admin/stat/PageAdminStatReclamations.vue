@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TableStatOrdersStopped from 'components/tables/stat/orders/stoped/TableStatOrdersStopped.vue';
-import { NSkeleton, NStatistic } from 'naive-ui';
+import { NSkeleton, NStatistic, NDivider } from 'naive-ui';
 import { useStatOrdersStore } from '@/store/stat/stat-orders.store.ts';
 import { onMounted, ref } from 'vue';
 import { useOrdersReclamationStore } from '@/store/orders/orders-reclamation.store.ts';
@@ -17,7 +17,7 @@ onMounted(async () => {
 
 <template>
   <div class="admin-stat-reclamation">
-    <h1>Заказы сделанные по гарантии</h1>
+    <NDivider title-placement="left">Заказы сделанные по гарантии</NDivider>
     <div v-if="!isLoading" class="admin-stat-reclamation__stats">
       <NStatistic label="Гарантийные / обычные" :value="statOrdersStore.reclamationStat.reclamations">
         <template #suffix>/ {{ statOrdersStore.reclamationStat.orders }} </template>
@@ -35,11 +35,11 @@ onMounted(async () => {
 .admin-stat-reclamation {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 30px;
 
   &__stats {
     display: flex;
     gap: 50px;
+    margin-bottom: 30px;
   }
 }
 </style>

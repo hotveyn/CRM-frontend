@@ -7,6 +7,7 @@ import { useDialogService } from '@/services/dialog.service.ts';
 import { reactive } from 'vue';
 import FormToWork from 'components/forms/order/towork/FormToWork.vue';
 import FormOrderNewUpdate from 'components/forms/order/new-update/FormOrderNewUpdate.vue';
+import { NDivider } from 'naive-ui';
 
 const dialogService = useDialogService();
 const orderNewStore = useOrdersNewStore();
@@ -50,7 +51,7 @@ onMounted(async () => {
 
 <template>
   <div class="manager-orders-new">
-    <h1>new</h1>
+    <NDivider title-placement="left">Неовые необработанные заказы</NDivider>
     <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
     <TableOrdersNew v-else :table-data="orderNewStore.orders" @remove="remove" @change="change" @to-work="toWork" />
 

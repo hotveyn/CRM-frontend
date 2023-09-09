@@ -2,7 +2,7 @@
 import TableOrdersWork from 'components/tables/orders/work/TableOrdersWork.vue';
 import { onMounted, reactive, ref } from 'vue';
 import { useOrdersWorkStore } from '@/store/orders/orders-work.store.ts';
-import { NCard, NModal, NSkeleton } from 'naive-ui';
+import { NCard, NModal, NSkeleton, NDivider } from 'naive-ui';
 import FormOrderWorkUpdate from 'components/forms/order/work-update/FormOrderWorkUpdate.vue';
 
 const ordersWorkStore = useOrdersWorkStore();
@@ -31,7 +31,7 @@ onMounted(async () => {
 
 <template>
   <div class="manager-orders-work">
-    <h1>Заказы находящися в процессе производства</h1>
+    <NDivider title-placement="left">Заказы в производстве</NDivider>
     <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
     <TableOrdersWork v-else @change="change" :table-data="ordersWorkStore.orders" />
     <NModal v-model:show="orderChangeModal.isShow">

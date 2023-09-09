@@ -5,6 +5,7 @@ import TableOrdersBreak from 'components/tables/orders/break/TableOrdersBreak.vu
 import { NCard, NModal, NSkeleton } from 'naive-ui';
 import FormOrderBreakUpdate from 'components/forms/order/break-update/FormOrderBreakUpdate.vue';
 import { useDialogService } from '@/services/dialog.service.ts';
+import { NDivider } from 'naive-ui';
 
 const dialog = useDialogService();
 const ordersBreakStore = useOrdersBreakStore();
@@ -43,7 +44,7 @@ function updateDone() {
 
 <template>
   <div class="manager-orders-breaks">
-    <h1>Заказы в состоянии брака</h1>
+    <NDivider title-placement="left">Заказы в состоянии брака</NDivider>
     <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
     <TableOrdersBreak v-else :table-data="ordersBreakStore.orders" @change="change" @stop="stop" @restore="restore" />
 

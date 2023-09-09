@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useStatSelfStore } from '@/store/stat/stat-self.store.ts';
-import { NCollapse, NCollapseItem, NStatistic, NSpace, NEmpty } from 'naive-ui';
+import { NCollapse, NCollapseItem, NStatistic, NSpace, NEmpty, NDivider } from 'naive-ui';
 
 const statSelfStore = useStatSelfStore();
 
@@ -12,7 +12,7 @@ onMounted(async () => {
 
 <template>
   <div class="employee-stat">
-    <h1>Ваша статистика за месяц под отделам</h1>
+    <NDivider>Ваша статистика за месяц под отделам</NDivider>
     <div class="employee-stat__empty" v-if="!statSelfStore.stat.size">
       <NEmpty size="huge" description="Статистика пуста. Порабы выполнить какой-нибудь заказ!">
         <template #extra>Пусто</template>

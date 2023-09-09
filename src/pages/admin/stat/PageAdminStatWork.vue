@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useOrdersWorkStore } from '@/store/orders/orders-work.store.ts';
 import TableStatOrdersWork from 'components/tables/stat/orders/work/TableStatOrdersWork.vue';
-import { NSkeleton } from 'naive-ui';
+import { NSkeleton, NDivider } from 'naive-ui';
 import { onMounted, ref } from 'vue';
 
 const ordersWorkStore = useOrdersWorkStore();
@@ -15,7 +15,7 @@ onMounted(async () => {
 
 <template>
   <div class="admin-stat-work">
-    <h1>Вывески находящиеся в процессе создания</h1>
+    <NDivider title-placement="left">Вывески находящиеся в процессе создания</NDivider>
     <div class="admin-stat-work__table">
       <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
       <TableStatOrdersWork v-else :table-data="ordersWorkStore.orders" />
@@ -27,6 +27,5 @@ onMounted(async () => {
 .admin-stat-work {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 30px;
 }
 </style>

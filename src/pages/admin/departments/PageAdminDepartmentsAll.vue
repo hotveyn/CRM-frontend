@@ -3,7 +3,7 @@ import TableDepartments from 'components/tables/departments/TableDepartments.vue
 import { onMounted, reactive, ref } from 'vue';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
 import { useDialogService } from '@/services/dialog.service.ts';
-import { NCard, NModal, NSkeleton } from 'naive-ui';
+import { NCard, NModal, NSkeleton, NDivider } from 'naive-ui';
 import FormDepartmentUpdate from 'components/forms/department/update/FormDepartmentUpdate.vue';
 
 const dialogService = useDialogService();
@@ -37,7 +37,7 @@ function remove(id: number) {
 
 <template>
   <div class="admin-departments-all">
-    <h2>Все отделы</h2>
+    <NDivider title-placement="left">Все отделы</NDivider>
     <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
     <TableDepartments v-else :table-data="departmentsStore.departments" @change="change" @remove="remove" />
     <NModal v-model:show="departmentChangeModal.isShow">
