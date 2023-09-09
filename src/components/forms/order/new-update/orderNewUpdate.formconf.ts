@@ -2,7 +2,7 @@ import { FormRules, SelectOption } from 'naive-ui';
 import { onMounted, reactive, ref } from 'vue';
 import { IOrderNewUpdateConf } from '@/interfaces/form/order/update/IOrderNewUpdateConf.ts';
 import { OrderTypeEnum } from '@/enums/order/OrderType.enum.ts';
-import { useOrdersNewStore } from '@/store/orders/ordersNew.store.ts';
+import { useOrdersNewStore } from '@/store/orders/orders-new.store.ts';
 import { IOrderNewUpdateValues } from '@/interfaces/form/order/update/IOrderNewUpdateValues.ts';
 
 const ordersNewStore = useOrdersNewStore();

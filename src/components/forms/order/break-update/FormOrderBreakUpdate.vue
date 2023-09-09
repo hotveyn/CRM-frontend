@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { FormInst, NForm, NInput, NFormItem, NInputNumber, NButton, NSelect } from 'naive-ui';
 import { useOrderBreakUpdateFormConf } from 'components/forms/order/break-update/orderBreakUpdate.formconf.ts';
-import { useOrdersBreakStore } from '@/store/orders/ordersBreak.store.ts';
+import { useOrdersBreakStore } from '@/store/orders/orders-break.store.ts';
 
 const props = defineProps<{
   id: number;

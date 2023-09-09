@@ -2,7 +2,7 @@
 import { useToWorkFormConf } from 'components/forms/order/towork/toWork.formconf.ts';
 import { FormInst, NFormItem, NButton, NForm, NSelect } from 'naive-ui';
 import { ref } from 'vue';
-import { useOrdersNewStore } from '@/store/orders/ordersNew.store.ts';
+import { useOrdersNewStore } from '@/store/orders/orders-new.store.ts';
 
 const ordersNewStore = useOrdersNewStore();
 const { rules, options, formValues } = useToWorkFormConf();

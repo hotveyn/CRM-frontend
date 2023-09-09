@@ -2,7 +2,7 @@
 import { useOrderNewUpdateFormConf } from 'components/forms/order/new-update/orderNewUpdate.formconf.ts';
 import { ref } from 'vue';
 import { FormInst, NForm, NInput, NFormItem, NInputNumber, NButton, NSelect } from 'naive-ui';
-import { useOrdersNewStore } from '@/store/orders/ordersNew.store.ts';
+import { useOrdersNewStore } from '@/store/orders/orders-new.store.ts';
 
 const props = defineProps<{
   id: number;

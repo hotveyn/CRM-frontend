@@ -14,12 +14,12 @@ export function useDepartmentsService() {
 
       return res.data as IDepartment[];
     },
-    async update(formValues: IDepartmentCreateValues) {
+    async create(formValues: IDepartmentCreateValues) {
       const res = await api.post('department', formValues);
 
       return res.data as IDepartment;
     },
-    async create(id: number, formValues: IDepartmentUpdateValues) {
+    async update(id: number, formValues: IDepartmentUpdateValues) {
       const res = await api.patch(`department/${id}`, formValues);
 
       return res.data as IDepartment;

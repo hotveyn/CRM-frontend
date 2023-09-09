@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IStage } from '@/interfaces/stage/IStage.ts';
 import { NCard, NButton } from 'naive-ui';
-import { useStageNewStore } from '@/store/stages/stagesNew.ts';
+import { useStageNewStore } from '@/store/stages/stages-new.store.ts';
 import { useDialogService } from '@/services/dialog.service.ts';
 
 defineProps<{

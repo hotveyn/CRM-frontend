@@ -22,11 +22,6 @@ const columns = createColumns({
 function createColumns(actions: { unfire: (id: number) => void }): DataTableColumns<ITableUser> {
   return [
     {
-      title: 'ID',
-      key: 'id',
-      sorter: 'default' as const,
-    },
-    {
       title: 'Номер',
       key: 'code',
       sorter: 'default' as const,

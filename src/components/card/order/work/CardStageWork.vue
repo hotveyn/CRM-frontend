@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IStage } from '@/interfaces/stage/IStage.ts';
 import { NCard, NButton, NSpace, NModal } from 'naive-ui';
-import { useStageWorkStore } from '@/store/stages/stagesWork.ts';
+import { useStageWorkStore } from '@/store/stages/stages-work.store.ts';
 import { computed, reactive } from 'vue';
 import { useDialogService } from '@/services/dialog.service.ts';
 import FormStageBreak from 'components/forms/stage/FormStageBreak.vue';

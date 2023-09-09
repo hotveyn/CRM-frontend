@@ -2,7 +2,7 @@
 import { FormInst, NForm, NFormItem, NSelect, NButton } from 'naive-ui';
 import { useStageBreakFormConf } from 'components/forms/stage/stageBreak.formconf.ts';
 import { ref } from 'vue';
-import { useStageWorkStore } from '@/store/stages/stagesWork.ts';
+import { useStageWorkStore } from '@/store/stages/stages-work.store.ts';
 
 const props = defineProps<{
   id: number;

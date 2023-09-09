@@ -20,11 +20,6 @@ const columns = createColumns({
 function createColumns(actions: { change: (id: number) => void; remove: (id: number) => void }): DataTableColumns<IDepartment> {
   return [
     {
-      title: 'ID',
-      key: 'id',
-      sorter: 'default' as const,
-    },
-    {
       title: 'Название',
       key: 'name',
       sorter: 'default' as const,

@@ -3,7 +3,7 @@ import { FormRules, SelectOption } from 'naive-ui';
 import { onMounted, reactive, ref } from 'vue';
 import { OrderTypeEnum } from '@/enums/order/OrderType.enum.ts';
 import { IOrderWorkUpdateValues } from '@/interfaces/form/order/work-update/IOrderWorkUpdateValues.ts';
-import { useOrdersWorkStore } from '@/store/orders/ordersWork.store.ts';
+import { useOrdersWorkStore } from '@/store/orders/orders-work.store.ts';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
 
 const orderWorkStore = useOrdersWorkStore();

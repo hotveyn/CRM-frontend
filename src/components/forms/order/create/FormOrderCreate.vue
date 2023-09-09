@@ -2,7 +2,7 @@
 import { useOrderCreateFormConf } from 'components/forms/order/create/orderCreate.formconf.ts';
 import { ref } from 'vue';
 import { FormInst, NButton, NDatePicker, NFormItem, NForm, NInput, NInputNumber, NSelect, NSwitch } from 'naive-ui';
-import { useOrdersNewStore } from '@/store/orders/ordersNew.store.ts';
+import { useOrdersNewStore } from '@/store/orders/orders-new.store.ts';
 
 const emit = defineEmits<{
   done: [];

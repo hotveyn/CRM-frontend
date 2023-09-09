@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { FormInst, NForm, NInput, NFormItem, NInputNumber, NButton, NSwitch, NSelect } from 'naive-ui';
-import { useOrdersWorkStore } from '@/store/orders/ordersWork.store.ts';
+import { useOrdersWorkStore } from '@/store/orders/orders-work.store.ts';
 import { useOrderWorkUpdateFormConf } from 'components/forms/order/work-update/orderWorkUpdate.formconf.ts';
 
 const props = defineProps<{
