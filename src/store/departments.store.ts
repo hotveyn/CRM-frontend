@@ -9,27 +9,20 @@ const departmentsService = useDepartmentsService();
 const message = useMessageService();
 interface State {
   departments: IDepartment[];
-  touched: boolean;
 }
 
 export const useDepartmentsStore = defineStore('departments', {
   state: (): State => {
     return {
       departments: [],
-      touched: false,
     };
   },
   actions: {
     async getOrRequest() {
-      if (!this.touched) {
-        this.departments = await departmentsService.getDepartments();
-        this.touched = true;
-      }
-      return this.departments;
+      this.departments = await departmentsService.getDepartments();
     },
     async request() {
       this.departments = await departmentsService.getDepartments();
-      this.touched = true;
     },
     async remove(id: number) {
       departmentsService

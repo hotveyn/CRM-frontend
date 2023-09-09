@@ -1,22 +1,22 @@
 import { defineStore } from 'pinia';
-import { IStat } from '@/interfaces/stat/IStat.ts';
+import { IStatSelf } from '@/interfaces/stat/IStatSelf.ts';
 import { useStatService } from '@/services/stat.service.ts';
 
 const statService = useStatService();
 
 interface State {
-  stats: Map<string, IStat>;
+  stat: Map<string, IStatSelf>;
 }
 
 export const useStatSelfStore = defineStore('stat-self', {
   state: (): State => {
     return {
-      stats: new Map(),
+      stat: new Map(),
     };
   },
   actions: {
     async request() {
-      this.stats = await statService.getSelfStat();
+      this.stat = await statService.getSelfStat();
     },
   },
 });
