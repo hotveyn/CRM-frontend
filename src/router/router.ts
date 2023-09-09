@@ -93,6 +93,41 @@ const routes: RouteRecordRaw[] = [
         name: 'admin-stat',
         path: 'stat',
         component: () => import('@/pages/admin/stat/PageAdminStat.vue'),
+        redirect: {
+          name: 'admin-stat-departments',
+        },
+        children: [
+          {
+            name: 'admin-stat-departments',
+            path: 'departments',
+            component: () => import('@/pages/admin/stat/PageAdminStatDepartments.vue'),
+          },
+          {
+            name: 'admin-stat-completed',
+            path: 'ready',
+            component: () => import('@/pages/admin/stat/PageAdminStatCompleted.vue'),
+          },
+          {
+            name: 'admin-stat-work',
+            path: 'work',
+            component: () => import('@/pages/admin/stat/PageAdminStatWork.vue'),
+          },
+          {
+            name: 'admin-stat-stopped',
+            path: 'stopped',
+            component: () => import('@/pages/admin/stat/PageAdminStatStopped.vue'),
+          },
+          {
+            name: 'admin-stat-reclamations',
+            path: 'reclamations',
+            component: () => import('@/pages/admin/stat/PageAdminStatReclamations.vue'),
+          },
+          {
+            name: 'admin-stat-employees',
+            path: 'employees',
+            component: () => import('@/pages/admin/stat/PageAdminStatEmployees.vue'),
+          },
+        ],
       },
     ],
   },
