@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TableOrdersWork from 'components/tables/orders/work/TableOrdersWork.vue';
 import { onMounted, reactive, ref } from 'vue';
-import { useOrdersWorkStore } from '@/store/orders/ordersWork.store.ts';
+import { useOrdersWorkStore } from '@/store/orders/orders-work.store.ts';
 import { NCard, NModal, NSkeleton } from 'naive-ui';
 import FormOrderWorkUpdate from 'components/forms/order/work-update/FormOrderWorkUpdate.vue';
 

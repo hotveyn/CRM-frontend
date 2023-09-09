@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import TableOrdersStopped from 'components/tables/orders/stoped/TableOrdersStopped.vue';
-import { useOrdersStoppedStore } from '@/store/orders/ordersStopped.store.ts';
+import { useOrdersStoppedStore } from '@/store/orders/orders-stopped.store.ts';
 import { NSkeleton } from 'naive-ui';
 
 const ordersStoppedStore = useOrdersStoppedStore();

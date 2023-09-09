@@ -2,7 +2,7 @@
 import TableOrdersNew from 'components/tables/orders/new/TableOrdersNew.vue';
 import { onMounted, ref } from 'vue';
 import { NCard, NModal, NSkeleton } from 'naive-ui';
-import { useOrdersNewStore } from '@/store/orders/ordersNew.store.ts';
+import { useOrdersNewStore } from '@/store/orders/orders-new.store.ts';
 import { useDialogService } from '@/services/dialog.service.ts';
 import { reactive } from 'vue';
 import FormToWork from 'components/forms/order/towork/FormToWork.vue';

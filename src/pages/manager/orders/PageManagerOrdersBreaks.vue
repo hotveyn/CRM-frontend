@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useOrdersBreakStore } from '@/store/orders/ordersBreak.store.ts';
+import { useOrdersBreakStore } from '@/store/orders/orders-break.store.ts';
 import { onMounted, reactive, ref } from 'vue';
 import TableOrdersBreak from 'components/tables/orders/break/TableOrdersBreak.vue';
 import { NCard, NModal, NSkeleton } from 'naive-ui';
