@@ -21,6 +21,7 @@ export function useMessageService() {
       toWork: () => message.success('Заказ отправился в работу', { duration: 5000 }),
       restore: () => message.success('Заказ востановлен', { duration: 5000 }),
       stopped: () => message.success('Заказ снят с производства', { duration: 5000 }),
+      rated: () => message.success('Рейтинг заказа указан', { duration: 5000 }),
     },
     user: {
       updated: () => message.success('Сотрудник обновлён', { duration: 5000 }),
@@ -31,7 +32,7 @@ export function useMessageService() {
     },
     auth: {
       login: () => message.success('Вы успешно вошли в аккаунт', { duration: 5000 }),
-      logout: () => message.success('Вы вышли из аккаунта', { duration: 5000 }),
+      logout: () => message.warning('Вы вышли из аккаунта', { duration: 5000 }),
       failedLogin: () => message.error('Ошибка входа', { duration: 5000 }),
     },
     stage: {
