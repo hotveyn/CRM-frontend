@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref } from 'vue';
-import { NModal, NCard, NSkeleton } from 'naive-ui';
+import { NModal, NCard, NSkeleton, NDivider } from 'naive-ui';
 import TableUser from 'components/tables/user/TableUser.vue';
 import { useDialogService } from '@/services/dialog.service.ts';
 import { useUsersStore } from '@/store/users.store.ts';
@@ -66,7 +66,7 @@ onMounted(async () => {
 
 <template>
   <div class="admin-users-all">
-    <h1>Действующие сотрудники</h1>
+    <NDivider title-placement="left">Действующие сотрудники</NDivider>
     <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
     <TableUser v-else pagination-behavior-on-filter="first" @fire="fire" @change="change" :table-data="usersTableData" :filters="departmentsFilterOptions" />
     <NModal v-model:show="userChangeModal.isShow">

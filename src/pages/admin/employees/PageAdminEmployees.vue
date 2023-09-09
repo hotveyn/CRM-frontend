@@ -5,17 +5,17 @@ import BaseNavigation from 'components/navigation/BaseNavigation.vue';
 const routes: INavigationRoute[] = [
   {
     id: 1,
-    name: 'admin-users-all',
+    name: 'admin-employees-all',
     text: 'Сотрудники',
   },
   {
     id: 2,
-    name: 'admin-users-create',
+    name: 'admin-employees-create',
     text: 'Добавить',
   },
   {
     id: 3,
-    name: 'admin-users-fired',
+    name: 'admin-employees-fired',
     text: 'Уволенные',
   },
 ];

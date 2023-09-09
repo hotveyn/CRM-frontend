@@ -4,7 +4,7 @@ import TableFired from 'components/tables/fired/TableFired.vue';
 import { useDialogService } from '@/services/dialog.service.ts';
 import { useFiredUsersStore } from '@/store/firedUsers.store.ts';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
-import { NSkeleton } from 'naive-ui';
+import { NSkeleton, NDivider } from 'naive-ui';
 import { IDepartment } from '@/interfaces/department/IDepartment.ts';
 
 const { confirm } = useDialogService();
@@ -53,7 +53,7 @@ onMounted(async () => {
 
 <template>
   <div class="admin-users-fired">
-    <h1>Уволенные сотрудники</h1>
+    <NDivider title-placement="left">Уволенные сотрудники</NDivider>
     <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
     <TableFired v-else :table-data="firedTableData" @unfire="unfire" :filters="departmentsFilterOptions" />
   </div>
