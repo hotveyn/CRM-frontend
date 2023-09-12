@@ -34,7 +34,7 @@ function goUpdate() {
       <NInput v-model:value="formValues.name" placeholder="" />
     </NFormItem>
     <NFormItem label="Длина неона" path="neon_length">
-      <NInputNumber v-model:value="formValues.neon_length" placeholder="" />
+      <NInputNumber v-model:value="formValues.neon_length" placeholder="" :precision="2"/>
     </NFormItem>
     <NFormItem label="Тип вывески" path="type">
       <NSelect v-model:value="formValues.type" remote :options="options" />
