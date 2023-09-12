@@ -114,13 +114,13 @@ function createColumns(actions: { change: (id: number) => void; remove: (id: num
 <template>
   <div class="table-orders-new">
     <NDataTable
-      :single-line="false"
-      :data="tableData"
-      :columns="columns"
-      :pagination="{
-        pageSize: 5,
+        :single-line="false"
+        :data="tableData"
+        :columns="columns"
+        :pagination="{
+        pageSize: 30,
       }"
-      :bordered="true"
+        :bordered="true"
     />
   </div>
 </template>

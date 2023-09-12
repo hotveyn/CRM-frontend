@@ -123,7 +123,7 @@ function createColumns(actions: { change: (id: number) => void; stop: (id: numbe
       :data="tableData"
       :columns="columns"
       :pagination="{
-        pageSize: 5,
+        pageSize: 30,
       }"
       :bordered="true"
     />

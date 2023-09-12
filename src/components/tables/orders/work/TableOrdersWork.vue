@@ -91,7 +91,7 @@ function createColumns(actions: { change: (id: number) => void }): DataTableColu
       :data="tableData"
       :columns="columns"
       :pagination="{
-        pageSize: 5,
+        pageSize: 30,
       }"
       :bordered="true"
     />

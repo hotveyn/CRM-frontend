@@ -107,7 +107,7 @@ function createColumns(actions: { detail: (id: number) => void; rate: (id: numbe
       :data="tableData"
       :columns="columns"
       :pagination="{
-        pageSize: 5,
+        pageSize: 30,
       }"
       :bordered="true"
     />
