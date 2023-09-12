@@ -16,7 +16,7 @@ const orderWorkStore = useOrdersWorkStore();
 
 const orderUpdateFormRef = ref<FormInst | null>();
 
-const { options, rules, isDepartmentsChange, formValues } = useOrderWorkUpdateFormConf(props.id);
+const { options, rules, isDepartmentsChange, formValues, optionsType } = useOrderWorkUpdateFormConf(props.id);
 
 function goUpdate() {
   orderUpdateFormRef.value?.validate(async (errors) => {
@@ -39,7 +39,7 @@ function goUpdate() {
       <NInputNumber v-model:value="formValues.neon_length" placeholder="" />
     </NFormItem>
     <NFormItem label="Тип вывески" path="type">
-      <NSelect v-model:value="formValues.type" remote :options="options" />
+      <NSelect v-model:value="formValues.type" remote :options="optionsType" />
     </NFormItem>
     <NFormItem label="Ваш комментарий к заказу">
       <NInput v-model:value="formValues.comment" type="textarea" placeholder="" />

@@ -5,5 +5,6 @@ import { SelectOption } from 'naive-ui';
 
 export interface IOrderWorkUpdateConf extends IFormConf<IOrderWorkUpdateValues> {
   options: Ref<SelectOption[]>;
+  optionsType: Ref<SelectOption[]>;
   isDepartmentsChange: Ref<boolean>;
 }
