@@ -61,7 +61,7 @@ function createColumns(): DataTableColumns<IOrder> {
       :data="tableData"
       :columns="columns"
       :pagination="{
-        pageSize: 5,
+        pageSize: 30,
       }"
       :bordered="true"
     />

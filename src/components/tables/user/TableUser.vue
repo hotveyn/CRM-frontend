@@ -106,7 +106,7 @@ function createColumns(actions: { fire: (id: number) => void; change: (id: numbe
       :single-line="false"
       :columns="columns"
       :pagination="{
-        pageSize: 10,
+        pageSize: 30,
       }"
       :bordered="true"
     />

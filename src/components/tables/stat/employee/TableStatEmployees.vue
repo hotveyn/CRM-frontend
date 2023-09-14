@@ -71,7 +71,7 @@ function createColumns(): DataTableColumns<IStatEmployee> {
       :single-line="false"
       :columns="createColumns()"
       :pagination="{
-        pageSize: 10,
+        pageSize: 30,
       }"
       :bordered="true"
     />

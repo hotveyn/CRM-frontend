@@ -45,7 +45,7 @@ function createColumns(): DataTableColumns<IStatDepartment> {
       :data="tableData"
       :columns="columns"
       :pagination="{
-        pageSize: 10,
+        pageSize: 30,
       }"
       :bordered="true"
     />

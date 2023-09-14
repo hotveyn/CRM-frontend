@@ -79,7 +79,7 @@ function createColumns(actions: { change: (id: number) => void; remove: (id: num
     :data="tableData"
     :columns="columns"
     :pagination="{
-      pageSize: 10,
+      pageSize: 30,
     }"
     :bordered="true"
   />
