@@ -10,6 +10,21 @@ import { IOrderReclamation } from '@/interfaces/order/IOrderReclamation.ts';
 
 export function useOrderService() {
   return {
+    async getAllNewResources() {
+      const res = await api.get('order/resources/new');
+
+      return res.data as IOrder[];
+    },
+    async getAllEnoughResources() {
+      const res = await api.get('order/resources/enough');
+
+      return res.data as IOrderWork[];
+    },
+    async getAllNotEnoughResources() {
+      const res = await api.get('order/resources/not-enough');
+
+      return res.data as IOrderStopped[];
+    },
     async getNew() {
       const res = await api.get('order/new');
 
@@ -42,6 +57,21 @@ export function useOrderService() {
     },
     async setStop(id: number) {
       const res = await api.patch(`order/${id}/stop`);
+
+      return res.data as IOrder;
+    },
+    async setResourcesEnough(id: number) {
+      const res = await api.patch(`order/${id}/resources/enough`);
+
+      return res.data as IOrder;
+    },
+    async setResourcesNull(id: number) {
+      const res = await api.patch(`order/${id}/resources/null`);
+
+      return res.data as IOrder;
+    },
+    async setResourcesNotEnough(id: number) {
+      const res = await api.patch(`order/${id}/resources/not-enough`);
 
       return res.data as IOrder;
     },

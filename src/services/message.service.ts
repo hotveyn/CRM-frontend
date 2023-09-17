@@ -22,6 +22,9 @@ export function useMessageService() {
       restore: () => message.success('Заказ востановлен', { duration: 5000 }),
       stopped: () => message.success('Заказ снят с производства', { duration: 5000 }),
       rated: () => message.success('Рейтинг заказа указан', { duration: 5000 }),
+      resourcesEnough: () => message.success('Установленно что материалов хватает', { duration: 5000 }),
+      resourcesNotEnough: () => message.success('Установленно что материалов не достаточно', { duration: 5000 }),
+      resourcesNull: () => message.success('Кол-во материалов поменялось, состояние заказа отменено', { duration: 5000 }),
     },
     user: {
       updated: () => message.success('Сотрудник обновлён', { duration: 5000 }),

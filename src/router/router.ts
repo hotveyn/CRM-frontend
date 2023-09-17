@@ -180,6 +180,44 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
+    name: 'storage',
+    path: '/storage',
+    component: () => import('@/pages/storage/PageStorage.vue'),
+    redirect: {
+      name: 'storage-orders',
+    },
+    meta: {
+      roleToAccess: UserRoleEnum.STORAGE,
+    },
+    children: [
+      {
+        name: 'storage-orders',
+        path: 'orders',
+        redirect: {
+          name: 'storage-orders-new',
+        },
+        component: () => import('@/pages/storage/orders/PageStorageOrders.vue'),
+        children: [
+          {
+            name: 'storage-orders-new',
+            path: 'new',
+            component: () => import('@/pages/storage/orders/PageStorageOrdersNew.vue'),
+          },
+          {
+            name: 'storage-orders-enough',
+            path: 'enough',
+            component: () => import('@/pages/storage/orders/PageStorageOrdersEnough.vue'),
+          },
+          {
+            name: 'storage-orders-not-enough',
+            path: 'not-enough',
+            component: () => import('@/pages/storage/orders/PageStorageOrdersNotEnough.vue'),
+          },
+        ],
+      },
+    ],
+  },
+  {
     name: 'employee',
     path: '/employee',
     component: () => import('@/pages/employee/PageEmployee.vue'),
