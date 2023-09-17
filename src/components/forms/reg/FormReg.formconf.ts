@@ -28,10 +28,6 @@ export function useRegFormConf(): IRegConf {
       required: true,
       message: 'Введите дату устройства на работу',
     },
-    departments: {
-      required: true,
-      message: 'Выберите хотя бы 1 депортамент',
-    },
     role: {
       required: true,
       message: 'Выберите роль',
@@ -54,6 +50,10 @@ export function useRegFormConf(): IRegConf {
     {
       label: 'Менеджер',
       value: UserRoleEnum.MANAGER,
+    },
+    {
+      label: 'Кладовщик',
+      value: UserRoleEnum.STORAGE,
     },
   ]);
 

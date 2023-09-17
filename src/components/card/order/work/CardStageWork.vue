@@ -48,9 +48,9 @@ function ready(id: number) {
   <NCard :title="stage.order.name">
     <template #header-extra>{{ stage.order.code }}</template>
     <div class="card-content">
-      <p v-if="stage.department">Отдел - {{ stage.department.name }}</p>
-      <p v-if="stage.order.comment">Заметка - {{ stage.order.comment }}</p>
-      <p v-if="isWithBreak">Брак - {{ stage.break.name }}</p>
+      <p v-if="stage.department"><strong>Отдел - </strong> {{ stage.department.name }}</p>
+      <p v-if="stage.order.comment"><strong>Комментарий - </strong> {{ stage.order.comment }}</p>
+      <p v-if="isWithBreak"><strong>Брак - </strong> {{ stage.break.name }}</p>
     </div>
     <template #action>
       <NSpace vertical>

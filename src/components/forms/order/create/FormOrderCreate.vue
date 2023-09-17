@@ -29,7 +29,7 @@ function goCreate() {
       <NInput v-model:value="formValues.name" placeholder="" />
     </NFormItem>
     <NFormItem label="Длина неона" path="neon_length">
-      <NInputNumber :min="1" v-model:value="formValues.neon_length" placeholder="" :precision="2"/>
+      <NInputNumber :min="0" v-model:value="formValues.neon_length" placeholder="" :precision="2" />
     </NFormItem>
     <NFormItem label="Дата начала" path="date_start">
       <NDatePicker value-format="yyyy-MM-dd" v-model:formatted-value="formValues.date_start" style="width: 100%" placeholder="" type="date" />

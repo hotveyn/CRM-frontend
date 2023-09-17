@@ -21,10 +21,10 @@ async function claim(id: number) {
 <template>
   <NCard :title="stage.order.name">
     <template #header-extra>{{ stage.order.code }}</template>
-    <p><strong>Отдел - </strong> {{ stage.department.name }}</p>
-    <template v-if="stage.order.comment" #footer>
-      <p><strong>Комментарий - </strong> {{ stage.order.comment }}</p>
-    </template>
+    <div class="card-content">
+      <p v-if="stage.department"><strong>Отдел - </strong> {{ stage.department.name }}</p>
+      <p v-if="stage.order.comment"><strong>Комментарий - </strong> {{ stage.order.comment }}</p>
+    </div>
     <template #action>
       <NButton @click="claim(stage.id)" style="width: 100%" type="success">Принять в работу</NButton>
     </template>

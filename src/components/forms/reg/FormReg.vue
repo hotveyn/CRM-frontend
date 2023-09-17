@@ -36,8 +36,8 @@ function goReg() {
     <NFormItem label="Дата устройства на работу" path="startWorkDate">
       <NDatePicker style="width: 100%" value-format="yyyy-MM-dd" v-model:formatted-value="formValues.startWorkDate" placeholder="" type="date" />
     </NFormItem>
-    <NFormItem label="Департаменты" path="departments">
-      <NSelect v-model:value="formValues.departments" placeholder="Минимум 1" multiple remote :options="options" />
+    <NFormItem label="Отделы" path="departments">
+      <NSelect v-model:value="formValues.departments" placeholder="Выберите какие-нибудь" multiple remote :options="options" />
     </NFormItem>
     <NFormItem label="Роль сотрудника" path="role">
       <NSelect v-model:value="formValues.role" placeholder="" :options="optionsRoles" />

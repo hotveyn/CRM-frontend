@@ -31,12 +31,10 @@ function goBreak() {
 
 <template>
   <NForm ref="stageBreakFormRef" :rules="rules" :model="formValues">
-    <NFormItem label="Выбирите брак" path="break_id">
+    <NFormItem label="Выберите брак" path="break_name">
       <NSelect :options="options" v-model:value="formValues.break_name" placeholder="" />
     </NFormItem>
-    <NFormItem>
-      <NButton type="error" @click="goBreak">Отбраковать</NButton>
-    </NFormItem>
+    <NButton type="error" @click="goBreak">Отбраковать</NButton>
   </NForm>
 </template>
 
