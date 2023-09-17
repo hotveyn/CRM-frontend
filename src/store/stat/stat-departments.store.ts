@@ -15,8 +15,8 @@ export const useStatDepartmentsStore = defineStore('stat-departments', {
     };
   },
   actions: {
-    async request() {
-      this.stat = await statService.getDepartmentsStat();
+    async request(start: string, end: string) {
+      this.stat = await statService.getDepartmentsStat(start, end);
     },
   },
 });

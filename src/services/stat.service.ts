@@ -20,27 +20,27 @@ export function useStatService() {
       const res = await api.get('stat/self', { params });
       return new Map(Object.entries(res.data)) as Map<string, IStatSelf>;
     },
-    async getEmployeesStat() {
+    async getEmployeesStat(start: string, end: string) {
       // const date = new Date();
       // const dateMonthPrev = new Date();
       // dateMonthPrev.setMonth(dateMonthPrev.getMonth() - 1);
 
       const params = {
-        start: '2004-07-13T22:02:32.395Z',
-        end: '2077-07-13T22:02:32.395Z',
+        start,
+        end,
       };
 
       const res = await api.get('stat/employees', { params });
       return res.data as IStatEmployee[];
     },
-    async getDepartmentsStat() {
-      const date = new Date();
-      const dateMonthPrev = new Date();
-      dateMonthPrev.setMonth(dateMonthPrev.getMonth() - 1);
+    async getDepartmentsStat(start: string, end: string) {
+      // const date = new Date();
+      // const dateMonthPrev = new Date();
+      // dateMonthPrev.setMonth(dateMonthPrev.getMonth() - 1);
 
       const params = {
-        start: dateMonthPrev,
-        end: date,
+        start,
+        end,
       };
 
       const res = await api.get('stat/departments', { params });
@@ -50,22 +50,22 @@ export function useStatService() {
       // const date = new Date();
       // const dateMonthPrev = new Date();
       // dateMonthPrev.setMonth(dateMonthPrev.getMonth() - 1);
-      //
-      const params = {
-        start: '2004-07-13T22:02:32.395Z',
-        end: '2077-07-13T22:02:32.395Z',
-      };
 
-      const res = await api.get('stat/orders/stopped', { params });
+      // const params = {
+      //   start: date,
+      //   end: dateMonthPrev,
+      // };
+
+      const res = await api.get('stat/orders/stopped');
       return res.data as IStatStopped;
     },
     async getOrdersReclamationStat() {
-      const params = {
-        start: '2004-07-13T22:02:32.395Z',
-        end: '2077-07-13T22:02:32.395Z',
-      };
+      // const params = {
+      //   start,
+      //   end,
+      // };
 
-      const res = await api.get('stat/orders/reclamation', { params });
+      const res = await api.get('stat/orders/reclamation');
       return res.data as IStatReclamation;
     },
   };

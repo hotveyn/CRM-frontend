@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { NCard, NModal, NSkeleton, NDivider } from 'naive-ui';
-import { useStatOrdersStore } from '@/store/stat/stat-orders.store.ts';
 import { computed, onMounted, reactive, ref } from 'vue';
 import TableOrdersCompleted from 'components/tables/orders/completed/TableOrdersCompleted.vue';
 import { useOrdersCompletedStore } from '@/store/orders/orders-completed.store.ts';
@@ -9,7 +8,6 @@ import FormOrderRate from 'components/forms/order/rate/FormOrderRate.vue';
 import { IStageDetail } from '@/interfaces/stage/IStageDetail.ts';
 
 const orderCompletedStore = useOrdersCompletedStore();
-const statOrdersStore = useStatOrdersStore();
 
 const isLoading = ref<boolean>(true);
 
@@ -48,15 +46,31 @@ function rateDone() {
   rateModal.isShow = false;
 }
 
+// const range = ref<[number, number]>([Date.UTC(2004, 7, 13), Date.now()]);
+//
+// const start = computed(() => {
+//   return new Date(range.value[0]).toISOString();
+// });
+// const end = computed(() => {
+//   return new Date(range.value[1]).toISOString();
+// });
+//
 onMounted(async () => {
-  await Promise.all([orderCompletedStore.request(), statOrdersStore.requestReclamation()]);
+  await orderCompletedStore.request();
   isLoading.value = false;
 });
+//
+// watch(end, async () => {
+//   await orderCompletedStore.request(start.value, end.value);
+// });
 </script>
 
 <template>
   <div class="admin-stat-ready">
     <NDivider title-placement="left">Выполненные заказы</NDivider>
+    <!--    <div class="date-range" style="margin-bottom: 30px">-->
+    <!--      <NDatePicker v-model:value="range" type="daterange" />-->
+    <!--    </div>-->
     <div class="admin-stat-ready__table">
       <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
       <TableOrdersCompleted v-else :table-data="orderCompletedStore.orders" @detail="detail" @rate="rate" />

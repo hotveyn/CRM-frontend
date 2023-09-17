@@ -15,8 +15,8 @@ export const useStatEmployeesStore = defineStore('stat-employees', {
     };
   },
   actions: {
-    async request() {
-      this.stat = await statService.getEmployeesStat();
+    async request(start: string, end: string) {
+      this.stat = await statService.getEmployeesStat(start, end);
     },
   },
 });
