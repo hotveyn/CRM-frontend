@@ -2,13 +2,14 @@ import { api } from '@/axios';
 import { IStage } from '@/interfaces/stage/IStage.ts';
 import { IBreak } from '@/interfaces/break/IBreak.ts';
 import { IStageBreakValues } from '@/interfaces/form/stage/IStageBreakValues.ts';
+import {IDepartment} from "@/interfaces/department/IDepartment.ts";
 
 export function useStageService() {
   return {
     async getAvailable() {
       const res = await api.get('order-stage/available');
 
-      return res.data as IStage[];
+      return res.data as IDepartment[];
     },
     async getPossibleBreaks(id: number) {
       const res = await api.get(`order-stage/${id}/break`);

@@ -1,14 +1,15 @@
 import { defineStore } from 'pinia';
-import { IStage } from '@/interfaces/stage/IStage.ts';
+// import { IStage } from '@/interfaces/stage/IStage.ts';
 import { useStageService } from '@/services/stage.service.ts';
 import { useMessageService } from '@/services/message.service.ts';
 import axios from 'axios';
+import {IDepartment} from "@/interfaces/department/IDepartment.ts";
 
 const stageService = useStageService();
 const message = useMessageService();
 
 interface State {
-  stages: IStage[];
+  stages: IDepartment[];
 }
 
 export const useStageNewStore = defineStore('stages-new', {
