@@ -40,7 +40,12 @@ function createColumns(): DataTableColumns<IOrder> {
     },
     {
       title: 'Текущий этап произодства',
-      key: 'current_department.name',
+      key: 'current_department',
+      sorter: 'default' as const,
+    },
+    {
+      title: 'Текущий исполнитель',
+      key: 'current_user',
       sorter: 'default' as const,
     },
     {
