@@ -11,6 +11,7 @@ function createColumns(): DataTableColumns<IOrder> {
     {
       title: 'Код',
       key: 'code',
+      minWidth: 110,
       sorter: 'default' as const,
     },
     {

@@ -20,6 +20,7 @@ function createColumns(actions: { change: (id: number) => void }): DataTableColu
     {
       title: 'Код',
       key: 'code',
+      minWidth: 110,
       sorter: 'default' as const,
     },
     {
