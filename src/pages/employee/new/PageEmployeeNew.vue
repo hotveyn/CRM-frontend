@@ -23,7 +23,7 @@ onMounted(async () => {
     <div class="employee-new__cards">
       <NTabs style="max-width: 360px" type="card" animated>
         <NTabPane placement="left" size="small" v-for="department in stageNewStore.stages" :key="department.id" :name="department.id" :tab="department.name">
-          <CardStageNew v-for="stage in department.orderStages" :key="stage!.id" :stage="stage"/>
+          <CardStageNew v-for="stage in department.orderStages" :key="stage!.id" :stage="stage" style="margin-bottom: 20px"/>
         </NTabPane>
       </NTabs>
     </div>
