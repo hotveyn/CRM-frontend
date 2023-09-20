@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useStageNewStore} from '@/store/stages/stages-new.store.ts';
-import {onMounted, ref} from 'vue';
+import {onMounted} from 'vue';
 import {NEmpty, NDivider, NTabs, NTabPane} from 'naive-ui';
 import CardStageNew from 'components/card/order/new/CardStageNew.vue';
 
