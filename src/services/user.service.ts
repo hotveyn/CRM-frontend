@@ -47,7 +47,7 @@ export function useUserService() {
         departments: formValues.departments,
       };
 
-      const res = await api.post(`user/${userId}`, payload);
+      const res = await api.patch(`user/${userId}`, payload);
 
       return res.data as IUser;
     },

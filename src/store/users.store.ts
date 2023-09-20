@@ -58,31 +58,31 @@ export const useUsersStore = defineStore('users', {
         });
     },
     async update(userId: number, formValues: IUserUpdateValues) {
-      const departmentsStore = useDepartmentsStore();
-      for (const i in this.users) {
-        if (this.users[i].id === userId) {
-          this.users[i].code = formValues.code;
-          this.users[i].code = formValues.code;
-          this.users[i].last_name = formValues.lastName;
-          this.users[i].first_name = formValues.firstName;
-          this.users[i].patronymic_name = formValues.patronymicName;
-          this.users[i].start_work_date = formValues.startWorkDate;
-          this.users[i].departments = [];
-
-          formValues.departments?.forEach((departmentId) => {
-            const department = departmentsStore.findById(departmentId);
-            console.log(departmentId, department);
-            if (department) this.users[i].departments?.push(department);
-          });
-
-          break;
-        }
-      }
-
       userService
         .update(userId, formValues)
         .then(() => {
           message.user.updated();
+
+          const departmentsStore = useDepartmentsStore();
+          for (const i in this.users) {
+            if (this.users[i].id === userId) {
+              this.users[i].code = formValues.code;
+              this.users[i].code = formValues.code;
+              this.users[i].last_name = formValues.lastName;
+              this.users[i].first_name = formValues.firstName;
+              this.users[i].patronymic_name = formValues.patronymicName;
+              this.users[i].start_work_date = formValues.startWorkDate;
+              this.users[i].departments = [];
+
+              formValues.departments?.forEach((departmentId) => {
+                const department = departmentsStore.findById(departmentId);
+                console.log(departmentId, department);
+                if (department) this.users[i].departments?.push(department);
+              });
+
+              break;
+            }
+          }
         })
         .catch((e) => {
           message.error.custom(e.response.data.message);
