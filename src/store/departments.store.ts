@@ -52,7 +52,8 @@ export const useDepartmentsStore = defineStore('departments', {
           const index = this.departments.findIndex((department) => {
             return department.id === id;
           });
-          if (index) {
+
+          if (index !== -1) {
             this.departments[index].name = formValues.name;
           }
         })
