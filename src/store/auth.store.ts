@@ -14,8 +14,12 @@ function getLocalStorageToken() {
 }
 function getDecodeLocalStorageToken(): IUserAuth | null {
   const token = localStorage.getItem('token');
-  if (token) {
-    return jwtDecode(token) as IUserAuth;
+  try {
+    if (token) {
+      return jwtDecode(token) as IUserAuth;
+    }
+  } catch (e) {
+    return null;
   }
   return null;
 }
