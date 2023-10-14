@@ -4,8 +4,9 @@ import { NCard, NButton } from 'naive-ui';
 import { useStageNewStore } from '@/store/stages/stages-new.store.ts';
 import { useDialogService } from '@/services/dialog.service.ts';
 
-defineProps<{
+const props = defineProps<{
   stage: IStage;
+  departmentId: number;
 }>();
 
 const { confirm } = useDialogService();
@@ -13,7 +14,7 @@ const stageNewStore = useStageNewStore();
 
 async function claim(id: number) {
   confirm(async () => {
-    await stageNewStore.claim(id);
+    await stageNewStore.claim(id, props.departmentId!);
   });
 }
 </script>
@@ -22,7 +23,6 @@ async function claim(id: number) {
   <NCard :title="stage.order.name">
     <template #header-extra>{{ stage.order.code }}</template>
     <div class="card-content">
-      <p v-if="stage.department"><strong>Отдел - </strong> {{ stage.department.name }}</p>
       <p v-if="stage.order.comment"><strong>Комментарий - </strong> {{ stage.order.comment }}</p>
     </div>
     <template #action>
