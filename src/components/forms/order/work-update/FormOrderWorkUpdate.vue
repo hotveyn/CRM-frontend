@@ -22,7 +22,8 @@ function goUpdate() {
   orderUpdateFormRef.value?.validate(async (errors) => {
     if (errors) return;
 
-    if (!isDepartmentsChange) delete formValues.departments;
+    if (!isDepartmentsChange.value) delete formValues.departments;
+    console.log(isDepartmentsChange.value);
 
     await orderWorkStore.update(props.id, formValues);
     emit('done');
@@ -36,7 +37,7 @@ function goUpdate() {
       <NInput v-model:value="formValues.name" placeholder="" />
     </NFormItem>
     <NFormItem label="Длина неона" path="neon_length">
-      <NInputNumber v-model:value="formValues.neon_length" placeholder="" :precision="2"/>
+      <NInputNumber v-model:value="formValues.neon_length" placeholder="" :precision="2" />
     </NFormItem>
     <NFormItem label="Тип вывески" path="type">
       <NSelect v-model:value="formValues.type" remote :options="optionsType" />

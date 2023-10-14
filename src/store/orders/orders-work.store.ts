@@ -4,6 +4,7 @@ import { useOrderService } from '@/services/order.service.ts';
 import { useMessageService } from '@/services/message.service.ts';
 import { IOrderWorkUpdateValues } from '@/interfaces/form/order/work-update/IOrderWorkUpdateValues.ts';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
+import { AxiosError } from 'axios';
 
 const orderService = useOrderService();
 const message = useMessageService();
@@ -52,7 +53,9 @@ export const useOrdersWorkStore = defineStore('orders-work', {
             }
           }
         })
-        .catch((e) => message.error.custom(e.response.data.message));
+        .catch((e) => {
+          if (e instanceof AxiosError) message.error.custom(e.response!.data.message);
+        });
     },
   },
 });
