@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {useStageNewStore} from '@/store/stages/stages-new.store.ts';
-import {onMounted} from 'vue';
-import {NEmpty, NDivider, NTabs, NTabPane} from 'naive-ui';
+import { useStageNewStore } from '@/store/stages/stages-new.store.ts';
+import { onMounted } from 'vue';
+import { NEmpty, NDivider, NTabs, NTabPane } from 'naive-ui';
 import CardStageNew from 'components/card/order/new/CardStageNew.vue';
 
 const stageNewStore = useStageNewStore();
@@ -9,7 +9,6 @@ const stageNewStore = useStageNewStore();
 onMounted(async () => {
   await stageNewStore.request();
 });
-
 </script>
 
 <template>
@@ -20,10 +19,10 @@ onMounted(async () => {
         <template #extra>Пусто</template>
       </NEmpty>
     </div>
-    <div class="employee-new__cards">
+    <div v-else class="employee-new__cards">
       <NTabs style="max-width: 360px" type="card" animated>
         <NTabPane placement="left" size="small" v-for="department in stageNewStore.stages" :key="department.id" :name="department.id" :tab="department.name">
-          <CardStageNew v-for="stage in department.orderStages" :key="stage!.id" :stage="stage" style="margin-bottom: 20px"/>
+          <CardStageNew v-for="stage in department.orderStages" :key="stage!.id" :stage="stage" :department-id="department.id" style="margin-bottom: 20px" />
         </NTabPane>
       </NTabs>
     </div>
