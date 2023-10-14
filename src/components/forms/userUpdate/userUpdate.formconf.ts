@@ -7,12 +7,7 @@ import { IUser } from '@/interfaces/user/IUser.ts';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
 
 export function useUserUpdateFormConf(userId: number): IUserUpdateConf {
-  const rules: FormRules = {
-    departments: {
-      required: true,
-      message: 'Выберите хотя бы 1 депортамент',
-    },
-  };
+  const rules: FormRules = {};
   const options = ref<SelectOption[]>([]);
 
   const formValues = reactive<IUserUpdateValues>({
