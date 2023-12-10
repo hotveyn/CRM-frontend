@@ -1,6 +1,6 @@
-import { OrderTypeEnum } from '@/enums/order/OrderType.enum.ts';
 import { OrderStatusEnum } from '@/enums/order/OrderStatus.enum.ts';
 import { IStage } from '@/interfaces/stage/IStage.ts';
+import { IOrderType } from '@/interfaces/order-type/IOrderType.ts';
 
 export interface IOrder {
   id: number;
@@ -8,8 +8,8 @@ export interface IOrder {
   date_start: string;
   date_end: string;
   comment?: string;
-  neon_length: number;
-  type: OrderTypeEnum;
+  price: number;
+  type: IOrderType;
   status: OrderStatusEnum;
   order_stages: IStage[];
   code: string;
