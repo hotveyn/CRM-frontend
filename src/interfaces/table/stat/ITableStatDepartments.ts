@@ -3,5 +3,4 @@ export interface ITableStatDepartments {
   stages: number;
   break_stages: number;
   break_percent: number;
-  neon_length: number;
 }

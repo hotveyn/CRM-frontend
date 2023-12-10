@@ -2,7 +2,8 @@ import { defineStore } from 'pinia';
 import { useOrderService } from '@/services/order.service.ts';
 import { IOrderBreak } from '@/interfaces/order/IOrderBreak.ts';
 import { useMessageService } from '@/services/message.service.ts';
-import { IOrderNewUpdateValues } from '@/interfaces/form/order/update/IOrderNewUpdateValues.ts';
+import { IOrderNewUpdateValues } from 'components/forms/order/break-update/orderBreakUpdate.formconf.ts';
+import { useOrderTypesStore } from '@/store/orderTypes.store.ts';
 
 const orderService = useOrderService();
 const message = useMessageService();
@@ -44,14 +45,15 @@ export const useOrdersBreakStore = defineStore('orders-break', {
     async update(id: number, formValues: IOrderNewUpdateValues) {
       orderService
         .update(id, formValues)
-        .then(() => {
+        .then(async () => {
           message.order.updated();
 
           const order = this.findById(id);
+          const orderTypesStore =  useOrderTypesStore();
+          const orderType = await orderTypesStore.findById(formValues.type_id);
           if (order) {
             order.name = formValues.name;
-            order.type = formValues.type;
-            order.neon_length = formValues.neon_length;
+            order.type = orderType!;
             order.comment = formValues.comment;
           }
         })

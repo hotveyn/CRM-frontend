@@ -2,8 +2,9 @@ import { defineStore } from 'pinia';
 import { useOrderService } from '@/services/order.service.ts';
 import { IOrder } from '@/interfaces/order/IOrder.ts';
 import { useMessageService } from '@/services/message.service.ts';
-import { IOrderNewUpdateValues } from '@/interfaces/form/order/update/IOrderNewUpdateValues.ts';
-import { IOrderCreateValues } from '@/interfaces/form/order/create/IOrderCreateValues.ts';
+import { IOrderCreateValues } from 'components/forms/order/create/orderCreate.formconf.ts';
+import { useOrderTypesStore } from '@/store/orderTypes.store.ts';
+import { IOrderNewUpdateValues } from 'components/forms/order/new-update/orderNewUpdate.formconf.ts';
 
 const orderService = useOrderService();
 const message = useMessageService();
@@ -49,14 +50,16 @@ export const useOrdersNewStore = defineStore('orders-new', {
     async update(id: number, formValues: IOrderNewUpdateValues) {
       orderService
         .update(id, formValues)
-        .then(() => {
+        .then(async () => {
           message.order.updated();
 
           const order = this.findById(id);
+          const orderTypesStore =  useOrderTypesStore();
+          const orderType = await orderTypesStore.findById(formValues.type_id);
           if (order) {
             order.name = formValues.name;
-            order.type = formValues.type;
-            order.neon_length = formValues.neon_length;
+            order.type = orderType!;
+            order.price = formValues.price;
             order.comment = formValues.comment;
           }
         })
