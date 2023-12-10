@@ -20,6 +20,11 @@ const routes: INavigationRoute[] = [
   },
   {
     id: 4,
+    name: 'admin-order-types',
+    text: 'Типы вывесок',
+  },
+  {
+    id: 5,
     name: 'admin-stat',
     text: 'Статистика',
   },
