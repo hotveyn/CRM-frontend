@@ -14,6 +14,11 @@ export function useMessageService() {
       created: () => message.success('Новый вид брака создан', { duration: 5000 }),
       updated: () => message.success('Вид брака изменён', { duration: 5000 }),
     },
+    orderType: {
+      removed: () => message.success('Тип вывески удалён', { duration: 5000 }),
+      created: () => message.success('Новый тип вывески создан', { duration: 5000 }),
+      updated: () => message.success('Тип вывески изменён', { duration: 5000 }),
+    },
     order: {
       removed: () => message.success('Заказ удалён', { duration: 5000 }),
       created: () => message.success('Новый заказ создан', { duration: 5000 }),
