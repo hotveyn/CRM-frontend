@@ -90,6 +90,26 @@ const routes: RouteRecordRaw[] = [
         ],
       },
       {
+        name: 'admin-order-types',
+        path: 'TableOrderTypes',
+        component: () => import('@/pages/admin/order-types/PageAdminOrderTypes.vue'),
+        redirect: {
+          name: 'admin-order-types-all',
+        },
+        children: [
+          {
+            name: 'admin-order-types-all',
+            path: 'all',
+            component: () => import('@/pages/admin/order-types/PageAdminOrderTypesAll.vue'),
+          },
+          {
+            name: 'admin-order-types-create',
+            path: 'create',
+            component: () => import('@/pages/admin/order-types/PageAdminOrderTypesCreate.vue'),
+          },
+        ],
+      },
+      {
         name: 'admin-stat',
         path: 'stat',
         component: () => import('@/pages/admin/stat/PageAdminStat.vue'),
