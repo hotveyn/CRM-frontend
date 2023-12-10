@@ -1,9 +1,17 @@
-import { IBreakCreateValues } from '@/interfaces/form/break/create/IBreakCreateValues.ts';
 import { FormRules, SelectOption } from 'naive-ui';
-import { onMounted, reactive } from 'vue';
-import { IBreakCreateConf } from '@/interfaces/form/break/create/IBreakCreateConf.ts';
+import { onMounted, reactive, Ref } from 'vue';
 import { ref } from 'vue';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
+import { IFormConf } from '@/interfaces/form/IFormConf.ts';
+
+export interface IBreakCreateValues {
+  name: string;
+  department_id: number | null;
+}
+
+interface IBreakCreateConf extends IFormConf<IBreakCreateValues> {
+  options: Ref<SelectOption[]>;
+}
 
 export function useBreakCreateFormConf(): IBreakCreateConf {
   const rules: FormRules = {

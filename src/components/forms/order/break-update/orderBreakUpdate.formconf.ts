@@ -1,11 +1,21 @@
 import { FormRules, SelectOption } from 'naive-ui';
-import { onMounted, reactive, ref } from 'vue';
-import { IOrderNewUpdateConf } from '@/interfaces/form/order/update/IOrderNewUpdateConf.ts';
-import { OrderTypeEnum } from '@/enums/order/OrderType.enum.ts';
-import { IOrderNewUpdateValues } from '@/interfaces/form/order/update/IOrderNewUpdateValues.ts';
+import { onMounted, reactive, Ref, ref } from 'vue';
 import { useOrdersBreakStore } from '@/store/orders/orders-break.store.ts';
+import { IFormConf } from '@/interfaces/form/IFormConf.ts';
+import { useOrderTypesStore } from '@/store/orderTypes.store.ts';
 
 const ordersBreakStore = useOrdersBreakStore();
+
+export interface IOrderNewUpdateValues {
+  name: string;
+  type_id: number;
+  price: number;
+  comment?: string;
+}
+
+export interface IOrderNewUpdateConf extends IFormConf<IOrderNewUpdateValues> {
+  options: Ref<SelectOption[]>;
+}
 
 export function useOrderBreakUpdateFormConf(id: number): IOrderNewUpdateConf {
   const rules: FormRules = {
@@ -17,43 +27,26 @@ export function useOrderBreakUpdateFormConf(id: number): IOrderNewUpdateConf {
       required: true,
       message: 'Выбирете тип заказа',
     },
-    neon_length: {
-      required: true,
-      message: 'Введите длину неона',
-    },
   };
-  const options = ref<SelectOption[]>([
-    {
-      label: OrderTypeEnum.NEON1,
-      value: OrderTypeEnum.NEON1,
-    },
-    {
-      label: OrderTypeEnum.NEON2,
-      value: OrderTypeEnum.NEON2,
-    },
-    {
-      label: OrderTypeEnum.NEON_SMART,
-      value: OrderTypeEnum.NEON_SMART,
-    },
-    {
-      label: OrderTypeEnum.NEON2_STREET,
-      value: OrderTypeEnum.NEON2_STREET,
-    },
-  ]);
+  const options = ref<SelectOption[]>([]);
 
   const formValues = reactive<IOrderNewUpdateValues>({
     name: '',
-    type: OrderTypeEnum.NEON1,
-    neon_length: 0,
+    type_id: NaN,
+    price: 0,
     comment: '',
   });
 
   onMounted(async () => {
+    const orderTypesStore = useOrderTypesStore();
+    options.value = await orderTypesStore.getForSelect()
+    formValues.type_id = options.value[0].value as number;
+
     const order = ordersBreakStore.findById(id);
     if (order) {
       formValues.name = order.name;
-      formValues.type = order.type;
-      formValues.neon_length = order.neon_length;
+      formValues.type_id = order.type.id;
+      formValues.price = order.price;
       formValues.comment = order.comment;
     }
   });

@@ -1,10 +1,25 @@
-import { IUserUpdateConf } from '@/interfaces/form/user-update/IUserUpdateConf.ts';
 import { FormRules, SelectOption } from 'naive-ui';
-import { onMounted, reactive, ref } from 'vue';
-import { IUserUpdateValues } from '@/interfaces/form/user-update/IUserUpdateValues.ts';
+import { onMounted, reactive, Ref, ref } from 'vue';
 import { useUsersStore } from '@/store/users.store.ts';
 import { IUser } from '@/interfaces/user/IUser.ts';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
+import { IFormConf } from '@/interfaces/form/IFormConf.ts';
+
+export interface IUserUpdateValues {
+  login: string;
+  password: string;
+  code: string;
+  lastName: string;
+  firstName: string;
+  patronymicName: string;
+  startWorkDate: string;
+  departments?: number[] | null;
+}
+
+
+export interface IUserUpdateConf extends IFormConf<IUserUpdateValues> {
+  options: Ref<SelectOption[]>;
+}
 
 export function useUserUpdateFormConf(userId: number): IUserUpdateConf {
   const rules: FormRules = {};

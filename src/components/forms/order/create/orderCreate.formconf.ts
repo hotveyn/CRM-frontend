@@ -1,9 +1,23 @@
-import { reactive } from 'vue';
-import { IOrderCreateValues } from '@/interfaces/form/order/create/IOrderCreateValues.ts';
-import { OrderTypeEnum } from '@/enums/order/OrderType.enum.ts';
+import { onMounted, reactive, Ref } from 'vue';
 import { FormRules, SelectOption } from 'naive-ui';
 import { ref } from 'vue';
-import { IOrderCreateConf } from '@/interfaces/form/order/create/IOrderCreateConf.ts';
+import { IFormConf } from '@/interfaces/form/IFormConf.ts';
+import { useOrderTypesStore } from '@/store/orderTypes.store.ts';
+
+export interface IOrderCreateValues {
+  name: string;
+  date_start: string;
+  date_end: string;
+  price: number;
+  type_id: number;
+  comment?: string;
+  reclamation_number?: string;
+}
+
+export interface IOrderCreateConf extends IFormConf<IOrderCreateValues> {
+  options: Ref<SelectOption[]>;
+  isReclamation: Ref<boolean>;
+}
 
 export function useOrderCreateFormConf(): IOrderCreateConf {
   const rules: FormRules = {
@@ -19,43 +33,32 @@ export function useOrderCreateFormConf(): IOrderCreateConf {
       required: true,
       message: 'Введите дату сдачи',
     },
-    neon_length: {
+    price: {
       required: true,
       message: 'Введите длину неона',
     },
-    type: {
+    type_id: {
       required: true,
-      message: 'Введите тип вывески',
+      message: 'Выберите тип вывески',
     },
   };
 
   const isReclamation = ref<boolean>(false);
 
-  const options = ref<SelectOption[]>([
-    {
-      label: OrderTypeEnum.NEON1,
-      value: OrderTypeEnum.NEON1,
-    },
-    {
-      label: OrderTypeEnum.NEON2,
-      value: OrderTypeEnum.NEON2,
-    },
-    {
-      label: OrderTypeEnum.NEON_SMART,
-      value: OrderTypeEnum.NEON_SMART,
-    },
-    {
-      label: OrderTypeEnum.NEON2_STREET,
-      value: OrderTypeEnum.NEON2_STREET,
-    },
-  ]);
+  const options = ref<SelectOption[]>([]);
+
+  onMounted(async ()=>{
+    const orderTypesStore = useOrderTypesStore();
+    options.value = await orderTypesStore.getForSelect()
+    formValues.type_id = options.value[0].value as number;
+  })
 
   const formValues = reactive<IOrderCreateValues>({
     name: '',
     date_start: '2023-07-13',
     date_end: '2023-07-23',
-    neon_length: 1,
-    type: OrderTypeEnum.NEON1,
+    price: 1,
+    type_id: NaN,
     comment: '',
     reclamation_number: '',
   });

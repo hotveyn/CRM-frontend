@@ -1,9 +1,16 @@
-import { IToWorkConf } from '@/interfaces/form/order/towork/IToWorkConf.ts';
-import { onMounted, reactive } from 'vue';
-import { IToWorkValues } from '@/interfaces/form/order/towork/IToWorkValues.ts';
+import { onMounted, reactive, Ref } from 'vue';
 import { FormRules, SelectOption } from 'naive-ui';
 import { ref } from 'vue';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
+import { IFormConf } from '@/interfaces/form/IFormConf.ts';
+
+export interface IToWorkValues {
+  departments: number[] | null;
+}
+
+export interface IToWorkConf extends IFormConf<IToWorkValues> {
+  options: Ref<SelectOption[]>;
+}
 
 export function useToWorkFormConf(): IToWorkConf {
   const rules: FormRules = {

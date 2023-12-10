@@ -1,8 +1,11 @@
 import { IFormConf } from '@/interfaces/form/IFormConf.ts';
-import { IOrderRateValues } from '@/interfaces/form/order/rate/IOrderRateValues.ts';
 import { FormRules } from 'naive-ui';
 import { onMounted, reactive } from 'vue';
 import { useOrdersCompletedStore } from '@/store/orders/orders-completed.store.ts';
+
+export interface IOrderRateValues {
+  rating: number;
+}
 
 export function useOrderRateFormConf(id: number): IFormConf<IOrderRateValues> {
   const rules: FormRules = {

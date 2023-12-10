@@ -1,7 +1,11 @@
 import { reactive } from 'vue';
-import { ILoginValues } from '@/interfaces/form/login/ILoginValues.ts';
 import { FormRules } from 'naive-ui';
 import { IFormConf } from '@/interfaces/form/IFormConf.ts';
+
+export interface ILoginValues {
+  login: string;
+  password: string;
+}
 
 export function useFormLogin(): IFormConf<ILoginValues> {
   const rules: FormRules = {

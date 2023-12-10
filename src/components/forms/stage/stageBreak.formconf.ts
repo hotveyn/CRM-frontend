@@ -1,8 +1,17 @@
-import { IStageBreakConf } from '@/interfaces/form/stage/IStageBreakConf.ts';
 import { FormRules, SelectOption } from 'naive-ui';
-import { onMounted, reactive, ref } from 'vue';
+import { onMounted, reactive, Ref, ref } from 'vue';
 import { useStageWorkStore } from '@/store/stages/stages-work.store.ts';
-import { IStageBreakValues } from '@/interfaces/form/stage/IStageBreakValues.ts';
+import { IFormConf } from '@/interfaces/form/IFormConf.ts';
+
+export interface IStageBreakValues {
+  break_name: string;
+  break_id: number | null;
+  department_id: number | null;
+}
+
+export interface IStageBreakConf extends IFormConf<IStageBreakValues> {
+  options: Ref<SelectOption[]>;
+}
 
 export function useStageBreakFormConf(id: number): IStageBreakConf {
   const rules: FormRules = {

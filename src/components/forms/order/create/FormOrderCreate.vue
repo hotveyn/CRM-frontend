@@ -28,8 +28,8 @@ function goCreate() {
     <NFormItem label="Название заказа" path="name">
       <NInput v-model:value="formValues.name" placeholder="" />
     </NFormItem>
-    <NFormItem label="Длина неона" path="neon_length">
-      <NInputNumber :min="0" v-model:value="formValues.neon_length" placeholder="" :precision="2" />
+    <NFormItem label="Цена вывески" path="price">
+      <NInputNumber :min="0" v-model:value="formValues.price" placeholder="" :precision="2" />
     </NFormItem>
     <NFormItem label="Дата начала" path="date_start">
       <NDatePicker value-format="yyyy-MM-dd" v-model:formatted-value="formValues.date_start" style="width: 100%" placeholder="" type="date" />
@@ -37,8 +37,8 @@ function goCreate() {
     <NFormItem label="Дата сдачи" path="date_end">
       <NDatePicker value-format="yyyy-MM-dd" v-model:formatted-value="formValues.date_end" style="width: 100%" placeholder="" type="date" />
     </NFormItem>
-    <NFormItem label="Тип вывески" path="type">
-      <NSelect v-model:value="formValues.type" remote :options="options" />
+    <NFormItem label="Тип вывески" path="type_id">
+      <NSelect v-model:value="formValues.type_id" remote :options="options" />
     </NFormItem>
     <NFormItem label="Ваш комментарий к заказу">
       <NInput v-model:value="formValues.comment" type="textarea" placeholder="" />

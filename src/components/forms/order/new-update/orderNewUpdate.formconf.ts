@@ -1,11 +1,20 @@
 import { FormRules, SelectOption } from 'naive-ui';
-import { onMounted, reactive, ref } from 'vue';
-import { IOrderNewUpdateConf } from '@/interfaces/form/order/update/IOrderNewUpdateConf.ts';
-import { OrderTypeEnum } from '@/enums/order/OrderType.enum.ts';
+import { onMounted, reactive, Ref, ref } from 'vue';
 import { useOrdersNewStore } from '@/store/orders/orders-new.store.ts';
-import { IOrderNewUpdateValues } from '@/interfaces/form/order/update/IOrderNewUpdateValues.ts';
+import { IFormConf } from '@/interfaces/form/IFormConf.ts';
+import { useOrderTypesStore } from '@/store/orderTypes.store.ts';
 
 const ordersNewStore = useOrdersNewStore();
+export interface IOrderNewUpdateValues {
+  name: string;
+  price: number;
+  type_id: number;
+  comment?: string;
+}
+
+export interface IOrderNewUpdateConf extends IFormConf<IOrderNewUpdateValues> {
+  options: Ref<SelectOption[]>;
+}
 
 export function useOrderNewUpdateFormConf(id: number): IOrderNewUpdateConf {
   const rules: FormRules = {
@@ -22,38 +31,25 @@ export function useOrderNewUpdateFormConf(id: number): IOrderNewUpdateConf {
       message: 'Введите длину неона',
     },
   };
-  const options = ref<SelectOption[]>([
-    {
-      label: OrderTypeEnum.NEON1,
-      value: OrderTypeEnum.NEON1,
-    },
-    {
-      label: OrderTypeEnum.NEON2,
-      value: OrderTypeEnum.NEON2,
-    },
-    {
-      label: OrderTypeEnum.NEON_SMART,
-      value: OrderTypeEnum.NEON_SMART,
-    },
-    {
-      label: OrderTypeEnum.NEON2_STREET,
-      value: OrderTypeEnum.NEON2_STREET,
-    },
-  ]);
+  const options = ref<SelectOption[]>([]);
 
   const formValues = reactive<IOrderNewUpdateValues>({
     name: '',
-    type: OrderTypeEnum.NEON1,
-    neon_length: 1,
+    type_id: NaN,
+    price: NaN,
     comment: '',
   });
 
   onMounted(async () => {
+    const orderTypesStore = useOrderTypesStore();
+    options.value = await orderTypesStore.getForSelect()
+    formValues.type_id = options.value[0].value as number;
+
     const order = ordersNewStore.findById(id);
     if (order) {
       formValues.name = order.name;
-      formValues.type = order.type;
-      formValues.neon_length = order.neon_length;
+      formValues.type_id = order.type.id;
+      formValues.price = order.price;
       formValues.comment = order.comment;
     }
   });

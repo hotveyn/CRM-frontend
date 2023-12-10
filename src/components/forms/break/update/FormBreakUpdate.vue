@@ -36,7 +36,7 @@ function goUpdate() {
     <NFormItem label="Ответственный отдел" path="department_id">
       <NSelect v-model:value="formValues.department_id" placeholder="" :options="options" remote />
     </NFormItem>
-    <NButton type="primary" @click.prevent="goUpdate()"> Создать </NButton>
+    <NButton type="primary" @click.prevent="goUpdate()"> Поменять </NButton>
   </NForm>
 </template>
 

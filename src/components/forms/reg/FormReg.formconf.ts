@@ -1,9 +1,25 @@
-import { onMounted, reactive, ref } from 'vue';
+import { onMounted, reactive, Ref, ref } from 'vue';
 import { useDepartmentsService } from '@/services/departments.service.ts';
 import { FormRules, SelectOption } from 'naive-ui';
-import { IRegValues } from '@/interfaces/form/reg/IRegValues.ts';
-import { IRegConf } from '@/interfaces/form/reg/IRegConf.ts';
 import { UserRoleEnum } from '@/enums/user/UserRole.enum.ts';
+import { IFormConf } from '@/interfaces/form/IFormConf.ts';
+
+export interface IRegValues {
+  login: string;
+  password: string;
+  code: string;
+  lastName: string;
+  firstName: string;
+  patronymicName: string;
+  role: UserRoleEnum;
+  startWorkDate: string | null;
+  departments: number[] | null;
+}
+
+export interface IRegConf extends IFormConf<IRegValues> {
+  options: Ref<SelectOption[]>;
+  optionsRoles: Ref<SelectOption[]>;
+}
 
 export function useRegFormConf(): IRegConf {
   const { getDepartments } = useDepartmentsService();

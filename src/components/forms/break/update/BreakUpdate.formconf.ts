@@ -1,10 +1,18 @@
-import { IBreakCreateValues } from '@/interfaces/form/break/create/IBreakCreateValues.ts';
 import { FormRules, SelectOption } from 'naive-ui';
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, Ref } from 'vue';
 import { ref } from 'vue';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
-import { IBreakUpdateConf } from '@/interfaces/form/break/update/IBreakUpdateConf.ts';
 import { useBreaksStore } from '@/store/breaks.store.ts';
+import { IFormConf } from '@/interfaces/form/IFormConf.ts';
+
+export interface IBreakUpdateValues {
+  name: string;
+  department_id: number | null;
+}
+
+export interface IBreakUpdateConf extends IFormConf<IBreakUpdateValues> {
+  options: Ref<SelectOption[]>;
+}
 
 export function useBreakUpdateFormConf(breakId: number): IBreakUpdateConf {
   const rules: FormRules = {
@@ -20,7 +28,7 @@ export function useBreakUpdateFormConf(breakId: number): IBreakUpdateConf {
 
   const options = ref<SelectOption[]>([]);
 
-  const formValues = reactive<IBreakCreateValues>({
+  const formValues = reactive<IBreakUpdateValues>({
     name: '',
     department_id: null,
   });
