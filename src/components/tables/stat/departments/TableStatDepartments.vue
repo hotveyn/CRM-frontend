@@ -31,7 +31,7 @@ function createColumns(): DataTableColumns<IStatDepartment> {
     },
     {
       title: 'Общая длина неона',
-      key: 'neon_length',
+      key: 'price',
       sorter: 'default' as const,
     },
   ];

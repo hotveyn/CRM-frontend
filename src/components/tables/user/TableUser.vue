@@ -35,6 +35,11 @@ function createColumns(actions: { fire: (id: number) => void; change: (id: numbe
       sorter: 'default' as const,
     },
     {
+      title: 'Роль',
+      key: 'role',
+      sorter: 'default' as const,
+    },
+    {
       title: 'Отделы',
       key: 'departments',
       render(row) {

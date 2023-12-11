@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import { IUser } from '@/interfaces/user/IUser.ts';
 import { useUserService } from '@/services/user.service.ts';
-import { IRegValues } from '@/interfaces/form/reg/IRegValues.ts';
 import { useMessageService } from '@/services/message.service.ts';
-import { IUserUpdateValues } from '@/interfaces/form/user-update/IUserUpdateValues.ts';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
+import {IUserUpdateValues} from "components/forms/userUpdate/userUpdate.formconf.ts";
+import {IRegValues} from "components/forms/reg/FormReg.formconf.ts";
 
 const userService = useUserService();
 const message = useMessageService();

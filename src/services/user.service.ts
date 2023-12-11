@@ -1,8 +1,8 @@
 import { IResponse } from '@/interfaces/axios/IResponse.ts';
 import { IUser } from '@/interfaces/user/IUser.ts';
 import { api } from '@/axios';
-import { IRegValues } from '@/interfaces/form/reg/IRegValues.ts';
-import { IUserUpdateValues } from '@/interfaces/form/user-update/IUserUpdateValues.ts';
+import {IRegValues} from "components/forms/reg/FormReg.formconf.ts";
+import {IUserUpdateValues} from "components/forms/userUpdate/userUpdate.formconf.ts";
 
 export function useUserService() {
   return {
@@ -27,7 +27,7 @@ export function useUserService() {
         departments: formValues.departments,
       };
 
-      const res = await api.post('auth/reg-employee', payload);
+      const res = await api.post('auth/reg', payload);
 
       return res.data as IUser;
     },

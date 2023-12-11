@@ -29,11 +29,24 @@ const usersTableData = computed(() => {
     return {
       id: user.id,
       name: [user.last_name, user.first_name, user.patronymic_name].join(' '),
+      role: translateRole(user.role),
       code: user.code,
       departments: departments,
     };
   });
 });
+function translateRole(role: string) {
+  switch (role){
+    case "manager":
+      return "Менеджер"
+    case "employee":
+      return "Работник"
+    case "storage":
+      return "Кладовщик"
+    case "admin":
+      return "Админ"
+  }
+}
 const departmentsFilterOptions = computed(() => {
   return departmentsStore.departments.map((department: IDepartment) => {
     return {

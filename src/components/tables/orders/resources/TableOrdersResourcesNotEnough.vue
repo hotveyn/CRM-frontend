@@ -41,12 +41,12 @@ function createColumns(actions: { setNull: (id: number) => void; enough: (id: nu
     },
     {
       title: 'Тип',
-      key: 'type',
+      key: 'type.name',
       sorter: 'default' as const,
     },
     {
-      title: 'Длина неона',
-      key: 'neon_length',
+      title: 'Стоимость',
+      key: 'price',
       sorter: 'default' as const,
     },
     {

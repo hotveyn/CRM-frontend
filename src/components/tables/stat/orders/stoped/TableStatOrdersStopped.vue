@@ -36,8 +36,8 @@ function createColumns(): DataTableColumns<IOrder> {
       sorter: 'default' as const,
     },
     {
-      title: 'Длина неона',
-      key: 'neon_length',
+      title: 'Стоимость',
+      key: 'price',
       sorter: 'default' as const,
     },
     {

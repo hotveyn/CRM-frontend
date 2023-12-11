@@ -5,6 +5,7 @@ import { IFormConf } from '@/interfaces/form/IFormConf.ts';
 import { useOrderTypesStore } from '@/store/orderTypes.store.ts';
 
 const ordersNewStore = useOrdersNewStore();
+
 export interface IOrderNewUpdateValues {
   name: string;
   price: number;
@@ -14,6 +15,7 @@ export interface IOrderNewUpdateValues {
 
 export interface IOrderNewUpdateConf extends IFormConf<IOrderNewUpdateValues> {
   options: Ref<SelectOption[]>;
+  isPossible: { possible: boolean, why: string };
 }
 
 export function useOrderNewUpdateFormConf(id: number): IOrderNewUpdateConf {
@@ -26,9 +28,9 @@ export function useOrderNewUpdateFormConf(id: number): IOrderNewUpdateConf {
       required: true,
       message: 'Выбирете тип заказа',
     },
-    neon_length: {
+    price: {
       required: true,
-      message: 'Введите длину неона',
+      message: 'Введите цену вывески',
     },
   };
   const options = ref<SelectOption[]>([]);
@@ -40,9 +42,16 @@ export function useOrderNewUpdateFormConf(id: number): IOrderNewUpdateConf {
     comment: '',
   });
 
+  const isPossible = reactive({ possible: true, why: '' });
+
   onMounted(async () => {
     const orderTypesStore = useOrderTypesStore();
-    options.value = await orderTypesStore.getForSelect()
+    options.value = await orderTypesStore.getForSelect();
+    if (!options.value[0]) {
+      isPossible.possible = false;
+      isPossible.why = 'Нужен хотя бы один тип вывески';
+      return;
+    }
     formValues.type_id = options.value[0].value as number;
 
     const order = ordersNewStore.findById(id);
@@ -58,5 +67,6 @@ export function useOrderNewUpdateFormConf(id: number): IOrderNewUpdateConf {
     rules,
     options,
     formValues,
+    isPossible,
   };
 }

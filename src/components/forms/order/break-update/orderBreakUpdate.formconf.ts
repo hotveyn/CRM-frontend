@@ -23,7 +23,7 @@ export function useOrderBreakUpdateFormConf(id: number): IOrderNewUpdateConf {
       required: true,
       message: 'Введите название заказа',
     },
-    type: {
+    type_id: {
       required: true,
       message: 'Выбирете тип заказа',
     },

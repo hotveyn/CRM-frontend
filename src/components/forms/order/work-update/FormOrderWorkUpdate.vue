@@ -36,11 +36,11 @@ function goUpdate() {
     <NFormItem label="Название заказа" path="name">
       <NInput v-model:value="formValues.name" placeholder="" />
     </NFormItem>
-    <NFormItem label="Длина неона" path="neon_length">
-      <NInputNumber v-model:value="formValues.neon_length" placeholder="" :precision="2" />
+    <NFormItem label="Стоимость" path="price">
+      <NInputNumber v-model:value="formValues.price" placeholder="" :precision="2" />
     </NFormItem>
-    <NFormItem label="Тип вывески" path="type">
-      <NSelect v-model:value="formValues.type" remote :options="optionsType" />
+    <NFormItem label="Тип вывески" path="type_id">
+      <NSelect v-model:value="formValues.type_id" remote :options="optionsType" />
     </NFormItem>
     <NFormItem label="Ваш комментарий к заказу">
       <NInput v-model:value="formValues.comment" type="textarea" placeholder="" />

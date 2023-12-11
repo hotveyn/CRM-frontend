@@ -28,7 +28,7 @@ function goCreate() {
     <NFormItem label="Название заказа" path="name">
       <NInput v-model:value="formValues.name" placeholder="" />
     </NFormItem>
-    <NFormItem label="Цена вывески" path="price">
+    <NFormItem label="Стоимость вывески" path="price">
       <NInputNumber :min="0" v-model:value="formValues.price" placeholder="" :precision="2" />
     </NFormItem>
     <NFormItem label="Дата начала" path="date_start">

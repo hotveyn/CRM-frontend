@@ -2,8 +2,8 @@ import { defineStore } from 'pinia';
 import { IDepartment } from '@/interfaces/department/IDepartment.ts';
 import { useDepartmentsService } from '@/services/departments.service.ts';
 import { useMessageService } from '@/services/message.service.ts';
-import { IDepartmentCreateValues } from '@/interfaces/form/department/IDepartmentCreateValues.ts';
-import { IDepartmentUpdateValues } from '@/interfaces/form/department/IDepartmentUpdateValues.ts';
+import {IDepartmentUpdateValues} from "components/forms/department/update/DepartmentUpdate.formconf.ts";
+import {IDepartmentCreateValues} from "components/forms/department/create/DepartmentCreate.formconf.ts";
 
 const departmentsService = useDepartmentsService();
 const message = useMessageService();

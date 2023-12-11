@@ -3,10 +3,10 @@ import { useAuthService } from '@/services/auth.service.ts';
 import { IUserAuth } from '@/interfaces/IUserAuth.ts';
 import jwtDecode from 'jwt-decode';
 import { UserRoleEnum } from '@/enums/user/UserRole.enum.ts';
-import { ILoginValues } from '@/interfaces/form/login/ILoginValues.ts';
 import { useMessageService } from '@/services/message.service.ts';
 import axios from 'axios';
 import { router } from '@/router/router.ts';
+import {ILoginValues} from "components/forms/login/FormLogin.formconf.ts";
 
 // init
 function getLocalStorageToken() {

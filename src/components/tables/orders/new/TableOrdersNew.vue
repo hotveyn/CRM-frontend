@@ -43,12 +43,12 @@ function createColumns(actions: { change: (id: number) => void; remove: (id: num
     },
     {
       title: 'Тип',
-      key: 'type',
+      key: 'type.name',
       sorter: 'default' as const,
     },
     {
-      title: 'Длина неона',
-      key: 'neon_length',
+      title: 'Стоимость',
+      key: 'price',
       sorter: 'default' as const,
     },
     {

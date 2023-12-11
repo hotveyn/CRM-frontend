@@ -23,7 +23,7 @@ onMounted(async () => {
         <NSpace justify="space-between">
           <NStatistic label="Готовые заказы" :value="value.stages" />
           <NStatistic label="Брак" :value="value.break_stages" />
-          <NStatistic label="Длина неона" :value="value.neon_length" />
+<!--          <NStatistic label="Стоимость" :value="value.neon_length" />-->
         </NSpace>
       </NCollapseItem>
     </NCollapse>

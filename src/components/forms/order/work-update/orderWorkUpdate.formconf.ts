@@ -31,7 +31,7 @@ export function useOrderWorkUpdateFormConf(id: number): IOrderWorkUpdateConf {
       required: true,
       message: 'Выбирете тип заказа',
     },
-    neon_length: {
+    price: {
       required: true,
       message: 'Введите длину неона',
     },

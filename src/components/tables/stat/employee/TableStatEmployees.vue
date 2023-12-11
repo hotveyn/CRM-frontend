@@ -36,7 +36,7 @@ function createColumns(): DataTableColumns<IStatEmployee> {
     },
     {
       title: 'Длина длина(Сборка, Пайка)',
-      key: 'neon_length',
+      key: 'price',
       sorter: 'default' as const,
     },
     {

@@ -34,11 +34,18 @@ onMounted(() => {
   &__list {
     display: flex;
     gap: 20px;
+
     &_vertical {
       flex-direction: column;
     }
   }
 
+  &__item{
+    * {
+
+      width: 100%;
+    }
+  }
   &__link {
     text-decoration: none;
     padding: 3px 5px;
