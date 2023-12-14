@@ -8,7 +8,7 @@ const ordersBreakStore = useOrdersBreakStore();
 
 export interface IOrderNewUpdateValues {
   name: string;
-  type_id: number;
+  type_id?: number;
   price: number;
   comment?: string;
 }
@@ -32,14 +32,14 @@ export function useOrderBreakUpdateFormConf(id: number): IOrderNewUpdateConf {
 
   const formValues = reactive<IOrderNewUpdateValues>({
     name: '',
-    type_id: NaN,
+    type_id: undefined,
     price: 0,
     comment: '',
   });
 
   onMounted(async () => {
     const orderTypesStore = useOrderTypesStore();
-    options.value = await orderTypesStore.getForSelect()
+    options.value = await orderTypesStore.getForSelect();
     formValues.type_id = options.value[0].value as number;
 
     const order = ordersBreakStore.findById(id);

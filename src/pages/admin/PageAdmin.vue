@@ -25,6 +25,11 @@ const routes: INavigationRoute[] = [
   },
   {
     id: 5,
+    name: 'admin-prefabs',
+    text: 'Шаблоны',
+  },
+  {
+    id: 6,
     name: 'admin-stat',
     text: 'Статистика',
   },

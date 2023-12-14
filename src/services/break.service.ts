@@ -1,7 +1,7 @@
 import { api } from '@/axios';
 import { IBreak } from '@/interfaces/break/IBreak.ts';
-import { IBreakUpdateValues } from '@/interfaces/form/break/update/IBreakUpdateValues.ts';
-import { IBreakCreateValues } from '@/interfaces/form/break/create/IBreakCreateValues.ts';
+import { IBreakCreateValues } from 'components/forms/break/create/BreakCreate.formconf.ts';
+import { IBreakUpdateValues } from 'components/forms/break/update/BreakUpdate.formconf.ts';
 
 export function useBreakService() {
   return {

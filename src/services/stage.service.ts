@@ -1,8 +1,8 @@
 import { api } from '@/axios';
 import { IStage } from '@/interfaces/stage/IStage.ts';
 import { IBreak } from '@/interfaces/break/IBreak.ts';
-import { IStageBreakValues } from '@/interfaces/form/stage/IStageBreakValues.ts';
-import {IDepartment} from "@/interfaces/department/IDepartment.ts";
+import { IDepartment } from '@/interfaces/department/IDepartment.ts';
+import { IStageBreakValues } from 'components/forms/stage/stageBreak.formconf.ts';
 
 export function useStageService() {
   return {

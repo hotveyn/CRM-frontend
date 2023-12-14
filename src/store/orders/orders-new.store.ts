@@ -54,8 +54,8 @@ export const useOrdersNewStore = defineStore('orders-new', {
           message.order.updated();
 
           const order = this.findById(id);
-          const orderTypesStore =  useOrderTypesStore();
-          const orderType = await orderTypesStore.findById(formValues.type_id);
+          const orderTypesStore = useOrderTypesStore();
+          const orderType = await orderTypesStore.findById(formValues.type_id!);
           if (order) {
             order.name = formValues.name;
             order.type = orderType!;

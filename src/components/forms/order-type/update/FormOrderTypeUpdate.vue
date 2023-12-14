@@ -6,13 +6,16 @@ import { useOrderTypeUpdateFormConf } from 'components/forms/order-type/update/o
 import { IOrderType } from '@/interfaces/order-type/IOrderType.ts';
 
 const props = defineProps<{
-  orderType: IOrderType
+  orderType: IOrderType;
+}>();
+
+const emits = defineEmits<{
+  changed: [];
 }>();
 
 const orderTypeFormRef = ref<FormInst | null>();
 const orderTypesStore = useOrderTypesStore();
 const { rules, formValues } = useOrderTypeUpdateFormConf(props.orderType.name);
-
 
 async function goUpdate() {
   orderTypeFormRef.value?.validate(async (errors) => {
@@ -21,6 +24,7 @@ async function goUpdate() {
     }
 
     await orderTypesStore.update(props.orderType.id, formValues);
+    emits('changed');
   });
 }
 </script>
@@ -34,5 +38,4 @@ async function goUpdate() {
   </NForm>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

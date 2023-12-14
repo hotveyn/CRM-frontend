@@ -4,10 +4,6 @@ import { ref } from 'vue';
 import { FormInst, NButton, NDatePicker, NFormItem, NForm, NInput, NInputNumber, NSelect, NSwitch } from 'naive-ui';
 import { useOrdersNewStore } from '@/store/orders/orders-new.store.ts';
 
-const emit = defineEmits<{
-  done: [];
-}>();
-
 const orderNewStore = useOrdersNewStore();
 const { rules, formValues, options, isReclamation } = useOrderCreateFormConf();
 
@@ -18,7 +14,6 @@ function goCreate() {
     if (errors) return;
 
     await orderNewStore.create(formValues);
-    emit('done');
   });
 }
 </script>

@@ -9,13 +9,13 @@ const ordersNewStore = useOrdersNewStore();
 export interface IOrderNewUpdateValues {
   name: string;
   price: number;
-  type_id: number;
+  type_id?: number;
   comment?: string;
 }
 
 export interface IOrderNewUpdateConf extends IFormConf<IOrderNewUpdateValues> {
   options: Ref<SelectOption[]>;
-  isPossible: { possible: boolean, why: string };
+  isPossible: { possible: boolean; why: string };
 }
 
 export function useOrderNewUpdateFormConf(id: number): IOrderNewUpdateConf {
@@ -32,12 +32,16 @@ export function useOrderNewUpdateFormConf(id: number): IOrderNewUpdateConf {
       required: true,
       message: 'Введите цену вывески',
     },
+    type_id: {
+      required: true,
+      message: 'Выберите тип вывески',
+    },
   };
   const options = ref<SelectOption[]>([]);
 
   const formValues = reactive<IOrderNewUpdateValues>({
     name: '',
-    type_id: NaN,
+    type_id: undefined,
     price: NaN,
     comment: '',
   });
@@ -47,19 +51,15 @@ export function useOrderNewUpdateFormConf(id: number): IOrderNewUpdateConf {
   onMounted(async () => {
     const orderTypesStore = useOrderTypesStore();
     options.value = await orderTypesStore.getForSelect();
-    if (!options.value[0]) {
-      isPossible.possible = false;
-      isPossible.why = 'Нужен хотя бы один тип вывески';
-      return;
-    }
-    formValues.type_id = options.value[0].value as number;
 
     const order = ordersNewStore.findById(id);
     if (order) {
       formValues.name = order.name;
-      formValues.type_id = order.type.id;
       formValues.price = order.price;
       formValues.comment = order.comment;
+      if (order.type) {
+        formValues.type_id = order.type.id;
+      }
     }
   });
 

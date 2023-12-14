@@ -44,26 +44,24 @@ export function useOrderWorkUpdateFormConf(id: number): IOrderWorkUpdateConf {
 
   const formValues = reactive<IOrderWorkUpdateValues>({
     name: '',
-    type_id: NaN,
+    type_id: undefined,
     price: 0,
     comment: '',
     departments: null,
   });
 
   onMounted(async () => {
-
     const orderTypesStore = useOrderTypesStore();
     optionsType.value = await orderTypesStore.getForSelect();
-    formValues.type_id = optionsType.value[0].value as number;
-
-
     const order = orderWorkStore.findById(id);
     if (order) {
       formValues.name = order.name;
-      formValues.type_id = order.type.id;
       formValues.price = order.price;
       formValues.comment = order.comment;
       formValues.departments = [];
+      if (order.type) {
+        formValues.type_id = order.type.id;
+      }
       order.departments.forEach((department) => {
         formValues.departments!.push(department.id);
       });

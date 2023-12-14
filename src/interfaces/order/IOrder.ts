@@ -9,6 +9,7 @@ export interface IOrder {
   date_end: string;
   comment?: string;
   price: number;
+  type_id: number;
   type: IOrderType;
   status: OrderStatusEnum;
   order_stages: IStage[];

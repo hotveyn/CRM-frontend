@@ -1,12 +1,12 @@
 import { api } from '@/axios';
 import { IOrder } from '@/interfaces/order/IOrder.ts';
-import { IOrderNewUpdateValues } from '@/interfaces/form/order/update/IOrderNewUpdateValues.ts';
-import { IOrderCreateValues } from '@/interfaces/form/order/create/IOrderCreateValues.ts';
 import { IOrderBreak } from '@/interfaces/order/IOrderBreak.ts';
 import { IOrderStopped } from '@/interfaces/order/IOrderStopped.ts';
 import { IOrderWork } from '@/interfaces/order/IOrderWork.ts';
-import { IOrderWorkUpdateValues } from '@/interfaces/form/order/work-update/IOrderWorkUpdateValues.ts';
 import { IOrderReclamation } from '@/interfaces/order/IOrderReclamation.ts';
+import { IOrderNewUpdateValues } from 'components/forms/order/new-update/orderNewUpdate.formconf.ts';
+import { IOrderWorkUpdateValues } from 'components/forms/order/work-update/orderWorkUpdate.formconf.ts';
+import { IOrderCreateValues } from 'components/forms/order/create/orderCreate.formconf.ts';
 
 export function useOrderService() {
   return {

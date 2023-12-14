@@ -9,7 +9,7 @@ export interface IOrderCreateValues {
   date_start: string;
   date_end: string;
   price: number;
-  type_id: number;
+  type_id?: number;
   comment?: string;
   reclamation_number?: string;
 }
@@ -47,18 +47,20 @@ export function useOrderCreateFormConf(): IOrderCreateConf {
 
   const options = ref<SelectOption[]>([]);
 
-  onMounted(async ()=>{
+  onMounted(async () => {
     const orderTypesStore = useOrderTypesStore();
-    options.value = await orderTypesStore.getForSelect()
-    formValues.type_id = options.value[0].value as number;
-  })
+    options.value = await orderTypesStore.getForSelect();
+    if (options.value[0]) {
+      formValues.type_id = options.value[0].value as number;
+    }
+  });
 
   const formValues = reactive<IOrderCreateValues>({
     name: '',
-    date_start: '2023-07-13',
-    date_end: '2023-07-23',
+    date_start: new Date().toISOString().split('T')[0] as string,
+    date_end: new Date().toISOString().split('T')[0] as string,
     price: 1,
-    type_id: NaN,
+    type_id: undefined,
     comment: '',
     reclamation_number: '',
   });

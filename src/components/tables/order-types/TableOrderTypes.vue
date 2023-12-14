@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { IOrderType } from '@/interfaces/order-type/IOrderType.ts';
 import { DataTableColumns, NButton, NDataTable } from 'naive-ui';
-import { IBreak } from '@/interfaces/break/IBreak.ts';
 import { h } from 'vue';
 
 defineProps<{
@@ -14,7 +13,7 @@ const emit = defineEmits<{
 }>();
 
 const columns = createColumns({
-  change: (orderType : IOrderType) => {
+  change: (orderType: IOrderType) => {
     emit('change', orderType);
   },
   remove: (id: number) => {
@@ -22,10 +21,7 @@ const columns = createColumns({
   },
 });
 
-function createColumns(actions: {
-  change: (orderType : IOrderType) => void;
-  remove: (id: number) => void
-}): DataTableColumns<IBreak> {
+function createColumns(actions: { change: (orderType: IOrderType) => void; remove: (id: number) => void }): DataTableColumns<IOrderType> {
   return [
     {
       title: 'Название',
@@ -49,7 +45,7 @@ function createColumns(actions: {
             },
             {
               default: () => 'Изменить',
-            },
+            }
           ),
           h(
             NButton,
@@ -63,14 +59,13 @@ function createColumns(actions: {
             },
             {
               default: () => 'Удалить',
-            },
+            }
           ),
         ];
       },
     },
   ];
 }
-
 </script>
 
 <template>
@@ -85,6 +80,4 @@ function createColumns(actions: {
   />
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

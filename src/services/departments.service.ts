@@ -1,7 +1,8 @@
 import { IDepartment } from '@/interfaces/department/IDepartment.ts';
 import { api } from '@/axios';
-import { IDepartmentCreateValues } from '@/interfaces/form/department/IDepartmentCreateValues.ts';
-import { IDepartmentUpdateValues } from '@/interfaces/form/department/IDepartmentUpdateValues.ts';
+import { IDepartmentCreateValues } from 'components/forms/department/create/DepartmentCreate.formconf.ts';
+import { IDepartmentUpdateValues } from 'components/forms/department/update/DepartmentUpdate.formconf.ts';
+
 export function useDepartmentsService() {
   return {
     async getDepartments() {
