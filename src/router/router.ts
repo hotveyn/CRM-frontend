@@ -91,7 +91,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         name: 'admin-order-types',
-        path: 'TableOrderTypes',
+        path: 'order-types',
         component: () => import('@/pages/admin/order-types/PageAdminOrderTypes.vue'),
         redirect: {
           name: 'admin-order-types-all',
@@ -106,6 +106,26 @@ const routes: RouteRecordRaw[] = [
             name: 'admin-order-types-create',
             path: 'create',
             component: () => import('@/pages/admin/order-types/PageAdminOrderTypesCreate.vue'),
+          },
+        ],
+      },
+      {
+        name: 'admin-prefabs',
+        path: 'prefabs',
+        component: () => import('@/pages/admin/prefabs/PageAdminPrefabs.vue'),
+        redirect: {
+          name: 'admin-prefabs-all',
+        },
+        children: [
+          {
+            name: 'admin-prefabs-all',
+            path: 'all',
+            component: () => import('@/pages/admin/prefabs/PageAdminPrefabsAll.vue'),
+          },
+          {
+            name: 'admin-prefabs-create',
+            path: 'create',
+            component: () => import('@/pages/admin/prefabs/PageAdminPrefabsCreate.vue'),
           },
         ],
       },
