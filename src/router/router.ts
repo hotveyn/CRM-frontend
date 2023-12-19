@@ -130,6 +130,21 @@ const routes: RouteRecordRaw[] = [
         ],
       },
       {
+        name: 'admin-matrix',
+        path: 'matrix',
+        component: () => import('@/pages/admin/matrix/PageAdminMatrix.vue'),
+        redirect: {
+          name: 'admin-matrix-all',
+        },
+        children: [
+          {
+            name: 'admin-matrix-all',
+            path: 'all',
+            component: () => import('@/pages/admin/matrix/PageAdminMatrixAll.vue'),
+          },
+        ],
+      },
+      {
         name: 'admin-stat',
         path: 'stat',
         component: () => import('@/pages/admin/stat/PageAdminStat.vue'),
@@ -166,6 +181,11 @@ const routes: RouteRecordRaw[] = [
             name: 'admin-stat-employees',
             path: 'employees',
             component: () => import('@/pages/admin/stat/PageAdminStatEmployees.vue'),
+          },
+          {
+            name: 'admin-stat-payment',
+            path: 'payment',
+            component: () => import('@/pages/admin/stat/PageAdminStatPayment.vue'),
           },
         ],
       },
