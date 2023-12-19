@@ -1,27 +1,36 @@
-import { onMounted, reactive, Ref } from 'vue';
-import { FormRules, SelectOption } from 'naive-ui';
+import { onMounted } from 'vue';
+import { SelectOption } from 'naive-ui';
 import { ref } from 'vue';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
-import { IFormConf } from '@/interfaces/form/IFormConf.ts';
 
 export interface IToWorkValues {
-  departments: number[] | null;
+  department_id?: number,
+  percent?: number
 }
 
-export interface IToWorkConf extends IFormConf<IToWorkValues> {
-  options: Ref<SelectOption[]>;
-}
-
-export function useToWorkFormConf(): IToWorkConf {
-  const rules: FormRules = {
-    departments: {
-      required: true,
-      message: 'Выбирите хотя бы один отдел',
+export function useToWorkFormConf() {
+  const dynamicInputRule = {
+    trigger: 'input',
+    validator(_: unknown, value: string) {
+      if (!value) return new Error('Сделайте выбор');
+      return true;
     },
   };
+
   const options = ref<SelectOption[]>([]);
-  const formValues = reactive<IToWorkValues>({
-    departments: null,
+  const formValues = ref<IToWorkValues[]>([
+    {
+      department_id: undefined,
+      percent: undefined,
+    },
+  ]);
+  const model = ref({
+    dynamicInputValue: [
+      {
+        department_id: undefined,
+        percent: undefined,
+      },
+    ],
   });
   onMounted(async () => {
     const departmentsStore = useDepartmentsStore();
@@ -35,5 +44,12 @@ export function useToWorkFormConf(): IToWorkConf {
     });
   });
 
-  return { rules, formValues, options };
+  function onCreateInp() {
+    return {
+      department_id: undefined,
+      percent: undefined,
+    };
+  }
+
+  return { model, dynamicInputRule, formValues, options, onCreateInp };
 }
