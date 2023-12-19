@@ -56,7 +56,7 @@ onMounted(async () => {
     <TableOrdersNew v-else :table-data="orderNewStore.orders" @remove="remove" @change="change" @to-work="toWork" />
 
     <NModal v-model:show="orderToWorkModal.isShow">
-      <NCard style="width: 600px">
+      <NCard style="width: 800px">
         <FormToWork :id="orderToWorkModal.id" @done="toWorkDone" />
       </NCard>
     </NModal>

@@ -6,7 +6,10 @@ import { useStatEmployeesStore } from '@/store/stat/stat-employees.store.ts';
 
 const statEmployeesStore = useStatEmployeesStore();
 const isLoading = ref<boolean>(true);
-const range = ref<[number, number]>([Date.UTC(2004, 7, 13), Date.now()]);
+
+const dateNowMinusOneMonth = Date.now() - 2678400000;
+
+const range = ref<[number, number]>([dateNowMinusOneMonth, Date.now()]);
 
 const start = computed(() => {
   return new Date(range.value[0]).toISOString();

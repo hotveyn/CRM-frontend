@@ -33,6 +33,11 @@ const routes: INavigationRoute[] = [
     name: 'admin-stat-employees',
     text: 'Сотрудники',
   },
+  {
+    id: 7,
+    name: 'admin-stat-payment',
+    text: 'Оплата',
+  },
 ];
 </script>
 
