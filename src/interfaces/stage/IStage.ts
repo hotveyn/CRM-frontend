@@ -10,6 +10,7 @@ export interface IStage {
   break_id?: number;
   is_active: boolean;
   in_order: number;
+  percent: number;
   user?: IUser;
   order: IOrder;
   break: IBreak;
