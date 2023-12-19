@@ -78,4 +78,14 @@ export const useOrderTypesStore = defineStore('TableOrderTypes', {
     },
 
   },
+  getters:{
+    selected(): SelectOption[] {
+      return this.orderTypes.map((orderType) => {
+        return {
+          label: orderType.name,
+          value: orderType.id,
+        };
+      });
+    }
+  }
 });

@@ -5,6 +5,8 @@ import { useMessageService } from '@/services/message.service.ts';
 import { IOrderCreateValues } from 'components/forms/order/create/orderCreate.formconf.ts';
 import { useOrderTypesStore } from '@/store/orderTypes.store.ts';
 import { IOrderNewUpdateValues } from 'components/forms/order/new-update/orderNewUpdate.formconf.ts';
+import { IToWorkValues } from 'components/forms/order/towork/toWork.formconf.ts';
+import { IOrderPrefabCreateValues } from 'components/forms/order/prefab-create/orderPrefabCreate.formconf.ts';
 
 const orderService = useOrderService();
 const message = useMessageService();
@@ -33,7 +35,7 @@ export const useOrdersNewStore = defineStore('orders-new', {
         })
         .catch((e) => message.error.custom(e.response.data.message));
     },
-    async toWork(id: number, departments: number[]) {
+    async toWork(id: number, departments: IToWorkValues[]) {
       orderService
         .setWork(id, departments)
         .then(() => {
@@ -68,6 +70,16 @@ export const useOrdersNewStore = defineStore('orders-new', {
     async create(formValues: IOrderCreateValues) {
       orderService
         .create(formValues)
+        .then((res) => {
+          message.order.created();
+
+          this.orders.push(res);
+        })
+        .catch((e) => message.error.custom(e.response.data.message));
+    },
+    async createByPrefab(formValues: IOrderPrefabCreateValues) {
+      orderService
+        .createByPrefab(formValues)
         .then((res) => {
           message.order.created();
 

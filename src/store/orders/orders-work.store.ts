@@ -9,6 +9,7 @@ import { useOrderTypesStore } from '@/store/orderTypes.store.ts';
 
 const orderService = useOrderService();
 const message = useMessageService();
+
 interface State {
   orders: IOrderWork[];
 }
@@ -32,28 +33,23 @@ export const useOrdersWorkStore = defineStore('orders-work', {
         .then(async () => {
           message.order.updated();
           const departmentsStore = useDepartmentsStore();
-          const order = this.findById(id)
-          if(order){
-            if(formValues.name) order.name = formValues.name;
+          const order = this.findById(id);
+          if (order) {
+            if (formValues.name) order.name = formValues.name;
             order.comment = formValues.comment;
 
-            if(formValues.type_id){
-              const orderTypesStore =  useOrderTypesStore();
+            if (formValues.type_id) {
+              const orderTypesStore = useOrderTypesStore();
               const orderType = await orderTypesStore.findById(formValues.type_id);
-              order.type = orderType!;
+              if (orderType) {
+                order.type = orderType;
+              }
             }
 
-            if (formValues.departments?.length) {
-              //change departments
-              order.departments = [];
-              formValues.departments.forEach((departmentId) => {
-                const department = departmentsStore.findById(departmentId);
-                if (department) order.departments.push(department);
-              });
-
+            if (formValues.departments && formValues.departments.length) {
               //change current_departments
-              const current_department = departmentsStore.findById(formValues.departments[0]);
-              if (current_department) order.current_department = current_department;
+              const current_department = departmentsStore.findById(formValues.departments[0].department_id!);
+              if (current_department) order.current_department = current_department.name;
             }
           }
         })

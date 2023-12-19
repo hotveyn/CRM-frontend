@@ -4,14 +4,16 @@ import { IUserAuth } from '@/interfaces/IUserAuth.ts';
 import jwtDecode from 'jwt-decode';
 import { UserRoleEnum } from '@/enums/user/UserRole.enum.ts';
 import { useMessageService } from '@/services/message.service.ts';
-import axios from 'axios';
 import { router } from '@/router/router.ts';
-import {ILoginValues} from "components/forms/login/FormLogin.formconf.ts";
+import { ILoginValues } from 'components/forms/login/FormLogin.formconf.ts';
+import { IUser } from '@/interfaces/user/IUser.ts';
+import { useUserService } from '@/services/user.service.ts';
 
 // init
 function getLocalStorageToken() {
   return localStorage.getItem('token');
 }
+
 function getDecodeLocalStorageToken(): IUserAuth | null {
   const token = localStorage.getItem('token');
   try {
@@ -24,10 +26,13 @@ function getDecodeLocalStorageToken(): IUserAuth | null {
   return null;
 }
 
+const userService = useUserService();
 const authService = useAuthService();
 const message = useMessageService();
+
 interface State {
   user: IUserAuth | null;
+  profile?: IUser;
   token: string | null;
 }
 
@@ -35,6 +40,7 @@ export const useAuthStore = defineStore('auth', {
   state: (): State => {
     return {
       token: getLocalStorageToken(),
+      profile: undefined,
       user: getDecodeLocalStorageToken(),
     };
   },
@@ -52,7 +58,6 @@ export const useAuthStore = defineStore('auth', {
       localStorage.removeItem('token');
       this.user = null;
     },
-
     setToken(newToken: string) {
       this.token = newToken;
       localStorage.setItem('token', newToken);
@@ -61,18 +66,22 @@ export const useAuthStore = defineStore('auth', {
     async logout() {
       this.removeToken();
       message.auth.logout();
+      this.profile = undefined;
       await router.push({ name: 'login' });
     },
     async login(formValues: ILoginValues) {
-      try {
-        const res = await authService.login(formValues);
+        const res = await authService.login(formValues)
+        if (!res) {
+          message.auth.failedLogin()
+          return
+        }
         this.setToken(res.data.token);
         message.auth.login();
+        this.profile = await userService.getProfile();
         return true;
-      } catch (e) {
-        if (axios.isAxiosError(e)) message.error.custom(e.response!.data.message);
-        return false;
-      }
+    },
+    async getProfile() {
+      this.profile = await userService.getProfile();
     },
   },
 });
