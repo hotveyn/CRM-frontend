@@ -23,6 +23,11 @@ function createColumns(): DataTableColumns<IStageDetail> {
       key: 'full_name',
       sorter: 'default' as const,
     },
+    {
+      title: 'Процент',
+      key: 'percent',
+      sorter: 'default' as const,
+    },
   ];
 }
 </script>

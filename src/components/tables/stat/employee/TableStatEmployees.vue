@@ -35,11 +35,6 @@ function createColumns(): DataTableColumns<IStatEmployee> {
       sorter: 'default' as const,
     },
     {
-      title: 'Длина длина(Сборка, Пайка)',
-      key: 'price',
-      sorter: 'default' as const,
-    },
-    {
       title: 'Отделы',
       key: 'departments',
       render(row) {

@@ -28,12 +28,7 @@ function createColumns(): DataTableColumns<IStatDepartment> {
       title: 'Процент брака',
       key: 'break_percent',
       sorter: 'default' as const,
-    },
-    {
-      title: 'Общая длина неона',
-      key: 'price',
-      sorter: 'default' as const,
-    },
+    }
   ];
 }
 </script>

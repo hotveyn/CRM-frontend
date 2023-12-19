@@ -31,7 +31,7 @@ function createColumns(): DataTableColumns<IOrder> {
     },
     {
       title: 'Тип',
-      key: 'type',
+      key: 'type.name',
       sorter: 'default' as const,
     },
     {
