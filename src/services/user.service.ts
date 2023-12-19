@@ -10,6 +10,10 @@ export function useUserService() {
       const res: IResponse<IUser[]> = await api.get('user');
       return res.data as IUser[];
     },
+    async getProfile() {
+      const res: IResponse<IUser> = await api.get('user/profile');
+      return res.data as IUser;
+    },
     async getAllFired() {
       const res: IResponse<IUser[]> = await api.get('user/fired');
       return res.data as IUser[];

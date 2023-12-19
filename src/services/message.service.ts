@@ -19,6 +19,9 @@ export function useMessageService() {
       created: () => message.success('Новый тип вывески создан', { duration: 5000 }),
       updated: () => message.success('Тип вывески изменён', { duration: 5000 }),
     },
+    matrix: {
+      updated: () => message.success('Матрица сохранена', { duration: 5000 })
+    },
     prefab: {
       removed: () => message.success('Шаблон удалён', { duration: 5000 }),
       created: () => message.success('Новый шаблон создан', { duration: 5000 }),

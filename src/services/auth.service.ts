@@ -1,6 +1,6 @@
 import { api } from '@/axios';
 import { useAuthStore } from '@/store/auth.store.ts';
-import {ILoginValues} from "components/forms/login/FormLogin.formconf.ts";
+import { ILoginValues } from 'components/forms/login/FormLogin.formconf.ts';
 
 export function useAuthService() {
   return {

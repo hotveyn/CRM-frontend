@@ -7,6 +7,8 @@ import { IOrderReclamation } from '@/interfaces/order/IOrderReclamation.ts';
 import { IOrderNewUpdateValues } from 'components/forms/order/new-update/orderNewUpdate.formconf.ts';
 import { IOrderWorkUpdateValues } from 'components/forms/order/work-update/orderWorkUpdate.formconf.ts';
 import { IOrderCreateValues } from 'components/forms/order/create/orderCreate.formconf.ts';
+import { IToWorkValues } from 'components/forms/order/towork/toWork.formconf.ts';
+import { IOrderPrefabCreateValues } from 'components/forms/order/prefab-create/orderPrefabCreate.formconf.ts';
 
 export function useOrderService() {
   return {
@@ -50,8 +52,8 @@ export function useOrderService() {
 
       return res.data as IOrderBreak[];
     },
-    async setWork(id: number, departments: number[]) {
-      const res = await api.patch(`order/${id}/set-work`, { departments: departments });
+    async setWork(id: number, values: IToWorkValues[]) {
+      const res = await api.patch(`order/${id}/set-work`, { departments: values });
 
       return res.data as IOrder;
     },
@@ -92,6 +94,11 @@ export function useOrderService() {
     },
     async create(formValues: IOrderCreateValues) {
       const res = await api.post(`order`, formValues);
+
+      return res.data as IOrder;
+    },
+    async createByPrefab(formValues: IOrderPrefabCreateValues) {
+      const res = await api.post(`order/by-prefab`, formValues);
 
       return res.data as IOrder;
     },

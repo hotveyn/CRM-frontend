@@ -4,6 +4,7 @@ import { IStatDepartment } from '@/interfaces/stat/IStatDepartment.ts';
 import { IStatStopped } from '@/interfaces/stat/IStatStopped.ts';
 import { IStatReclamation } from '@/interfaces/stat/IStatReclamation.ts';
 import { IStatEmployee } from '@/interfaces/stat/IStatEmployee.ts';
+import { IStatPayment } from '@/interfaces/stat/IStatPayment.ts';
 
 export function useStatService() {
   return {
@@ -20,7 +21,7 @@ export function useStatService() {
       const res = await api.get('stat/self', { params });
       return new Map(Object.entries(res.data)) as Map<string, IStatSelf>;
     },
-    async getEmployeesStat(start: string, end: string) {
+    async getEmployeesStat(start?: string, end?: string) {
       // const date = new Date();
       // const dateMonthPrev = new Date();
       // dateMonthPrev.setMonth(dateMonthPrev.getMonth() - 1);
@@ -33,10 +34,7 @@ export function useStatService() {
       const res = await api.get('stat/employees', { params });
       return res.data as IStatEmployee[];
     },
-    async getDepartmentsStat(start: string, end: string) {
-      // const date = new Date();
-      // const dateMonthPrev = new Date();
-      // dateMonthPrev.setMonth(dateMonthPrev.getMonth() - 1);
+    async getDepartmentsStat(start?: string, end?: string) {
 
       const params = {
         start,
@@ -45,6 +43,15 @@ export function useStatService() {
 
       const res = await api.get('stat/departments', { params });
       return res.data as IStatDepartment[];
+    },
+    async getPaymentStat(start?: string, end?: string) {
+      const params = {
+        start,
+        end,
+      };
+
+      const res = await api.get('stat/payment', { params });
+      return res.data as IStatPayment[];
     },
     async getOrdersStoppedStat() {
       // const date = new Date();
