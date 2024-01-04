@@ -5,6 +5,7 @@ import { useStageWorkStore } from '@/store/stages/stages-work.store.ts';
 import { computed, reactive } from 'vue';
 import { useDialogService } from '@/services/dialog.service.ts';
 import FormStageBreak from 'components/forms/stage/FormStageBreak.vue';
+import IconRollback from 'components/icons/IconRollback.vue';
 
 const props = defineProps<{
   stage: IStage;
@@ -42,11 +43,19 @@ function ready(id: number) {
     await stageWorkStore.ready(id);
   });
 }
+
+function unclaim(id: number) {
+  confirm(async () => {
+    await stageWorkStore.unclaim(id);
+  });
+}
 </script>
 
 <template>
-  <NCard :title="stage.order.name">
-    <template #header-extra>{{ stage.order.code }}</template>
+  <NCard :title="`${stage.order.name} ${stage.order.code}`">
+    <template #header-extra>
+      <IconRollback @click="unclaim(stage.id)"/>
+    </template>
     <div class="card-content">
       <p v-if="stage.department"><strong>Отдел - </strong> {{ stage.department.name }}</p>
       <p v-if="stage.order.comment"><strong>Комментарий - </strong> {{ stage.order.comment }}</p>
