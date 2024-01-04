@@ -5,18 +5,23 @@ import { useStatService } from '@/services/stat.service.ts';
 const statService = useStatService();
 
 interface State {
-  stat: Map<string, IStatSelf>;
+  stat: IStatSelf[];
 }
 
 export const useStatSelfStore = defineStore('stat-self', {
   state: (): State => {
     return {
-      stat: new Map(),
+      stat: [],
     };
   },
   actions: {
     async request() {
       this.stat = await statService.getSelfStat();
+    },
+  },
+  getters: {
+    sortedStat: (state) => {
+      return [...state.stat].sort((a: IStatSelf, b: IStatSelf) => b.money - a.money);
     },
   },
 });

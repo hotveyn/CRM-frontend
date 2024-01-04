@@ -49,6 +49,21 @@ export const useStageWorkStore = defineStore('stages-work', {
           else message.error.error();
         });
     },
+    async unclaim(id: number) {
+      stageService
+        .unclaim(id)
+        .then(() => {
+          message.stage.break();
+
+          this.stages = this.stages.filter((stage) => {
+              return stage.id !== id;
+          });
+        })
+        .catch((e) => {
+          if (axios.isAxiosError(e)) message.error.custom(e.response!.data.message);
+          else message.error.error();
+        });
+    },
     async setStop(id: number) {
       const stage = this.stages.find((stage) => stage.id === id);
       if (!stage) return;

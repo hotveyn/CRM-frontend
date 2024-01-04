@@ -1,4 +1,6 @@
 export interface IStatSelf {
+  id: number;
+  name: string;
   stages: number;
-  break_stages: number;
+  money: number;
 }
