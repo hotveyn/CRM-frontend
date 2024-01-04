@@ -31,6 +31,11 @@ export function useStageService() {
 
       return res.data as IStage;
     },
+    async unclaim(id: number) {
+      const res = await api.patch(`order-stage/${id}/unclaim`);
+
+      return res.data as IStage;
+    },
     async ready(id: number) {
       const res = await api.patch(`order-stage/${id}/ready`);
 

@@ -19,7 +19,7 @@ export function useStatService() {
       };
 
       const res = await api.get('stat/self', { params });
-      return new Map(Object.entries(res.data)) as Map<string, IStatSelf>;
+      return res.data as IStatSelf[];
     },
     async getEmployeesStat(start?: string, end?: string) {
       // const date = new Date();
