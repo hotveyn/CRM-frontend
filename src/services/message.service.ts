@@ -53,6 +53,7 @@ export function useMessageService() {
     },
     stage: {
       claim: () => message.success('Задача взята', { duration: 5000 }),
+      unclaim: () => message.success('Задача снята', { duration: 5000 }),
       break: () => message.success('Задача помечана как брак', { duration: 5000 }),
       ready: () => message.success('Задача выполнена', { duration: 5000 }),
       stop: () => message.error('Задача снята с производства', { duration: 5000 }),
