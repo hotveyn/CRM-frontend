@@ -31,15 +31,17 @@ onMounted(async () => {
       render(row, index) {
         return h(NInputNumber, {
           value: (row[department.id] as IMatrix).percent,
-          min: 0,
+          min: 0.00,
           precision: 2,
           max: 100.00,
           onUpdateValue(v) {
-            if (v) {
+            if (v != undefined) {
               (tableData.value[index][department.id] as IMatrix).percent = v;
+              console.log(v);
             }
           },
         });
+
       },
     };
 
