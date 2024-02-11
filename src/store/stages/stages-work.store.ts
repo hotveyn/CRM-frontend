@@ -53,7 +53,7 @@ export const useStageWorkStore = defineStore('stages-work', {
       stageService
         .unclaim(id)
         .then(() => {
-          message.stage.break();
+          message.stage.unclaim();
 
           this.stages = this.stages.filter((stage) => {
               return stage.id !== id;
