@@ -9,13 +9,16 @@ import { IStatPayment } from '@/interfaces/stat/IStatPayment.ts';
 export function useStatService() {
   return {
     async getSelfStat() {
-      const date = new Date();
-      const dateMonthPrev = new Date();
-      dateMonthPrev.setMonth(dateMonthPrev.getMonth() - 1);
+      const startDate = new Date();
+      startDate.setDate(1);
+      startDate.setHours(0,0,0);
+      const endDate = new Date();
+      endDate.setDate(31);
+      endDate.setHours(23,59,59);
 
       const params = {
-        start: dateMonthPrev,
-        end: date,
+        start: startDate.toISOString(),
+        end: endDate.toISOString(),
       };
 
       const res = await api.get('stat/self', { params });
