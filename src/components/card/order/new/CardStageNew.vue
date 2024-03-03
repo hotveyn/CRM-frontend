@@ -9,12 +9,16 @@ const props = defineProps<{
   departmentId: number;
 }>();
 
+const emit = defineEmits<{
+  claim: []
+}>()
+
 const { confirm } = useDialogService();
 const stageNewStore = useStageNewStore();
 
 async function claim(id: number) {
   confirm(async () => {
-    await stageNewStore.claim(id, props.departmentId!);
+    await stageNewStore.claim(id, props.departmentId!, ()=>emit('claim'));
   });
 }
 </script>

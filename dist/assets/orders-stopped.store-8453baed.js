@@ -1,0 +1,1 @@
+import{v as e}from"./index-19bdbec0.js";import{u as r}from"./order.service-8338065d.js";const t=r(),d=e("orders-stopped",{state:()=>({orders:[]}),actions:{async request(){this.orders=await t.getStop()}}});export{d as u};
