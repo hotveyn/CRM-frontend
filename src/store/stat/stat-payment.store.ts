@@ -5,19 +5,18 @@ import { defineStore } from 'pinia';
 const statService = useStatService();
 
 interface State {
-  stat: IStatPayment[]
+  stat: IStatPayment[];
 }
 
 export const useStatPaymentStore = defineStore('stat-payment', {
-  state: (): State =>{
+  state: (): State => {
     return {
-      stat: []
-    }
+      stat: [],
+    };
   },
   actions: {
-    async request(start?: string, end?: string){
-
-      this.stat = await statService.getPaymentStat(start, end)
-    }
-  }
-})
+    async request(start?: string, end?: string) {
+      this.stat = await statService.getPaymentStat(start, end);
+    },
+  },
+});

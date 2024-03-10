@@ -3,11 +3,11 @@ import { DataTableColumns, NDataTable } from 'naive-ui';
 import { IDepartmentPayment, IStatPayment } from '@/interfaces/stat/IStatPayment.ts';
 
 const props = defineProps<{
-  tableData: IStatPayment[],
-  departmentColumns: DataTableColumns<IDepartmentPayment>
+  tableData: IStatPayment[];
+  departmentColumns: DataTableColumns<IDepartmentPayment>;
 }>();
 
-const columns = createColumns()
+const columns = createColumns();
 
 function createColumns(): DataTableColumns<IDepartmentPayment> {
   return [
@@ -19,22 +19,14 @@ function createColumns(): DataTableColumns<IDepartmentPayment> {
     {
       title: 'Сумма',
       key: 'sum',
-      sorter: 'default' as const
+      sorter: 'default' as const,
     },
   ];
 }
-
 </script>
 
 <template>
-  <NDataTable
-    :single-line="false"
-    :data="tableData"
-    :columns="columns"
-    :bordered="true"
-  />
+  <NDataTable :single-line="false" :data="tableData" :columns="columns" :bordered="true" />
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

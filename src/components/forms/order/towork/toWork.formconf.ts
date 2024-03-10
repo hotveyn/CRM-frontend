@@ -4,8 +4,8 @@ import { ref } from 'vue';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
 
 export interface IToWorkValues {
-  department_id?: number,
-  percent?: number
+  department_id?: number;
+  percent?: number;
 }
 
 export function useToWorkFormConf() {

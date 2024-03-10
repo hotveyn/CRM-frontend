@@ -12,7 +12,7 @@ export interface IOrderWorkUpdateValues {
   type_id?: number;
   price?: number;
   comment?: string;
-  departments?: { percent?: number, department_id?: number }[];
+  departments?: { percent?: number; department_id?: number }[];
 }
 
 export interface IOrderWorkUpdateConf extends IFormConf<IOrderWorkUpdateValues> {
@@ -20,7 +20,7 @@ export interface IOrderWorkUpdateConf extends IFormConf<IOrderWorkUpdateValues> 
   optionsType: Ref<SelectOption[]>;
   isDepartmentsChange: Ref<boolean>;
   dynamicInputRule: FormItemRule;
-  onCreateInp(): { department_id?: number, percent?: number };
+  onCreateInp(): { department_id?: number; percent?: number };
 }
 
 export function useOrderWorkUpdateFormConf(id: number): IOrderWorkUpdateConf {
@@ -39,7 +39,7 @@ export function useOrderWorkUpdateFormConf(id: number): IOrderWorkUpdateConf {
     },
   };
 
-  const dynamicInputRule: FormItemRule  = {
+  const dynamicInputRule: FormItemRule = {
     trigger: 'input',
     validator(_: unknown, value: string) {
       console.log(value);
@@ -69,7 +69,7 @@ export function useOrderWorkUpdateFormConf(id: number): IOrderWorkUpdateConf {
   onMounted(async () => {
     const orderTypesStore = useOrderTypesStore();
     const departmentsStore = useDepartmentsStore();
-    await Promise.all([orderTypesStore.request(), departmentsStore.request()])
+    await Promise.all([orderTypesStore.request(), departmentsStore.request()]);
     optionsType.value = orderTypesStore.selected;
     console.log(optionsType.value);
     console.log(departmentsStore.departments);
@@ -89,9 +89,7 @@ export function useOrderWorkUpdateFormConf(id: number): IOrderWorkUpdateConf {
           percent: order_stage.percent,
         };
       });
-
     }
-
 
     departmentsStore.departments.forEach((department) => {
       options.value.push({

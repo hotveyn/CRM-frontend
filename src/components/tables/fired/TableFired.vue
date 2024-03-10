@@ -41,6 +41,8 @@ function createColumns(actions: { unfire: (id: number) => void }): DataTableColu
             {
               style: {
                 marginRight: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               type: 'info',
               bordered: false,
@@ -67,6 +69,8 @@ function createColumns(actions: { unfire: (id: number) => void }): DataTableColu
             size: 'small',
             style: {
               marginRight: '6px',
+              width: '100%',
+              maxWidth: '100px',
             },
             onClick: () => actions.unfire(row.id),
           },

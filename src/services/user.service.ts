@@ -1,8 +1,8 @@
 import { IResponse } from '@/interfaces/axios/IResponse.ts';
 import { IUser } from '@/interfaces/user/IUser.ts';
 import { api } from '@/axios';
-import {IRegValues} from "components/forms/reg/FormReg.formconf.ts";
-import {IUserUpdateValues} from "components/forms/userUpdate/userUpdate.formconf.ts";
+import { IRegValues } from 'components/forms/reg/FormReg.formconf.ts';
+import { IUserUpdateValues } from 'components/forms/userUpdate/userUpdate.formconf.ts';
 
 export function useUserService() {
   return {

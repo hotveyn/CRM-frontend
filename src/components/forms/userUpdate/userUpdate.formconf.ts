@@ -16,7 +16,6 @@ export interface IUserUpdateValues {
   departments?: number[] | null;
 }
 
-
 export interface IUserUpdateConf extends IFormConf<IUserUpdateValues> {
   options: Ref<SelectOption[]>;
 }

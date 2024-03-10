@@ -40,6 +40,8 @@ function createColumns(actions: { change: (orderType: IOrderType) => void; remov
               size: 'small',
               style: {
                 marginRight: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.change({ id: row.id, name: row.name }),
             },
@@ -54,6 +56,9 @@ function createColumns(actions: { change: (orderType: IOrderType) => void; remov
               size: 'small',
               style: {
                 marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.remove(row.id),
             },

@@ -4,7 +4,7 @@ import { useBreakService } from '@/services/break.service.ts';
 import { useDepartmentsStore } from '@/store/departments.store.ts';
 import { useMessageService } from '@/services/message.service.ts';
 import { IBreakCreateValues } from 'components/forms/break/create/BreakCreate.formconf.ts';
-import {IBreakUpdateValues} from "components/forms/break/update/BreakUpdate.formconf.ts";
+import { IBreakUpdateValues } from 'components/forms/break/update/BreakUpdate.formconf.ts';
 
 const breakService = useBreakService();
 const message = useMessageService();

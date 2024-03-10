@@ -4,13 +4,12 @@ import { IMatrix } from '@/interfaces/matrix/IMatrix.ts';
 import { ITableMatrix } from '@/interfaces/table/ITableMatrix.ts';
 import { defineStore } from 'pinia';
 
-
 const matrixService = useMatrixService();
 const message = useMessageService();
 
 interface State {
-  matrices: IMatrix[],
-  serializedMatrices: ITableMatrix[]
+  matrices: IMatrix[];
+  serializedMatrices: ITableMatrix[];
 }
 
 export const useMatrixStore = defineStore('matrix', {
@@ -37,14 +36,12 @@ export const useMatrixStore = defineStore('matrix', {
           }
           if ((originalMatrix[key] as IMatrix).percent !== (updatedMatrix[key] as IMatrix).percent) {
             const mat = updatedMatrix[key] as IMatrix;
-            (originalMatrix[key] as IMatrix).percent = (updatedMatrix[key] as IMatrix).percent
-            changed.push(
-              {
-                order_type_id: +mat.order_type_id,
-                department_id: +mat.department_id,
-                percent: mat.percent,
-              },
-            );
+            (originalMatrix[key] as IMatrix).percent = (updatedMatrix[key] as IMatrix).percent;
+            changed.push({
+              order_type_id: +mat.order_type_id,
+              department_id: +mat.department_id,
+              percent: mat.percent,
+            });
           }
         });
       }

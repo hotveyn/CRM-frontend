@@ -44,6 +44,9 @@ function createColumns(): DataTableColumns<IStatEmployee> {
             {
               style: {
                 marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               type: 'info',
               bordered: false,

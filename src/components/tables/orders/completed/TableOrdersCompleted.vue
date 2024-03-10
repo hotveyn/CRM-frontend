@@ -72,6 +72,8 @@ function createColumns(actions: { detail: (id: number) => void; rate: (id: numbe
               size: 'small',
               style: {
                 marginRight: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.detail(row.id),
             },
@@ -86,6 +88,9 @@ function createColumns(actions: { detail: (id: number) => void; rate: (id: numbe
               size: 'small',
               style: {
                 marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.rate(row.id),
             },

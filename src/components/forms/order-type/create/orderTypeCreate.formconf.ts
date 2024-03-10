@@ -6,20 +6,20 @@ export interface IOrderTypeCreateValues {
   name: string;
 }
 
-export function useOrderTypeCreateFormConf(): IFormConf<IOrderTypeCreateValues>{
-  const rules: FormRules ={
+export function useOrderTypeCreateFormConf(): IFormConf<IOrderTypeCreateValues> {
+  const rules: FormRules = {
     name: {
       required: true,
       message: 'Введите название типа вывески',
-    }
-  }
+    },
+  };
 
   const formValues = reactive<IOrderTypeCreateValues>({
-    name: ''
-  })
+    name: '',
+  });
 
   return {
     rules,
-    formValues
-  }
+    formValues,
+  };
 }

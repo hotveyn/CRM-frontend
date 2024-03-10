@@ -70,15 +70,15 @@ export const useAuthStore = defineStore('auth', {
       await router.push({ name: 'login' });
     },
     async login(formValues: ILoginValues) {
-        const res = await authService.login(formValues)
-        if (!res) {
-          message.auth.failedLogin()
-          return
-        }
-        this.setToken(res.data.token);
-        message.auth.login();
-        this.profile = await userService.getProfile();
-        return true;
+      const res = await authService.login(formValues);
+      if (!res) {
+        message.auth.failedLogin();
+        return;
+      }
+      this.setToken(res.data.token);
+      message.auth.login();
+      this.profile = await userService.getProfile();
+      return true;
     },
     async getProfile() {
       this.profile = await userService.getProfile();

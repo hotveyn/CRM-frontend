@@ -48,7 +48,7 @@ function createColumns(actions: { fire: (id: number) => void; change: (id: numbe
             NTag,
             {
               style: {
-                marginRight: '6px',
+                marginRight: '6px'
               },
               type: 'info',
               bordered: false,
@@ -76,6 +76,9 @@ function createColumns(actions: { fire: (id: number) => void; change: (id: numbe
               size: 'small',
               style: {
                 marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.change(row.id),
             },
@@ -90,6 +93,9 @@ function createColumns(actions: { fire: (id: number) => void; change: (id: numbe
               size: 'small',
               style: {
                 marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.fire(row.id),
             },

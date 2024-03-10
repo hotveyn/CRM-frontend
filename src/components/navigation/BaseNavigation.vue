@@ -40,9 +40,8 @@ onMounted(() => {
     }
   }
 
-  &__item{
+  &__item {
     * {
-
       width: 100%;
     }
   }

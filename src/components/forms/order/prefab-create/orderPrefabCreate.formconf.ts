@@ -4,7 +4,7 @@ import { FormRules, SelectOption } from 'naive-ui';
 import { usePrefabStore } from '@/store/prefab.store.ts';
 import { IPrefab } from '@/interfaces/prefab/IPrefab.ts';
 
-export interface IOrderPrefabCreateValues{
+export interface IOrderPrefabCreateValues {
   prefab_id?: number;
   date_start: string;
   date_end: string;
@@ -26,7 +26,6 @@ export function useOrderPrefabCreateFormConf(): IOrderPrefabCreateConf {
     },
   };
 
-
   const options = ref<SelectOption[]>([]);
 
   const formValues = reactive<IOrderPrefabCreateValues>({
@@ -37,13 +36,13 @@ export function useOrderPrefabCreateFormConf(): IOrderPrefabCreateConf {
 
   onMounted(async () => {
     const prefabStore = usePrefabStore();
-    await prefabStore.request()
+    await prefabStore.request();
 
-    options.value = prefabStore.prefabs.map((prefab: IPrefab)=>{
+    options.value = prefabStore.prefabs.map((prefab: IPrefab) => {
       return {
         label: prefab.name,
-        value: prefab.id
-      }
+        value: prefab.id,
+      };
     });
     if (options.value[0]) {
       formValues.prefab_id = options.value[0].value as number;

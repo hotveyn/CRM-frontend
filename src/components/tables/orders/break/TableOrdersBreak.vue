@@ -74,6 +74,8 @@ function createColumns(actions: { change: (id: number) => void; stop: (id: numbe
               size: 'small',
               style: {
                 marginRight: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.change(row.id),
             },
@@ -88,6 +90,9 @@ function createColumns(actions: { change: (id: number) => void; stop: (id: numbe
               size: 'small',
               style: {
                 marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.restore(row.id),
             },
@@ -102,6 +107,9 @@ function createColumns(actions: { change: (id: number) => void; stop: (id: numbe
               size: 'small',
               style: {
                 marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.stop(row.id),
             },

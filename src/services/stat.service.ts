@@ -11,10 +11,10 @@ export function useStatService() {
     async getSelfStat() {
       const startDate = new Date();
       startDate.setDate(1);
-      startDate.setHours(0,0,0);
+      startDate.setHours(0, 0, 0);
       const endDate = new Date();
       endDate.setDate(31);
-      endDate.setHours(23,59,59);
+      endDate.setHours(23, 59, 59);
 
       const params = {
         start: startDate.toISOString(),
@@ -38,7 +38,6 @@ export function useStatService() {
       return res.data as IStatEmployee[];
     },
     async getDepartmentsStat(start?: string, end?: string) {
-
       const params = {
         start,
         end,

@@ -29,28 +29,13 @@ function goToWork() {
 
 <template>
   <NForm ref="toWorkFormRef" :model="model">
-    <NDynamicInput
-      :min="1"
-      v-model:value="model.dynamicInputValue"
-      :on-create="onCreateInp"
-      show-sort-button
-
-      #="{ index }"
-    >
+    <NDynamicInput :min="1" v-model:value="model.dynamicInputValue" :on-create="onCreateInp" show-sort-button #="{ index }">
       <div class="dynamic-input">
         <NFormItem :show-label="false" ignore-path-change :path="`dynamicInputValue[${index}].department_id`" :rule="dynamicInputRule">
-          <NSelect v-model:value="model.dynamicInputValue[index].department_id" placeholder="Выберите отдел" remote
-                   :options="options" />
+          <NSelect v-model:value="model.dynamicInputValue[index].department_id" placeholder="Выберите отдел" remote :options="options" />
         </NFormItem>
         <NFormItem :show-label="false">
-          <NInputNumber
-            v-model:value="model.dynamicInputValue[index].percent"
-            :min="0"
-            :max="100"
-            :precision="2"
-            placeholder="Проценты за работу"
-            style="width:100%"
-          />
+          <NInputNumber v-model:value="model.dynamicInputValue[index].percent" :min="0" :max="100" :precision="2" placeholder="Проценты за работу" style="width: 100%" />
         </NFormItem>
       </div>
     </NDynamicInput>

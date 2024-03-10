@@ -60,7 +60,7 @@ export const useOrderTypesStore = defineStore('TableOrderTypes', {
         });
     },
     async findById(id: number): Promise<IOrderType | undefined> {
-      await this.request()
+      await this.request();
       return this.orderTypes.find((orderType) => orderType.id === id);
     },
     async remove(id: number) {
@@ -76,9 +76,8 @@ export const useOrderTypesStore = defineStore('TableOrderTypes', {
           message.error.custom(e.response.data.message);
         });
     },
-
   },
-  getters:{
+  getters: {
     selected(): SelectOption[] {
       return this.orderTypes.map((orderType) => {
         return {
@@ -86,6 +85,6 @@ export const useOrderTypesStore = defineStore('TableOrderTypes', {
           value: orderType.id,
         };
       });
-    }
-  }
+    },
+  },
 });

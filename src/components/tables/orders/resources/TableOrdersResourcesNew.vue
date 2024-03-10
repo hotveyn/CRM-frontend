@@ -67,6 +67,8 @@ function createColumns(actions: { enough: (id: number) => void; notEnough: (id: 
               size: 'small',
               style: {
                 marginRight: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.enough(row.id),
             },
@@ -81,6 +83,9 @@ function createColumns(actions: { enough: (id: number) => void; notEnough: (id: 
               size: 'small',
               style: {
                 marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.notEnough(row.id),
             },

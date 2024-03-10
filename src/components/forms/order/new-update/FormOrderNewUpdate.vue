@@ -34,7 +34,7 @@ function goUpdate() {
       <NInput v-model:value="formValues.name" placeholder="" />
     </NFormItem>
     <NFormItem label="Стоимость" path="price">
-      <NInputNumber v-model:value="formValues.price" placeholder="" :precision="2"/>
+      <NInputNumber v-model:value="formValues.price" placeholder="" :precision="2" />
     </NFormItem>
     <NFormItem label="Тип вывески" path="type_id">
       <NSelect v-model:value="formValues.type_id" remote :options="options" />

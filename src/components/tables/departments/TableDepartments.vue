@@ -36,6 +36,8 @@ function createColumns(actions: { change: (id: number) => void; remove: (id: num
               size: 'small',
               style: {
                 marginRight: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.change(row.id),
             },
@@ -50,6 +52,9 @@ function createColumns(actions: { change: (id: number) => void; remove: (id: num
               size: 'small',
               style: {
                 marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.remove(row.id),
             },

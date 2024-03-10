@@ -16,7 +16,6 @@ function goCreate() {
     await orderNewStore.createByPrefab(formValues);
   });
 }
-
 </script>
 
 <template>
@@ -25,17 +24,13 @@ function goCreate() {
       <NSelect v-model:value="formValues.prefab_id" remote :options="options" />
     </NFormItem>
     <NFormItem label="Дата начала" path="date_start">
-      <NDatePicker value-format="yyyy-MM-dd" v-model:formatted-value="formValues.date_start" style="width: 100%"
-                   placeholder="" type="date" />
+      <NDatePicker value-format="yyyy-MM-dd" v-model:formatted-value="formValues.date_start" style="width: 100%" placeholder="" type="date" />
     </NFormItem>
     <NFormItem label="Дата сдачи" path="date_end">
-      <NDatePicker value-format="yyyy-MM-dd" v-model:formatted-value="formValues.date_end" style="width: 100%"
-                   placeholder="" type="date" />
+      <NDatePicker value-format="yyyy-MM-dd" v-model:formatted-value="formValues.date_end" style="width: 100%" placeholder="" type="date" />
     </NFormItem>
     <NButton type="primary" @click.prevent="goCreate()"> Создать</NButton>
   </NForm>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

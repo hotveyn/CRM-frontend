@@ -1,5 +1,5 @@
 import { IUser } from '@/interfaces/user/IUser.ts';
-import {IStage} from "@/interfaces/stage/IStage.ts";
+import { IStage } from '@/interfaces/stage/IStage.ts';
 
 export interface IDepartment {
   id: number;

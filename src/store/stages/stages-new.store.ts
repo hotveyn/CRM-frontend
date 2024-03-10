@@ -16,24 +16,23 @@ interface State {
 export const useStageNewStore = defineStore('stages-new', {
   state: (): State => {
     return {
-      departments: []
+      departments: [],
     };
   },
   actions: {
     async request() {
       this.departments = await stageService.getAvailable();
     },
-    async claim(id: number, department_id: number, doneCallback: ()=> void) {
+    async claim(id: number, department_id: number, doneCallback: () => void) {
       stageService
         .claim(id)
         .then(() => {
           message.stage.claim();
           const departmentIndex = this.departments.findIndex((department) => department.id === department_id);
           if (departmentIndex !== -1) {
-            const stageIndex = this.departments[departmentIndex].orderStages.findIndex((stage) => stage.id === id)
+            const stageIndex = this.departments[departmentIndex].orderStages.findIndex((stage) => stage.id === id);
 
-            if(stageIndex !== -1)
-              this.departments[departmentIndex].orderStages.splice(stageIndex, 1)
+            if (stageIndex !== -1) this.departments[departmentIndex].orderStages.splice(stageIndex, 1);
           }
           if (!this.departments[departmentIndex].orderStages.length) this.departments.splice(departmentIndex, 1);
           doneCallback();
@@ -44,21 +43,23 @@ export const useStageNewStore = defineStore('stages-new', {
         });
     },
     getStagesWithSearch(text: string): IDepartment[] {
-      if(!text.length) return this.departments;
+      if (!text.length) return this.departments;
 
-      const copy = JSON.parse(JSON.stringify(this.departments)) as IDepartment[]
+      const copy = JSON.parse(JSON.stringify(this.departments)) as IDepartment[];
 
-      const searched = copy.map((department: IDepartment)=>{
-        department.orderStages = department.orderStages.filter((stage: IStage)=> {
-          return stage.order.code.includes(text)
+      const searched = copy
+        .map((department: IDepartment) => {
+          department.orderStages = department.orderStages.filter((stage: IStage) => {
+            return stage.order.code.includes(text);
+          });
+
+          return department;
         })
+        .filter((department: IDepartment) => {
+          return department.orderStages.length;
+        });
 
-        return department
-      }).filter((department: IDepartment)=>{
-        return department.orderStages.length
-      })
-
-      return searched as unknown as IDepartment[]
-    }
-  }
+      return searched as unknown as IDepartment[];
+    },
+  },
 });

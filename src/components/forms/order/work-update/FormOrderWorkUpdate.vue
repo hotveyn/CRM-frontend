@@ -47,28 +47,13 @@ function goUpdate() {
     <NFormItem label="Поменять ли этапы работы? Если вы их поменяете процесс работы начнётся занова с первого этапа!">
       <NSwitch v-model:value="isDepartmentsChange" />
     </NFormItem>
-    <NDynamicInput
-      :min="1"
-      v-model:value="formValues.departments"
-      :on-create="onCreateInp"
-      show-sort-button
-      v-if="isDepartmentsChange"
-      #="{ index }"
-    >
+    <NDynamicInput :min="1" v-model:value="formValues.departments" :on-create="onCreateInp" show-sort-button v-if="isDepartmentsChange" #="{ index }">
       <div class="dynamic-input">
         <NFormItem :show-label="false" ignore-path-change :path="`departments[${index}].department_id`" :rule="dynamicInputRule">
-          <NSelect v-model:value="formValues.departments![index].department_id" placeholder="Выберите отдел" remote
-                   :options="options" />
+          <NSelect v-model:value="formValues.departments![index].department_id" placeholder="Выберите отдел" remote :options="options" />
         </NFormItem>
         <NFormItem :show-label="false">
-          <NInputNumber
-            v-model:value="formValues.departments![index].percent"
-            :min="0"
-            :max="100"
-            :precision="2"
-            placeholder="Проценты за работу"
-            style="width:100%"
-          />
+          <NInputNumber v-model:value="formValues.departments![index].percent" :min="0" :max="100" :precision="2" placeholder="Проценты за работу" style="width: 100%" />
         </NFormItem>
       </div>
     </NDynamicInput>

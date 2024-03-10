@@ -52,6 +52,8 @@ function createColumns(actions: { change: (prefab: IPrefab) => void; remove: (id
               size: 'small',
               style: {
                 marginRight: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.change(row),
             },
@@ -66,6 +68,9 @@ function createColumns(actions: { change: (prefab: IPrefab) => void; remove: (id
               size: 'small',
               style: {
                 marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.remove(row.id),
             },

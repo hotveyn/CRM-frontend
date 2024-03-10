@@ -7,7 +7,7 @@ import { useOrderTypesStore } from '@/store/orderTypes.store.ts';
 
 const orderTypeFormRef = ref<FormInst | null>();
 const orderTypesStore = useOrderTypesStore();
-const {rules, formValues} = useOrderTypeCreateFormConf();
+const { rules, formValues } = useOrderTypeCreateFormConf();
 
 async function goCreate() {
   orderTypeFormRef.value?.validate(async (errors) => {
@@ -15,20 +15,18 @@ async function goCreate() {
       return;
     }
 
-    await orderTypesStore.create(formValues)
+    await orderTypesStore.create(formValues);
   });
 }
 </script>
 
 <template>
- <NForm ref="orderTypeFormRef" :rules="rules" :model="formValues" class="order-type-create-form">
+  <NForm ref="orderTypeFormRef" :rules="rules" :model="formValues" class="order-type-create-form">
     <NFormItem label="Название типа вывески" path="name">
-      <NInput v-model:value="formValues.name" placeholder="НЕОН"/>
+      <NInput v-model:value="formValues.name" placeholder="НЕОН" />
     </NFormItem>
     <NButton type="primary" @click.prevent="goCreate()"> Создать </NButton>
- </NForm>
+  </NForm>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

@@ -21,14 +21,14 @@ function logout() {
   });
 }
 
-onMounted(async ()=>{
+onMounted(async () => {
   await authStore.getProfile();
-})
+});
 </script>
 
 <template>
   <header class="header">
-    <h1 style="transition: all .2s;">{{ headerText }}</h1>
+    <h1 style="transition: all 0.2s">{{ headerText }}</h1>
     <NButton v-if="authStore.isAuthenticated" type="error" ghost @click="logout" size="small">Выйти</NButton>
   </header>
 </template>

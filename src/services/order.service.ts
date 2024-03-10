@@ -92,6 +92,11 @@ export function useOrderService() {
 
       return res.data as IOrder[];
     },
+    async hide(id: number) {
+      const res = await api.patch(`/order/hide/${id}`);
+
+      return res.data as IOrder[];
+    },
     async create(formValues: IOrderCreateValues) {
       const res = await api.post(`order`, formValues);
 

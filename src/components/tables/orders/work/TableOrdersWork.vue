@@ -9,13 +9,15 @@ defineProps<{
 
 const emit = defineEmits<{
   change: [id: number];
+  deleteOne: [id: number];
 }>();
 
 const columns = createColumns({
   change: (id: number) => emit('change', id),
+  deleteOne: (id: number) => emit('deleteOne', id),
 });
 
-function createColumns(actions: { change: (id: number) => void }): DataTableColumns<IOrder> {
+function createColumns(actions: { change: (id: number) => void, deleteOne: (id: number) => void }): DataTableColumns<IOrder> {
   return [
     {
       title: 'Код',
@@ -76,11 +78,30 @@ function createColumns(actions: { change: (id: number) => void }): DataTableColu
               size: 'small',
               style: {
                 marginRight: '6px',
+                width: '100%',
+                maxWidth: '100px',
               },
               onClick: () => actions.change(row.id),
             },
             {
               default: () => 'Изменить',
+            }
+          ),
+          h(
+            NButton,
+            {
+              type: 'error',
+              size: 'small',
+              style: {
+                marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
+              },
+              onClick: () => actions.deleteOne(row.id),
+            },
+            {
+              default: () => 'Удалить',
             }
           ),
         ];

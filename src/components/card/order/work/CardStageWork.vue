@@ -54,7 +54,7 @@ function unclaim(id: number) {
 <template>
   <NCard :title="`${stage.order.name} ${stage.order.code}`">
     <template #header-extra>
-      <IconRollback @click="unclaim(stage.id)"/>
+      <IconRollback @click="unclaim(stage.id)" />
     </template>
     <div class="card-content">
       <p v-if="stage.department"><strong>Отдел - </strong> {{ stage.department.name }}</p>
