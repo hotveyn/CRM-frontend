@@ -9,15 +9,11 @@ import { IStatPayment } from '@/interfaces/stat/IStatPayment.ts';
 export function useStatService() {
   return {
     async getSelfStat() {
-      const startDate = new Date();
-      startDate.setDate(1);
-      startDate.setHours(0, 0, 0);
+      const dateNowMinusOneMonth = new Date(Date.now() - 2678400000);
       const endDate = new Date();
-      endDate.setDate(31);
-      endDate.setHours(23, 59, 59);
 
       const params = {
-        start: startDate.toISOString(),
+        start: dateNowMinusOneMonth.toISOString(),
         end: endDate.toISOString(),
       };
 
