@@ -16,10 +16,18 @@ const dateNowMinusOneMonth = Date.now() - 2678400000;
 const range = ref<[number, number]>([dateNowMinusOneMonth, Date.now()]);
 
 const start = computed(() => {
-  return new Date(range.value[0]).toISOString();
+  const date = new Date(range.value[0])
+  date.setHours(0)
+  date.setMinutes(0)
+  date.setSeconds(0)
+  return date.toISOString();
 });
 const end = computed(() => {
-  return new Date(range.value[1]).toISOString();
+  const date = new Date(range.value[1])
+  date.setHours(0)
+  date.setMinutes(0)
+  date.setSeconds(0)
+  return date.toISOString();
 });
 
 onMounted(async () => {
