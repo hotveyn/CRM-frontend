@@ -19,7 +19,7 @@ const start = computed(() => {
   const date = new Date(range.value[0])
   date.setHours(0)
   date.setMinutes(0)
-  date.setSeconds(0)
+  date.setSeconds(1)
   return date.toISOString();
 });
 const end = computed(() => {

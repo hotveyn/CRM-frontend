@@ -11,7 +11,7 @@ export function useStatService() {
     async getSelfStat() {
       const startDate = new Date();
       startDate.setDate(1);
-      startDate.setHours(0, 0, 0);
+      startDate.setHours(0, 0, 1);
       const endDate = new Date();
       endDate.setDate(31);
       endDate.setHours(23, 59, 59);
