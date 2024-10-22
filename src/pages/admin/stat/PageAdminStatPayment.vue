@@ -45,7 +45,7 @@ onMounted(async () => {
   isLoading.value = false;
 });
 
-watch(end, async () => {
+watch([start, end], async () => {
   await statPaymentStore.request(start.value, end.value);
 });
 </script>

@@ -9,6 +9,8 @@ import { IOrderWorkUpdateValues } from 'components/forms/order/work-update/order
 import { IOrderCreateValues } from 'components/forms/order/create/orderCreate.formconf.ts';
 import { IToWorkValues } from 'components/forms/order/towork/toWork.formconf.ts';
 import { IOrderPrefabCreateValues } from 'components/forms/order/prefab-create/orderPrefabCreate.formconf.ts';
+import { OrderScalarFieldEnum, OrderStatusV2Enum } from '../enums/order/OrderStatus.enum';
+import { IStageV2 } from '@/interfaces/stage/IStage.ts';
 
 export function useOrderService() {
   return {
@@ -116,6 +118,28 @@ export function useOrderService() {
       const res = await api.get('order/completed-reclamations');
 
       return res.data as IOrderReclamation[];
+    },
+    async getOrderStages(orderId: number) {
+      const res = await api.get(`order/${orderId}/stages`);
+
+      return res.data as Array<IStageV2 & {
+          department:{ name: string },
+          user:{
+            firstName: string,
+            lastName: string,
+            patronymicName: string
+          }
+        }>;
+    },
+    async markOrderAsBreak(orderId: number, body: { stageId: number, breakId: number }) {
+      return api.patch(`order/${orderId}/break`, { ...body });
+    },
+    async query(params: {limit: number, offset: number, status: OrderStatusV2Enum, orderBy?: OrderScalarFieldEnum, orderDirection?: 'asc' | 'desc'}) {
+      const res = await api.get('order', {
+        params
+      });
+
+      return res.data as {data: IOrder[], count: 50};
     },
   };
 }

@@ -1,7 +1,7 @@
 import { api } from '@/axios';
 import { IStage } from '@/interfaces/stage/IStage.ts';
 import { IBreak } from '@/interfaces/break/IBreak.ts';
-import { IDepartment } from '@/interfaces/department/IDepartment.ts';
+import { IDepartment, IDepartmentV2 } from '@/interfaces/department/IDepartment.ts';
 import { IStageBreakValues } from 'components/forms/stage/stageBreak.formconf.ts';
 
 export function useStageService() {
@@ -41,5 +41,10 @@ export function useStageService() {
 
       return res.data as IStage;
     },
+    async getDepartment(id: number) {
+      const res = await api.get(`order-stage/${id}/department`);
+
+      return res.data as IDepartmentV2;
+    }
   };
 }

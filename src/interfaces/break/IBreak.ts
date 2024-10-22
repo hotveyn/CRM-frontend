@@ -6,3 +6,8 @@ export interface IBreak {
   department_id: string;
   department?: IDepartment;
 }
+export interface IBreakV2 {
+  id: number;
+  name: string;
+  departmentId: string;
+}

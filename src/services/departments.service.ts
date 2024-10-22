@@ -2,6 +2,7 @@ import { IDepartment } from '@/interfaces/department/IDepartment.ts';
 import { api } from '@/axios';
 import { IDepartmentCreateValues } from 'components/forms/department/create/DepartmentCreate.formconf.ts';
 import { IDepartmentUpdateValues } from 'components/forms/department/update/DepartmentUpdate.formconf.ts';
+import { IBreakV2 } from '@/interfaces/break/IBreak.ts';
 
 export function useDepartmentsService() {
   return {
@@ -25,5 +26,10 @@ export function useDepartmentsService() {
 
       return res.data as IDepartment;
     },
+    async getBreaks(id: number){
+      const res = await api.get(`department/${id}/breaks`);
+
+      return res.data as IBreakV2[];
+    }
   };
 }

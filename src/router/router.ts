@@ -47,6 +47,11 @@ const routes: RouteRecordRaw[] = [
             path: 'fired',
             component: () => import('@/pages/admin/employees/PageAdminEmployeesFired.vue'),
           },
+          {
+            name: 'admin-employees-overview',
+            path: ':id',
+            component: () => import('@/pages/admin/employees/PageAdminEmployeesOverview.vue'),
+          }
         ],
       },
       {

@@ -16,3 +16,17 @@ export interface IStage {
   break: IBreak;
   department: IDepartment;
 }
+
+export interface IStageV2 {
+  id: number;
+  userId: number | null;
+  orderId: number;
+  departmentId: number | null;
+  breakId: number | null;
+  isActive: boolean | null;
+  inOrder: number;
+  createdAt: Date;
+  updatedAt: Date;
+  readyDate: Date | null;
+  percent: number;
+}

@@ -2,23 +2,29 @@ import { defineStore } from 'pinia';
 import { useOrderService } from '@/services/order.service.ts';
 import { IOrder } from '@/interfaces/order/IOrder.ts';
 import { useMessageService } from '@/services/message.service.ts';
+import { OrderScalarFieldEnum, OrderStatusV2Enum } from '../../enums/order/OrderStatus.enum';
+import { Ref, ref } from 'vue';
 
 const orderService = useOrderService();
 const message = useMessageService();
 
 interface State {
   orders: IOrder[];
+  count: number;
 }
 
 export const useOrdersCompletedStore = defineStore('orders-completed', {
   state: (): State => {
     return {
       orders: [],
+      count: 0,
     };
   },
   actions: {
-    async request() {
-      this.orders = await orderService.getCompleted();
+    async request(params: {limit: number, offset: number, status: OrderStatusV2Enum, orderBy?: OrderScalarFieldEnum, orderDirection?: 'asc' | 'desc'}) {
+        const result = await orderService.query(params);
+        this.orders = result.data;
+        this.count = result.count;
     },
     findById(id: number) {
       return this.orders.find((order) => order.id === id);
@@ -40,3 +46,34 @@ export const useOrdersCompletedStore = defineStore('orders-completed', {
     },
   },
 });
+
+export const asd = () => {
+  const orders: Ref<Array<IOrder>> = ref([])
+  const count: Ref<number> = ref(0)
+
+  async function request(params: {limit: number, offset: number, status: OrderStatusV2Enum, orderBy?: OrderScalarFieldEnum, orderDirection?: 'asc' | 'desc'}) {
+    const result = await orderService.query(params);
+    orders.value = result.data;
+    count.value = result.count;
+  }
+
+  async function setRating(id: number, rating: number) {
+    await orderService
+      .setRating(id, rating)
+      .then(() => {
+        message.order.rated();
+
+        for (const i in orders.value) {
+          if (orders.value[i].id === id) {
+            orders.value[i].rating = rating;
+            break;
+          }
+        }
+      })
+      .catch((e) => message.error.custom(e.response.data.message));
+  }
+  function findById(id: number) {
+    return orders.value.find((order) => order.id === id);
+  }
+  return {orders, count, request, setRating,  findById}
+}

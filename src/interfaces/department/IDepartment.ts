@@ -7,3 +7,9 @@ export interface IDepartment {
   users?: IUser[];
   orderStages: IStage[];
 }
+
+
+export interface IDepartmentV2 {
+  id: number;
+  name: string;
+}

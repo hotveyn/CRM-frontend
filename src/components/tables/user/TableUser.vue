@@ -3,7 +3,9 @@ import { NDataTable, DataTableColumns, NButton, NTag } from 'naive-ui';
 import { h } from 'vue';
 import { ITableUser } from '@/interfaces/table/ITableUser.ts';
 import { FilterOption } from 'naive-ui/lib/data-table/src/interface';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const props = defineProps<{
   tableData: ITableUser[];
   filters: FilterOption[];
@@ -69,6 +71,23 @@ function createColumns(actions: { fire: (id: number) => void; change: (id: numbe
       key: 'actions',
       render(row) {
         return [
+          h(
+            NButton,
+            {
+              type: 'default',
+              size: 'small',
+              style: {
+                marginRight: '6px',
+                marginTop: '6px',
+                width: '100%',
+                maxWidth: '100px',
+              },
+              onClick: () => router.push({ name: 'admin-employees-overview', params: {'id': row.id} }),
+            },
+            {
+              default: () => 'Посмотреть',
+            }
+          ),
           h(
             NButton,
             {

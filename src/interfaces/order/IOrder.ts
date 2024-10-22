@@ -16,3 +16,15 @@ export interface IOrder {
   code: string;
   rating: number;
 }
+export interface IOrderV2 {
+  id: number;
+  name: string;
+  dateStart: string;
+  dateEnd: string;
+  comment?: string;
+  price: number;
+  typeId: number;
+  status: OrderStatusEnum;
+  code: string;
+  rating: number;
+}
