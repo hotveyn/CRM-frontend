@@ -15,6 +15,6 @@ export interface IStatDetailed {
   name: string;
   code: string;
   departmentsNames: string[];
-  departmentsPayments: { id: number; name: string; sum: number }[]
-  completedStages: Array<IStageV2 & {order: {name: string, code: string, price: number, type: {name: string}}, break: {name: string}, department: {name: string}}>;
+  departmentsPayments: { id: number; name: string; sum: number }[];
+  completedStages: Array<IStageV2 & { order: { name: string; code: string; price: number; type: { name: string } }; break: { name: string }; department: { name: string } }>;
 }

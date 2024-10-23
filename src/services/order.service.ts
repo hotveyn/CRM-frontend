@@ -122,24 +122,26 @@ export function useOrderService() {
     async getOrderStages(orderId: number) {
       const res = await api.get(`order/${orderId}/stages`);
 
-      return res.data as Array<IStageV2 & {
-          department:{ name: string },
-          user:{
-            firstName: string,
-            lastName: string,
-            patronymicName: string
-          }
-        }>;
+      return res.data as Array<
+        IStageV2 & {
+          department: { name: string };
+          user: {
+            firstName: string;
+            lastName: string;
+            patronymicName: string;
+          };
+        }
+      >;
     },
-    async markOrderAsBreak(orderId: number, body: { stageId: number, breakId: number }) {
+    async markOrderAsBreak(orderId: number, body: { stageId: number; breakId: number }) {
       return api.patch(`order/${orderId}/break`, { ...body });
     },
-    async query(params: {limit: number, offset: number, status: OrderStatusV2Enum, orderBy?: OrderScalarFieldEnum, orderDirection?: 'asc' | 'desc'}) {
+    async query(params: { limit: number; offset: number; status: OrderStatusV2Enum; orderBy?: OrderScalarFieldEnum; orderDirection?: 'asc' | 'desc' }) {
       const res = await api.get('order', {
-        params
+        params,
       });
 
-      return res.data as {data: IOrder[], count: 50};
+      return res.data as { data: IOrder[]; count: 50 };
     },
   };
 }

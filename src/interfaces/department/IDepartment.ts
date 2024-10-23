@@ -8,7 +8,6 @@ export interface IDepartment {
   orderStages: IStage[];
 }
 
-
 export interface IDepartmentV2 {
   id: number;
   name: string;

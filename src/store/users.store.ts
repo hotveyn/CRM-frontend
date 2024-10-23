@@ -24,13 +24,13 @@ export const useUsersStore = defineStore('users', {
   actions: {
     async getOrRequest() {
       if (!this.touched) {
-        this.users = await userService.getAll();
+        this.users = await userService.getAllNormal();
         this.touched = true;
       }
       return this.users;
     },
     async request() {
-      this.users = await userService.getAll();
+      this.users = await userService.getAllNormal();
       this.touched = true;
     },
     async fire(userId: number) {

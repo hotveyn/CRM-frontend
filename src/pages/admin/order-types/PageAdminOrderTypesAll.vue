@@ -14,7 +14,7 @@ const orderTypeChangeModal = reactive({
   isShow: false,
   orderType: {
     id: NaN,
-    name: ''
+    name: '',
   },
 });
 
@@ -35,10 +35,10 @@ function remove(id: number) {
 
 const isLoading = ref<boolean>(true);
 
-onMounted(async ()=>{
+onMounted(async () => {
   await orderTypesStore.request();
   isLoading.value = false;
-})
+});
 </script>
 
 <template>
@@ -54,6 +54,4 @@ onMounted(async ()=>{
   </div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

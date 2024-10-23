@@ -26,10 +26,10 @@ export function useDepartmentsService() {
 
       return res.data as IDepartment;
     },
-    async getBreaks(id: number){
+    async getBreaks(id: number) {
       const res = await api.get(`department/${id}/breaks`);
 
       return res.data as IBreakV2[];
-    }
+    },
   };
 }

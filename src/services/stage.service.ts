@@ -45,6 +45,6 @@ export function useStageService() {
       const res = await api.get(`order-stage/${id}/department`);
 
       return res.data as IDepartmentV2;
-    }
+    },
   };
 }

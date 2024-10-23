@@ -1,13 +1,17 @@
 import { IResponse } from '@/interfaces/axios/IResponse.ts';
-import { IUser } from '@/interfaces/user/IUser.ts';
+import { IUser, IUserV2, UsersEnum } from '@/interfaces/user/IUser.ts';
 import { api } from '@/axios';
 import { IRegValues } from 'components/forms/reg/FormReg.formconf.ts';
 import { IUserUpdateValues } from 'components/forms/userUpdate/userUpdate.formconf.ts';
 
 export function useUserService() {
   return {
-    async getAll() {
-      const res: IResponse<IUser[]> = await api.get('user');
+    async getUsers(params: { role: UsersEnum; offset: number; limit: number; orderBy: string; orderDirection: 'asc' | 'desc' }) {
+      const res = await api.get('user', { params });
+      return res.data as { data: IUserV2[]; count: number };
+    },
+    async getAllNormal() {
+      const res: IResponse<IUser[]> = await api.get('user/normal');
       return res.data as IUser[];
     },
     async getProfile() {

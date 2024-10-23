@@ -31,9 +31,9 @@ onMounted(async () => {
       render(row, index) {
         return h(NInputNumber, {
           value: (row[department.id] as IMatrix).percent,
-          min: 0.00,
+          min: 0.0,
           precision: 2,
-          max: 100.00,
+          max: 100.0,
           onUpdateValue(v) {
             if (v != undefined) {
               (tableData.value[index][department.id] as IMatrix).percent = v;
@@ -41,15 +41,12 @@ onMounted(async () => {
             }
           },
         });
-
       },
     };
-
   });
 
   isLoading.value = false;
 });
-
 </script>
 
 <template>
@@ -58,9 +55,7 @@ onMounted(async () => {
     <NSkeleton v-if="isLoading" :width="'100%'" height="52px" :sharp="false" text size="medium" :repeat="5" />
     <template v-else>
       <TableMatrix :table-data="tableData" :department-columns="departmentsColumns" />
-      <NButton class="admin-matrix-all__save-button" :disabled="!tableData.length" type="primary"
-               @click.prevent="save()"> Сохранить
-      </NButton>
+      <NButton class="admin-matrix-all__save-button" :disabled="!tableData.length" type="primary" @click.prevent="save()"> Сохранить </NButton>
     </template>
   </div>
 </template>

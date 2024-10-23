@@ -30,4 +30,8 @@ const routes: INavigationRoute[] = [
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.page-employee__workspace {
+  margin-bottom: 60px;
+}
+</style>

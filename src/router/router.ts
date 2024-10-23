@@ -51,7 +51,7 @@ const routes: RouteRecordRaw[] = [
             name: 'admin-employees-overview',
             path: ':id',
             component: () => import('@/pages/admin/employees/PageAdminEmployeesOverview.vue'),
-          }
+          },
         ],
       },
       {

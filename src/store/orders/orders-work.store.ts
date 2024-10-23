@@ -28,16 +28,14 @@ export const useOrdersWorkStore = defineStore('orders-work', {
       return this.orders.find((order) => order.id === id);
     },
     async deleteOne(id: number) {
-      orderService
-        .hide(id)
-        .then(() => {
-          message.order.removed();
-          const order = this.findById(id);
-          if(order){
-            const index = this.orders.indexOf(order);
-            this.orders.splice(index, 1);
-          }
-        })
+      orderService.hide(id).then(() => {
+        message.order.removed();
+        const order = this.findById(id);
+        if (order) {
+          const index = this.orders.indexOf(order);
+          this.orders.splice(index, 1);
+        }
+      });
     },
     async update(id: number, formValues: IOrderWorkUpdateValues) {
       orderService

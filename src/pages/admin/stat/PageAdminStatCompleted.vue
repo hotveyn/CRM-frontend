@@ -27,15 +27,15 @@ const columns = [
     sorter: 'default' as const,
     render: (row: IOrderV2) => {
       return dayjs(row.dateStart).format('DD MMMM YYYY');
-    }
+    },
   },
   {
     title: 'Дата сдачи',
     key: 'dateEnd',
     sorter: 'default' as const,
-    render:(row: IOrderV2) => {
+    render: (row: IOrderV2) => {
       return dayjs(row.dateEnd).format('DD MMMM YYYY');
-    }
+    },
   },
   {
     title: 'Тип',
@@ -60,7 +60,7 @@ const columns = [
     title: 'Действия',
     key: 'actions',
     width: 110,
-    render(row: {id:number}) {
+    render(row: { id: number }) {
       return [
         h(
           NButton,
@@ -115,24 +115,24 @@ const columns = [
       ];
     },
   },
-]
+];
 const { count, orders, request, findById } = asd();
 const isLoading = ref<boolean>(true);
-const computedPageCount = computed(() => Math.floor(count.value / 30))
+const computedPageCount = computed(() => Math.floor(count.value / 30));
 
 const paginationReactive = reactive({
   page: 1,
   pageSize: 30,
   pageCount: computedPageCount,
-})
+});
 
 const sorter = {
   orderDirection: undefined,
   orderBy: undefined,
 } as {
-  orderBy?: OrderScalarFieldEnum,
-  orderDirection?: 'asc' | 'desc'
-}
+  orderBy?: OrderScalarFieldEnum;
+  orderDirection?: 'asc' | 'desc';
+};
 const detailModal = reactive({
   isShow: false,
   id: NaN,
@@ -173,8 +173,8 @@ function doBreak(id: number) {
   breakModal.isShow = true;
   breakModal.id = id;
 }
-function breakDone(){
-  breakModal.isShow =false;
+function breakDone() {
+  breakModal.isShow = false;
 }
 
 onMounted(async () => {
@@ -182,15 +182,17 @@ onMounted(async () => {
   await request({
     limit: paginationReactive.pageSize,
     offset: (paginationReactive.page - 1) * paginationReactive.pageSize,
-    status: OrderStatusV2Enum.READY
-  }).finally(()=>{isLoading.value = false});
+    status: OrderStatusV2Enum.READY,
+  }).finally(() => {
+    isLoading.value = false;
+  });
 });
 
-async function handleSorterChange(newSorter?: {columnKey: OrderScalarFieldEnum, order: 'ascend' | 'descend'}) {
+async function handleSorterChange(newSorter?: { columnKey: OrderScalarFieldEnum; order: 'ascend' | 'descend' }) {
   console.log(newSorter);
-  if(newSorter?.order){
-    sorter.orderDirection = newSorter.order === 'ascend' ? 'asc' : 'desc'
-    sorter.orderBy = newSorter.columnKey
+  if (newSorter?.order) {
+    sorter.orderDirection = newSorter.order === 'ascend' ? 'asc' : 'desc';
+    sorter.orderBy = newSorter.columnKey;
     isLoading.value = true;
     await request({
       limit: paginationReactive.pageSize,
@@ -198,16 +200,20 @@ async function handleSorterChange(newSorter?: {columnKey: OrderScalarFieldEnum, 
       status: OrderStatusV2Enum.READY,
       orderDirection: sorter.orderDirection,
       orderBy: sorter.orderBy,
-    }).finally(()=>{isLoading.value = false});
+    }).finally(() => {
+      isLoading.value = false;
+    });
   } else {
     sorter.orderDirection = undefined;
     sorter.orderBy = undefined;
     isLoading.value = true;
-      await request({
-        limit: paginationReactive.pageSize,
-        offset: (paginationReactive.page - 1) * paginationReactive.pageSize,
-        status: OrderStatusV2Enum.READY,
-      }).finally(()=>{isLoading.value = false});
+    await request({
+      limit: paginationReactive.pageSize,
+      offset: (paginationReactive.page - 1) * paginationReactive.pageSize,
+      status: OrderStatusV2Enum.READY,
+    }).finally(() => {
+      isLoading.value = false;
+    });
   }
 }
 
@@ -220,7 +226,9 @@ async function handlePageChange(page: number) {
     status: OrderStatusV2Enum.READY,
     orderDirection: sorter.orderDirection,
     orderBy: sorter.orderBy,
-  }).finally(()=>{isLoading.value = false});
+  }).finally(() => {
+    isLoading.value = false;
+  });
 }
 </script>
 
@@ -228,7 +236,7 @@ async function handlePageChange(page: number) {
   <div class="admin-stat-ready">
     <NDivider title-placement="left">Выполненные заказы</NDivider>
     <div class="admin-stat-ready__table">
-      <div  class="table-orders-ready">
+      <div class="table-orders-ready">
         <NDataTable
           remote
           :loading="isLoading"

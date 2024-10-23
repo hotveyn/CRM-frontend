@@ -1,1 +1,1 @@
-export const BASEURL: string = 'https://work.neonbro.ru/api';
+export const BASEURL: string = 'http://localhost:8080/v1';

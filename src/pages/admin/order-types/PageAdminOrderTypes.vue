@@ -14,7 +14,6 @@ const routes: INavigationRoute[] = [
     text: 'Добавить',
   },
 ];
-
 </script>
 
 <template>

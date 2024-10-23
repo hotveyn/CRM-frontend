@@ -6,9 +6,9 @@ const routes: INavigationRoute[] = [
   {
     id: 1,
     name: 'admin-matrix-all',
-    text: 'Матрицы'
-  }
-]
+    text: 'Матрицы',
+  },
+];
 </script>
 
 <template>
@@ -18,9 +18,6 @@ const routes: INavigationRoute[] = [
       <RouterView />
     </div>
   </div>
-
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

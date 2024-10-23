@@ -23,7 +23,7 @@ function goBreak() {
 
     await orderService.markOrderAsBreak(props.id, {
       stageId: formValues.stageId as number,
-      breakId: formValues.breakId as number
+      breakId: formValues.breakId as number,
     });
     emit('done');
   });

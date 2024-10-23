@@ -12,7 +12,7 @@ export enum OrderStatusV2Enum {
   BREAK = 'BREAK',
   READY = 'READY',
   STOPED = 'STOPED',
-  HIDDEN = 'HIDDEN'
+  HIDDEN = 'HIDDEN',
 }
 
 export enum OrderScalarFieldEnum {
@@ -33,5 +33,5 @@ export enum OrderScalarFieldEnum {
   storageId = 'storageId',
   enoughResources = 'enoughResources',
   price = 'price',
-  typeId = 'typeId'
+  typeId = 'typeId',
 }

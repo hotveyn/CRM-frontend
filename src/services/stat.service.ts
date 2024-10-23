@@ -8,20 +8,13 @@ import { IStatDetailed, IStatPayment } from '@/interfaces/stat/IStatPayment.ts';
 
 export function useStatService() {
   return {
-    async getSelfStat() {
-      const startDate = new Date();
-      startDate.setDate(1);
-      startDate.setHours(0, 0, 1);
-      const endDate = new Date();
-      endDate.setDate(31);
-      endDate.setHours(23, 59, 59);
-
-      const params = {
-        start: startDate.toISOString(),
-        end: endDate.toISOString(),
-      };
-
-      const res = await api.get('stat/users', { params });
+    async getUsersStat(start: string, end: string) {
+      const res = await api.get('stat/users', {
+        params: {
+          start,
+          end,
+        },
+      });
       return res.data as IStatSelf[];
     },
     async getEmployeesStat(start?: string, end?: string) {
@@ -62,7 +55,7 @@ export function useStatService() {
       };
 
       const res = await api.get(`stat/user/${userId}/detailed`, { params });
-      return res.data as IStatDetailed ;
+      return res.data as IStatDetailed;
     },
     async getOrdersStoppedStat() {
       // const date = new Date();

@@ -6,28 +6,27 @@ import CardStageNew from 'components/card/order/new/CardStageNew.vue';
 import { IDepartment } from '@/interfaces/department/IDepartment';
 
 const stageNewStore = useStageNewStore();
-const currentTab = ref<number | undefined>(stageNewStore.departments[0] ? stageNewStore.departments[0].id : undefined)
-const searchText = ref<string>('')
+const currentTab = ref<number | undefined>(stageNewStore.departments[0] ? stageNewStore.departments[0].id : undefined);
+const searchText = ref<string>('');
 
 const searchedStages = ref<IDepartment[]>([]);
 
 onMounted(async () => {
   await stageNewStore.request();
-  searchedStages.value = stageNewStore.getStagesWithSearch(searchText.value)
-  currentTab.value = searchedStages.value[0] ? searchedStages.value[0].id : undefined
+  searchedStages.value = stageNewStore.getStagesWithSearch(searchText.value);
+  currentTab.value = searchedStages.value[0] ? searchedStages.value[0].id : undefined;
 });
 
-function claim(){
-  if(searchText.value) searchText.value = ''
-  
-  currentTab.value = searchedStages.value[0] ? searchedStages.value[0].id : undefined
+function claim() {
+  if (searchText.value) searchText.value = '';
+
+  currentTab.value = searchedStages.value[0] ? searchedStages.value[0].id : undefined;
 }
 
-watch(searchText, (newValue: string)=>{
-  searchedStages.value = stageNewStore.getStagesWithSearch(newValue)
-  currentTab.value = searchedStages.value[0] ? searchedStages.value[0].id : undefined
-})
-
+watch(searchText, (newValue: string) => {
+  searchedStages.value = stageNewStore.getStagesWithSearch(newValue);
+  currentTab.value = searchedStages.value[0] ? searchedStages.value[0].id : undefined;
+});
 </script>
 
 <template>
@@ -40,7 +39,7 @@ watch(searchText, (newValue: string)=>{
       </NEmpty>
     </div>
     <div v-else class="employee-new__cards">
-      <NTabs style="max-width: 360px" type="card" animated v-model:value="currentTab">
+      <NTabs type="card" animated v-model:value="currentTab">
         <NTabPane placement="left" size="small" v-for="department in searchedStages" :key="department.id" :name="department.id" :tab="department.name">
           <CardStageNew @claim="claim" v-for="stage in department.orderStages" :key="stage!.id" :stage="stage" :department-id="department.id" style="margin-bottom: 20px" />
         </NTabPane>

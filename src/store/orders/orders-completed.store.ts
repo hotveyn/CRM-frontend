@@ -21,10 +21,10 @@ export const useOrdersCompletedStore = defineStore('orders-completed', {
     };
   },
   actions: {
-    async request(params: {limit: number, offset: number, status: OrderStatusV2Enum, orderBy?: OrderScalarFieldEnum, orderDirection?: 'asc' | 'desc'}) {
-        const result = await orderService.query(params);
-        this.orders = result.data;
-        this.count = result.count;
+    async request(params: { limit: number; offset: number; status: OrderStatusV2Enum; orderBy?: OrderScalarFieldEnum; orderDirection?: 'asc' | 'desc' }) {
+      const result = await orderService.query(params);
+      this.orders = result.data;
+      this.count = result.count;
     },
     findById(id: number) {
       return this.orders.find((order) => order.id === id);
@@ -48,10 +48,10 @@ export const useOrdersCompletedStore = defineStore('orders-completed', {
 });
 
 export const asd = () => {
-  const orders: Ref<Array<IOrder>> = ref([])
-  const count: Ref<number> = ref(0)
+  const orders: Ref<Array<IOrder>> = ref([]);
+  const count: Ref<number> = ref(0);
 
-  async function request(params: {limit: number, offset: number, status: OrderStatusV2Enum, orderBy?: OrderScalarFieldEnum, orderDirection?: 'asc' | 'desc'}) {
+  async function request(params: { limit: number; offset: number; status: OrderStatusV2Enum; orderBy?: OrderScalarFieldEnum; orderDirection?: 'asc' | 'desc' }) {
     const result = await orderService.query(params);
     orders.value = result.data;
     count.value = result.count;
@@ -75,5 +75,5 @@ export const asd = () => {
   function findById(id: number) {
     return orders.value.find((order) => order.id === id);
   }
-  return {orders, count, request, setRating,  findById}
-}
+  return { orders, count, request, setRating, findById };
+};

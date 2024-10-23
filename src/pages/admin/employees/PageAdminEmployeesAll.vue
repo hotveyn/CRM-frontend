@@ -36,15 +36,15 @@ const usersTableData = computed(() => {
   });
 });
 function translateRole(role: string) {
-  switch (role){
-    case "manager":
-      return "Менеджер"
-    case "employee":
-      return "Работник"
-    case "storage":
-      return "Кладовщик"
-    case "admin":
-      return "Админ"
+  switch (role) {
+    case 'manager':
+      return 'Менеджер';
+    case 'employee':
+      return 'Работник';
+    case 'storage':
+      return 'Кладовщик';
+    case 'admin':
+      return 'Админ';
   }
 }
 const departmentsFilterOptions = computed(() => {

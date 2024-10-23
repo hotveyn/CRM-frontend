@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { NDivider } from 'naive-ui';
 import FormOrderTypeCreate from 'components/forms/order-type/create/FormOrderTypeCreate.vue';
-
 </script>
 
 <template>

@@ -50,7 +50,7 @@ function createColumns(actions: { fire: (id: number) => void; change: (id: numbe
             NTag,
             {
               style: {
-                marginRight: '6px'
+                marginRight: '6px',
               },
               type: 'info',
               bordered: false,
@@ -82,7 +82,7 @@ function createColumns(actions: { fire: (id: number) => void; change: (id: numbe
                 width: '100%',
                 maxWidth: '100px',
               },
-              onClick: () => router.push({ name: 'admin-employees-overview', params: {'id': row.id} }),
+              onClick: () => router.push({ name: 'admin-employees-overview', params: { id: row.id } }),
             },
             {
               default: () => 'Посмотреть',

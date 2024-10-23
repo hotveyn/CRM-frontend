@@ -22,9 +22,9 @@ function change(id: number) {
 }
 
 async function deleteOne(id: number) {
-  dialogService.confirm(async ()=>{
-    await ordersWorkStore.deleteOne(id)
-  })
+  dialogService.confirm(async () => {
+    await ordersWorkStore.deleteOne(id);
+  });
 }
 
 function updateDone() {

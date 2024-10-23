@@ -13,3 +13,22 @@ export interface IUser {
   start_work_date: string;
   departments?: IDepartment[];
 }
+export interface IUserV2 {
+  id: number;
+  code: string;
+  password: string;
+  login: string;
+  lastName: string;
+  firstName: string;
+  role: UserRoleEnum;
+  patronymicName: string;
+  startWorkDate: string;
+}
+
+export enum UsersEnum {
+  ADMIN = 'ADMIN',
+  MANAGER = 'MANAGER',
+  EMPLOYEE = 'EMPLOYEE',
+  FIRED = 'FIRED',
+  STORAGE = 'STORAGE',
+}

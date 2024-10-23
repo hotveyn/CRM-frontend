@@ -17,7 +17,7 @@ const columns = createColumns({
   deleteOne: (id: number) => emit('deleteOne', id),
 });
 
-function createColumns(actions: { change: (id: number) => void, deleteOne: (id: number) => void }): DataTableColumns<IOrder> {
+function createColumns(actions: { change: (id: number) => void; deleteOne: (id: number) => void }): DataTableColumns<IOrder> {
   return [
     {
       title: 'Код',
