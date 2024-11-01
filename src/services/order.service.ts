@@ -1,5 +1,5 @@
 import { api } from '@/axios';
-import { IOrder } from '@/interfaces/order/IOrder.ts';
+import { IOrder, IOrderV2 } from '@/interfaces/order/IOrder.ts';
 import { IOrderBreak } from '@/interfaces/order/IOrderBreak.ts';
 import { IOrderStopped } from '@/interfaces/order/IOrderStopped.ts';
 import { IOrderWork } from '@/interfaces/order/IOrderWork.ts';
@@ -141,7 +141,7 @@ export function useOrderService() {
         params,
       });
 
-      return res.data as { data: IOrder[]; count: 50 };
+      return res.data as { data: IOrderV2[]; count: 50 };
     },
   };
 }

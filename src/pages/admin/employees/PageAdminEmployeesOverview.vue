@@ -44,10 +44,10 @@ async function request() {
     });
 }
 
-function calculateSum(array: Array<{ name: string, sum: number }>){
-  return array.reduce((acc: number, curVal: { name: string, sum: number }) => {
+function calculateSum(array: Array<{ name: string; sum: number }>) {
+  return array.reduce((acc: number, curVal: { name: string; sum: number }) => {
     return acc + curVal.sum;
-  }, 0)
+  }, 0);
 }
 </script>
 
@@ -80,9 +80,7 @@ function calculateSum(array: Array<{ name: string, sum: number }>){
           <tr>
             <td>Итого</td>
             <td>
-              {{
-                calculateSum(stat.departmentsPayments)
-              }}
+              {{ calculateSum(stat.departmentsPayments) }}
             </td>
           </tr>
         </tbody>

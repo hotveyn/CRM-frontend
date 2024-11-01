@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import dayjs from 'dayjs';
 import { NCard, NModal, NDivider, NDataTable, NButton } from 'naive-ui';
-import { computed, h, onMounted, reactive, ref } from 'vue';
-import { asd } from '@/store/orders/orders-completed.store.ts';
-import TableOrdersDetails from 'components/tables/orders/detail/TableOrdersDetails.vue';
+import { computed, h, onMounted, reactive, ref, watch } from 'vue';
+import { useOrdersCompletedStore } from '@/store/orders/orders-completed.store.ts';
+import TableOrdersDetails, { orderStageToTableOrdersDetails } from 'components/tables/orders/detail/TableOrdersDetails.vue';
 import FormOrderRate from 'components/forms/order/rate/FormOrderRate.vue';
-import { IStageDetail } from '@/interfaces/stage/IStageDetail.ts';
 import { OrderScalarFieldEnum, OrderStatusV2Enum } from '@/enums/order/OrderStatus.enum';
 import { IOrderV2 } from '@/interfaces/order/IOrder.ts';
 import FormOrderToBreak from 'components/forms/order/to-break/FormOrderToBreak.vue';
+import { useOrderService } from '@/services/order.service.ts';
 
+const orderService = useOrderService();
 const columns = [
   {
     title: 'Код',
@@ -116,10 +117,10 @@ const columns = [
     },
   },
 ];
-const { count, orders, request, findById } = asd();
+const { count, orders, request, findById } = useOrdersCompletedStore();
 const isLoading = ref<boolean>(true);
 const computedPageCount = computed(() => Math.floor(count.value / 30));
-
+const detailTableData = ref<Array<orderStageToTableOrdersDetails>>([]);
 const paginationReactive = reactive({
   page: 1,
   pageSize: 30,
@@ -145,17 +146,29 @@ const breakModal = reactive({
   isShow: false,
   id: NaN,
 });
-const detailTableData = computed<IStageDetail[]>(() => {
-  if (detailModal.id) {
+
+watch(
+  () => detailModal.id,
+  async () => {
+    console.log(detailModal.id);
+    if (!detailModal.id) return;
+
     const order = findById(detailModal.id);
-    if (order) {
-      return order.order_stages.map((stage) => {
-        return { ...stage, full_name: `${stage.user?.last_name} ${stage.user?.first_name} ${stage.user?.patronymic_name}` };
-      });
-    }
+
+    console.log(order);
+    if (!order) return;
+
+    const orderStages = await orderService.getOrderStages(order.id);
+    detailTableData.value = orderStages.map((stage) => {
+      return {
+        inOrder: stage.inOrder,
+        percent: stage.percent,
+        departmentName: stage.department?.name || '',
+        fullName: `${stage.user.lastName} ${stage.user.firstName} ${stage.user.patronymicName}`,
+      } as orderStageToTableOrdersDetails;
+    });
   }
-  return [];
-});
+);
 
 function detail(id: number) {
   detailModal.isShow = true;

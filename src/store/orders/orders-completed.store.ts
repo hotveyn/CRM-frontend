@@ -1,54 +1,14 @@
-import { defineStore } from 'pinia';
 import { useOrderService } from '@/services/order.service.ts';
-import { IOrder } from '@/interfaces/order/IOrder.ts';
+import { IOrderV2 } from '@/interfaces/order/IOrder.ts';
 import { useMessageService } from '@/services/message.service.ts';
-import { OrderScalarFieldEnum, OrderStatusV2Enum } from '../../enums/order/OrderStatus.enum';
+import { OrderScalarFieldEnum, OrderStatusV2Enum } from '@/enums/order/OrderStatus.enum.ts';
 import { Ref, ref } from 'vue';
 
 const orderService = useOrderService();
 const message = useMessageService();
 
-interface State {
-  orders: IOrder[];
-  count: number;
-}
-
-export const useOrdersCompletedStore = defineStore('orders-completed', {
-  state: (): State => {
-    return {
-      orders: [],
-      count: 0,
-    };
-  },
-  actions: {
-    async request(params: { limit: number; offset: number; status: OrderStatusV2Enum; orderBy?: OrderScalarFieldEnum; orderDirection?: 'asc' | 'desc' }) {
-      const result = await orderService.query(params);
-      this.orders = result.data;
-      this.count = result.count;
-    },
-    findById(id: number) {
-      return this.orders.find((order) => order.id === id);
-    },
-    async setRating(id: number, rating: number) {
-      await orderService
-        .setRating(id, rating)
-        .then(() => {
-          message.order.rated();
-
-          for (const i in this.orders) {
-            if (this.orders[i].id === id) {
-              this.orders[i].rating = rating;
-              break;
-            }
-          }
-        })
-        .catch((e) => message.error.custom(e.response.data.message));
-    },
-  },
-});
-
-export const asd = () => {
-  const orders: Ref<Array<IOrder>> = ref([]);
+export const useOrdersCompletedStore = () => {
+  const orders: Ref<Array<IOrderV2>> = ref([]);
   const count: Ref<number> = ref(0);
 
   async function request(params: { limit: number; offset: number; status: OrderStatusV2Enum; orderBy?: OrderScalarFieldEnum; orderDirection?: 'asc' | 'desc' }) {

@@ -61,11 +61,10 @@ async function handleCollapseClick(event: { name: number | string; expanded: boo
   if (event.expanded) await requestUserStat(+event.name);
 }
 
-
-function calculateSum(array: Array<{ name: string, sum: number }>){
-  return array.reduce((acc: number, curVal: { name: string, sum: number }) => {
+function calculateSum(array: Array<{ name: string; sum: number }>) {
+  return array.reduce((acc: number, curVal: { name: string; sum: number }) => {
     return acc + curVal.sum;
-  }, 0)
+  }, 0);
 }
 </script>
 
@@ -106,9 +105,7 @@ function calculateSum(array: Array<{ name: string, sum: number }>){
                   <tr>
                     <td>Итого</td>
                     <td>
-                      {{
-                        calculateSum(usersStats[user.id].departmentsPayments)
-                      }}
+                      {{ calculateSum(usersStats[user.id].departmentsPayments) }}
                     </td>
                   </tr>
                 </tbody>

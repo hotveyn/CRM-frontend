@@ -2,25 +2,31 @@
 import { DataTableColumns, NDataTable } from 'naive-ui';
 import { IStageDetail } from '@/interfaces/stage/IStageDetail.ts';
 
+export interface orderStageToTableOrdersDetails {
+  inOrder: number;
+  departmentName: string;
+  fullName: string;
+  percent: number;
+}
 defineProps<{
-  tableData: IStageDetail[];
+  tableData: Array<orderStageToTableOrdersDetails>;
 }>();
 function createColumns(): DataTableColumns<IStageDetail> {
   return [
     {
       title: 'В порядке',
-      key: 'in_order',
+      key: 'inOrder',
       sorter: 'default' as const,
       defaultSortOrder: 'ascend' as const,
     },
     {
       title: 'Отдел',
-      key: 'department.name',
+      key: 'departmentName',
       sorter: 'default' as const,
     },
     {
       title: 'Сотрудник',
-      key: 'full_name',
+      key: 'fullName',
       sorter: 'default' as const,
     },
     {
